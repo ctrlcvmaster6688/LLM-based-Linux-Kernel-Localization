@@ -1,0 +1,59 @@
+start_code 7f8413e4b000 end_code 7f8413ee5b31 start_data 7f8413f13e50 end_data 7f8413f193b0
+start_brk 5555561bf000 brk 5555561e1000 start_stack 7fffb37e2480
+arg_start 7fffb37e2efb arg_end 7fffb37e2f14 env_start 7fffb37e2f14 env_end 7fffb37e2fdf
+binfmt ffffffff8cba2c20 flags 7fd
+ioctx_table 0000000000000000
+owner ffff88802a200000 exe_file ffff88802a0d0a00
+notifier_subscriptions 0000000000000000
+numa_next_scan 4294941906 numa_scan_offset 0 numa_scan_seq 0
+tlb_flush_pending 0
+def_flags: 0x0()
+------------[ cut here ]------------
+kernel BUG at mm/mmap.c:340!
+invalid opcode: 0000 [#1] PREEMPT SMP KASAN
+CPU: 1 PID: 6821 Comm: syz-executor191 Not tainted 6.4.0-syzkaller-10173-ga901a3568fd2 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 05/27/2023
+RIP: 0010:validate_mm+0x3a0/0x470 mm/mmap.c:340
+Code: 24 48 e8 93 39 fb ff e9 fc fd ff ff e8 09 e1 be ff 44 89 fa 89 ee 48 c7 c7 a0 d3 78 8a e8 88 89 a2 ff 48 89 df e8 a0 17 fb ff <0f> 0b e8 e9 e0 be ff 48 8b 7c 24 18 e8 8f 17 fb ff c6 05 34 fa cd
+RSP: 0018:ffffc9000c297aa0 EFLAGS: 00010282
+RAX: 000000000000032f RBX: ffff888078fa0000 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffff8169097c RDI: 0000000000000005
+RBP: 0000000000000013 R08: 0000000000000005 R09: 0000000000000000
+R10: 0000000080000000 R11: 0000000000000001 R12: 00007fffb37f9000
+R13: 0000000000000000 R14: 00007fffb37fafff R15: 0000000000000012
+FS:  00007f8413e41700(0000) GS:ffff8880b9900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f840b9ff718 CR3: 000000001bb00000 CR4: 0000000000350ee0
+Call Trace:
+ <TASK>
+ do_vmi_align_munmap+0x1199/0x1680 mm/mmap.c:2561
+ do_vmi_munmap+0x266/0x430 mm/mmap.c:2619
+ __vm_munmap+0x137/0x380 mm/mmap.c:2899
+ __do_sys_munmap mm/mmap.c:2916 [inline]
+ __se_sys_munmap mm/mmap.c:2913 [inline]
+ __x64_sys_munmap+0x62/0x80 mm/mmap.c:2913
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f8413e94f97
+Code: 00 00 00 48 c7 c2 b8 ff ff ff f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb 85 66 2e 0f 1f 84 00 00 00 00 00 90 b8 0b 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f8413e41168 EFLAGS: 00000246 ORIG_RAX: 000000000000000b
+RAX: ffffffffffffffda RBX: 0000000000000003 RCX: 00007f8413e94f97
+RDX: 0000000000010000 RSI: 0000000000010000 RDI: 00007f840ba00000
+RBP: 00007f840ba00000 R08: 0000000000000000 R09: 000000000000028b
+R10: 0000000000010000 R11: 0000000000000246 R12: 00007f8413e416b8
+R13: 00007f8413e41180 R14: 00007f8413e411c0 R15: 00007f8413f196e8
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:validate_mm+0x3a0/0x470 mm/mmap.c:340
+Code: 24 48 e8 93 39 fb ff e9 fc fd ff ff e8 09 e1 be ff 44 89 fa 89 ee 48 c7 c7 a0 d3 78 8a e8 88 89 a2 ff 48 89 df e8 a0 17 fb ff <0f> 0b e8 e9 e0 be ff 48 8b 7c 24 18 e8 8f 17 fb ff c6 05 34 fa cd
+RSP: 0018:ffffc9000c297aa0 EFLAGS: 00010282
+RAX: 000000000000032f RBX: ffff888078fa0000 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffff8169097c RDI: 0000000000000005
+RBP: 0000000000000013 R08: 0000000000000005 R09: 0000000000000000
+R10: 0000000080000000 R11: 0000000000000001 R12: 00007fffb37f9000
+R13: 0000000000000000 R14: 00007fffb37fafff R15: 0000000000000012
+FS:  00007f8413e41700(0000) GS:ffff8880b9900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fffb37e2238 CR3: 000000001bb00000 CR4: 0000000000350ee0

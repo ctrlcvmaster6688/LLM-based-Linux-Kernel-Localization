@@ -1,0 +1,44 @@
+Title: Mutate Test Program to Avoid Triggering Bug with Minimal Changes
+
+You are an AI assistant that can help with program analysis. You have to think step by step by following the steps below.
+
+1.Read the bug report and analyze the cause of the bug
+2.Read the testcase and analyse the syscalls one by one.
+3.For each of the ten variations:first,choose a syscall to mutate, and then analysis the parameter of the syscall. Finally, according to the Description of syscall, Mutate one of the parameters.
+4.The pairs of variant syscalls and the original syscalls should be given.
+
+Requirements:
+1.You need to Provide 10 pairs of mutations!!
+2.Try to ensure that each mutation has minimal changes to the original code
+3.Prevent the mutated program from triggering the original bugs.
+4.Parameters cannot be omitted from the output syscall
+
+ATTENTION:
+DO NOT produce replace paremeters by ... !!!!!
+
+Input:
+Bug Report:
+{BUG_REPORT_HERE}
+The syzlang program:
+(The program is produced by syzkaller to reproduce the target bug)
+{SYZ_HERE}
+
+Description of syscall:
+{SYSCALL_HERE}
+
+Output:
+Provide the results in JSON format with the following structure:
+
+"thought_process":
+A step-by-step explanation of the reasoning behind the ranking, including analysis of the test program, mutations, and file functionalities.
+
+"standard_output":
+list 10 pair of the origin lines and the mutated lines.
+
+1. origin line1
+mutated line1
+2. origin line2
+mutated line2
+
+...
+

@@ -1,0 +1,32 @@
+NILFS (loop1): nilfs_sufile_update: invalid segment number: 52
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 5017 at fs/nilfs2/segment.c:1503 nilfs_segctor_collect fs/nilfs2/segment.c:1556 [inline]
+WARNING: CPU: 0 PID: 5017 at fs/nilfs2/segment.c:1503 nilfs_segctor_do_construct+0x31e7/0x6d30 fs/nilfs2/segment.c:2070
+Modules linked in:
+
+CPU: 0 PID: 5017 Comm: segctord Not tainted 6.4.0-rc1-syzkaller-00133-g9a48d6046722 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 04/28/2023
+RIP: 0010:nilfs_segctor_truncate_segments fs/nilfs2/segment.c:1503 [inline]
+RIP: 0010:nilfs_segctor_collect fs/nilfs2/segment.c:1556 [inline]
+RIP: 0010:nilfs_segctor_do_construct+0x31e7/0x6d30 fs/nilfs2/segment.c:2070
+Code: ff df 80 3c 08 00 74 08 4c 89 ef e8 03 fb 93 fe 4d 8b 6d 00 4c 3b 6c 24 50 74 31 e8 13 2d 3c fe e9 39 ff ff ff e8 09 2d 3c fe <0f> 0b eb c3 44 89 e1 80 e1 07 80 c1 03 38 c1 0f 8c 44 ff ff ff 4c
+RSP: 0018:ffffc90003b7f700 EFLAGS: 00010293
+
+RAX: ffffffff834f3a37 RBX: 00000000ffffffea RCX: ffff888027728000
+RDX: 0000000000000000 RSI: 00000000ffffffea RDI: 0000000000000000
+RBP: ffffc90003b7fc30 R08: ffffffff834f39f5 R09: fffff5200076fe51
+R10: 0000000000000000 R11: dffffc0000000001 R12: 0000000000000010
+R13: ffff888076756dc8 R14: dffffc0000000000 R15: ffff8880765d4e38
+FS:  0000000000000000(0000) GS:ffff8880b9800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020074000 CR3: 0000000029d7c000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ nilfs_segctor_construct+0x145/0x8c0 fs/nilfs2/segment.c:2404
+ nilfs_segctor_thread_construct fs/nilfs2/segment.c:2512 [inline]
+ nilfs_segctor_thread+0x53a/0x1140 fs/nilfs2/segment.c:2595
+ kthread+0x2b8/0x350 kernel/kthread.c:379
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:308
+ </TASK>

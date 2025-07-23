@@ -1,0 +1,74 @@
+------------[ cut here ]------------
+kernel BUG at fs/btrfs/file.c:786!
+invalid opcode: 0000 [#1] PREEMPT SMP KASAN
+CPU: 1 PID: 3625 Comm: syz-executor242 Not tainted 6.1.0-rc6-syzkaller-00015-gc3eb11fbb826 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/26/2022
+RIP: 0010:btrfs_drop_extents+0x3527/0x3550 fs/btrfs/file.c:786
+Code: 00 48 8b 7c 24 48 e8 e8 9c 52 fe e9 85 fb ff ff e8 2e 84 fe fd 0f 0b e8 27 84 fe fd 0f 0b e8 20 84 fe fd 0f 0b e8 19 84 fe fd <0f> 0b e8 12 84 fe fd 0f 0b e8 0b 84 fe fd 0f 0b e8 04 84 fe fd 0f
+RSP: 0018:ffffc90003afe000 EFLAGS: 00010293
+RAX: ffffffff838c1457 RBX: 00000000fffffff4 RCX: ffff888077a657c0
+RDX: 0000000000000000 RSI: 00000000fffffff4 RDI: 0000000000000000
+RBP: ffffc90003afe390 R08: ffffffff838bfeb7 R09: ffffffff8381b3b2
+R10: 0000000000000002 R11: ffff888077a657c0 R12: dffffc0000000000
+R13: ffff888077829360 R14: 0000000000000000 R15: dffffc0000000000
+FS:  0000555556f703c0(0000) GS:ffff8880b9900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f199b878250 CR3: 0000000021698000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ cow_file_range_inline+0x41b/0x920 fs/btrfs/inode.c:434
+ cow_file_range+0x391/0xfa0 fs/btrfs/inode.c:1219
+ fallback_to_cow+0x47a/0x530 fs/btrfs/inode.c:1754
+ run_delalloc_nocow+0x1249/0x14a0 fs/btrfs/inode.c:2161
+ btrfs_run_delalloc_range+0x380/0x11a0 fs/btrfs/inode.c:2221
+ writepage_delalloc+0x25e/0x540 fs/btrfs/extent_io.c:1968
+ __extent_writepage+0x5d6/0x14d0 fs/btrfs/extent_io.c:2272
+ extent_write_cache_pages+0x9e7/0x12d0 fs/btrfs/extent_io.c:3186
+ extent_writepages+0x228/0x550 fs/btrfs/extent_io.c:3308
+ do_writepages+0x3c3/0x680 mm/page-writeback.c:2469
+ filemap_fdatawrite_wbc+0x11e/0x170 mm/filemap.c:388
+ __filemap_fdatawrite_range mm/filemap.c:421 [inline]
+ filemap_fdatawrite_range+0x175/0x200 mm/filemap.c:439
+ btrfs_fdatawrite_range fs/btrfs/file.c:4155 [inline]
+ start_ordered_ops fs/btrfs/file.c:2041 [inline]
+ btrfs_sync_file+0x39e/0x1140 fs/btrfs/file.c:2117
+ generic_write_sync include/linux/fs.h:2883 [inline]
+ btrfs_do_write_iter+0xcf2/0x1260 fs/btrfs/file.c:1990
+ do_iter_write+0x6c2/0xc20 fs/read_write.c:861
+ iter_file_splice_write+0x7fc/0xfc0 fs/splice.c:686
+ do_splice_from fs/splice.c:764 [inline]
+ direct_splice_actor+0xe6/0x1c0 fs/splice.c:931
+ splice_direct_to_actor+0x4e4/0xc00 fs/splice.c:886
+ do_splice_direct+0x279/0x3d0 fs/splice.c:974
+ do_sendfile+0x5fb/0xf80 fs/read_write.c:1255
+ __do_sys_sendfile64 fs/read_write.c:1323 [inline]
+ __se_sys_sendfile64+0x14f/0x1b0 fs/read_write.c:1309
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7fd4bb0747e9
+Code: 28 00 00 00 75 05 48 83 c4 28 c3 e8 81 14 00 00 90 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffd1c3b5eb8 EFLAGS: 00000246 ORIG_RAX: 0000000000000028
+RAX: ffffffffffffffda RBX: 0000000000000002 RCX: 00007fd4bb0747e9
+RDX: 0000000000000000 RSI: 0000000000000006 RDI: 0000000000000005
+RBP: 00007ffd1c3b5f00 R08: 0000000000000002 R09: aaaaaaaaaaaa0102
+R10: 0001000000201005 R11: 0000000000000246 R12: 0000000000000007
+R13: 00007fd4bb0ee7bc R14: 0000000000000003 R15: 0000000000000001
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:btrfs_drop_extents+0x3527/0x3550 fs/btrfs/file.c:786
+Code: 00 48 8b 7c 24 48 e8 e8 9c 52 fe e9 85 fb ff ff e8 2e 84 fe fd 0f 0b e8 27 84 fe fd 0f 0b e8 20 84 fe fd 0f 0b e8 19 84 fe fd <0f> 0b e8 12 84 fe fd 0f 0b e8 0b 84 fe fd 0f 0b e8 04 84 fe fd 0f
+RSP: 0018:ffffc90003afe000 EFLAGS: 00010293
+RAX: ffffffff838c1457 RBX: 00000000fffffff4 RCX: ffff888077a657c0
+RDX: 0000000000000000 RSI: 00000000fffffff4 RDI: 0000000000000000
+RBP: ffffc90003afe390 R08: ffffffff838bfeb7 R09: ffffffff8381b3b2
+R10: 0000000000000002 R11: ffff888077a657c0 R12: dffffc0000000000
+R13: ffff888077829360 R14: 0000000000000000 R15: dffffc0000000000
+FS:  0000555556f703c0(0000) GS:ffff8880b9800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055f4cf139900 CR3: 0000000021698000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400

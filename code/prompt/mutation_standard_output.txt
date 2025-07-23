@@ -1,0 +1,89 @@
+{
+  "thought_process":  {
+    "step_1":{ "description": "Analyze the bug report",
+      "details": "
+        Bug Type: Calling Context Error
+        Problem: The sleeping function is being called in an atomic environment that is not allowed
+        Root causes:l2tp_tunnel_register calls the cpus_read_lock, but executes in the context of atomic, violating the percpu-rwsem rule."
+        },
+    "step_2":{ "description": "Analyze the testcase",
+      "details": "
+      syscall 1: socket$nl_generic(0x10, 0x3, 0x10)
+        Create a NetLink socket to send a Generic NetLink request
+        syscall 2: syz_genetlink_get_family_id$l2tp
+        Obtain the netlink family ID associated with L2TP
+        syscall 3: sendmsg$L2TP_CMD_TUNNEL_CREATE
+        Send a L2TP_CMD_TUNNEL_CREATE message, causing l2tp_tunnel_register to be called
+        Key Issue: Can cause cpus_read_lock to execute in the wrong environment
+        Parameter Analysis:
+        L2TP_ATTR_PROTO_VERSION={0x5}
+        L2TP_ATTR_CONN_ID={0x8}
+        L2TP_ATTR_ENCAP_TYPE={0x6}
+        L2TP_ATTR_PEER_CONN_ID={0x8}
+        L2TP_ATTR_FD={0x8, 0x17, @l2tp}
+        Possible points of change:
+        Change L2TP_ATTR_PROTO_VERSION
+        Change L2TP_ATTR_CONN_ID
+        Change L2TP_ATTR_ENCAP_TYPE
+        Change the send_flags option"
+        } ,
+    "step_3":{ "description": "Mutate the syscall",
+      "mutate1":"Issue source: L2TPv3 (0x5) may call cpus_read_lock(), causing a bug.
+                Mutation logic: Modify L2TP_ATTR_PROTO_VERSION={0x5} to {0x4} to test whether L2TPv2 bypasses the bug trigger path.
+                Possible outcome: If L2TPv2 doesn't cause cpus_read_lock() to execute in an atomic environment, the bug is circumvented and the test case is still valid. ",
+      "mutate2":"Problem source: L2TP_ATTR_UDP_CSUM=0x1 This can cause L2TP to enter some UDP-related code path that may call cpus_read_lock(), causing bugs.
+                Mutation logic: Modify L2TP_ATTR_UDP_CSUM={0x1} to {0x0} to bypass possible bug trigger paths.
+                Possible outcome: If cpus_read_lock() only fires when UDP checksum is enabled, then the mutated bug does not reproduce, proving that the bug is related to UDP checksum.",
+      "mutate3":"",
+      "mutate4":"",
+      "mutate5":"",
+      "mutate6":"",
+      "mutate7":"",
+      "mutate8":"",
+      "mutate9":"",
+      "mutate10":""
+    },
+
+  "standard_output": [
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x4}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)"
+    },
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x9}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)"
+    },
+    {
+      "origin": "r1 = syz_genetlink_get_family_id$l2tp(&(0x7f0000000140), 0xffffffffffffffff)",
+      "mutated": "r1 = syz_genetlink_get_family_id$l2tp(&(0x7f0000000140), 0x0)"
+    },
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x1)"
+    },
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x4}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)"
+    },
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x9}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)"
+    },
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x5}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)"
+    },
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x9}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)"
+    },
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x18, @l2tp}]}, 0x3c}}, 0x0)"
+    },
+    {
+      "origin": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x8, 0x17, @l2tp}]}, 0x3c}}, 0x0)",
+      "mutated": "sendmsg$L2TP_CMD_TUNNEL_CREATE(r0, &(0x7f0000000240)={0x0, 0x0, &(0x7f0000000100)={&(0x7f0000000040)={0x3c, r1, 0x923, 0x0, 0x0, {}, [@L2TP_ATTR_PROTO_VERSION={0x5}, @L2TP_ATTR_CONN_ID={0x8}, @L2TP_ATTR_ENCAP_TYPE={0x6}, @L2TP_ATTR_PEER_CONN_ID={0x8}, @L2TP_ATTR_FD={0x9, 0x17, @l2tp}]}, 0x3c}}, 0x0)"
+    }
+  ]
+}

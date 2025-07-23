@@ -1,0 +1,96 @@
+response for 5b82f0e951f8c2bcdb8f:
+{
+  "file_where_bug_occurred": "fs/btrfs/ordered-data.c",
+  "files_in_call_trace": [
+    "fs/btrfs/ordered-data.c",
+    "fs/btrfs/inode.c",
+    "fs/iomap/direct-io.c",
+    "fs/btrfs/file.c",
+    "fs/read_write.c",
+    "arch/x86/entry/common.c"
+  ],
+  "syscalls_used": {
+    "fs/open.c",
+    "fs/falloc.c",
+    "fs/read_write.c"
+  },
+  "additional_files": [
+    "fs/btrfs/disk-io.c",
+    "fs/btrfs/volumes.c",
+    "fs/btrfs/ctree.c",
+    "fs/btrfs/extent_io.c",
+    "fs/btrfs/ioctl.c",
+    "fs/btrfs/super.c",
+    "fs/btrfs/transaction.c",
+    "fs/btrfs/free-space-cache.c",
+    "fs/btrfs/compression.c",
+    "fs/btrfs/lzo.c"
+  ]
+}
+response for 31d54c60c5b254d6f75b:
+{
+  "file_where_bug_occurred": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+  "files_in_call_trace": [
+    "lib/dump_stack.c",
+    "kernel/locking/lockdep.c",
+    "include/linux/spinlock_api_smp.h",
+    "kernel/locking/spinlock.c",
+    "include/linux/spinlock.h",
+    "drivers/net/wireless/ath/ath9k/wmi.c",
+    "kernel/softirq.c",
+    "kernel/smpboot.c",
+    "kernel/kthread.c",
+    "arch/x86/entry/entry_64.S"
+  ],
+  "syscalls_used": {
+    "syz_usb_connect_ath9k",
+    "syz_usb_ep_write$ath9k_ep2",
+    "syz_usb_connect"
+  },
+  "additional_files": [
+    "drivers/net/wireless/ath/ath9k/htc_hst.c",
+    "drivers/net/wireless/ath/ath9k/hif_usb.c",
+    "drivers/net/wireless/ath/ath9k/htc_drv_init.c",
+    "drivers/net/wireless/ath/ath9k/htc_drv_main.c",
+    "drivers/net/wireless/ath/ath9k/htc_drv_debug.c",
+    "drivers/usb/core/hcd.c",
+    "drivers/usb/core/urb.c",
+    "drivers/usb/core/message.c",
+    "drivers/usb/core/devio.c",
+    "drivers/usb/core/driver.c"
+  ]
+}
+response for 0b7c8bfd17c00d016fb4:
+{
+  "file_where_bug_occurred": "kernel/printk/printk.c",
+  "files_in_call_trace": [
+    "kernel/printk/printk.c",
+    "drivers/tty/pty.c",
+    "drivers/tty/tty_buffer.c",
+    "drivers/tty/n_tty.c",
+    "drivers/tty/tty_io.c",
+    "fs/read_write.c",
+    "arch/x86/entry/common.c",
+    "lib/fault-inject.c",
+    "mm/slub.c",
+    "kernel/locking/lockdep.c",
+    "drivers/tty/serial/8250/8250_port.c",
+    "drivers/tty/serial/8250/8250_core.c"
+  ],
+  "syscalls_used": [
+    "openat",
+    "write"
+  ],
+  "additional_files": [
+    "drivers/tty/tty_port.c",
+    "drivers/tty/tty_ldisc.c",
+    "kernel/printk/printk_safe.c",
+    "include/linux/tty_flip.h",
+    "drivers/tty/tty_mutex.c",
+    "drivers/tty/tty_ioctl.c",
+    "drivers/tty/tty_jobctrl.c",
+    "drivers/tty/tty_kref.c",
+    "drivers/tty/tty_kopen.c",
+    "drivers/tty/tty_ldiscref.c"
+  ]
+}

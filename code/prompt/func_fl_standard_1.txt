@@ -1,0 +1,19 @@
+[
+  {
+    "function": "<function_name1>",
+    "file": "<file_path>",
+    "purpose": "<brief summary>",
+    "subsystem": "<e.g., USB, networking, memory>",
+    "category": "<e.g., cleanup, device access, synchronization>",
+    "controllability": "<high | medium | low>"
+  },
+  {
+      "function": "<function_name2>",
+      "file": "<file_path>",
+      "purpose": "<brief summary>",
+      "subsystem": "<e.g., USB, networking, memory>",
+      "category": "<e.g., cleanup, device access, synchronization>",
+      "controllability": "<high | medium | low>"
+   },
+  ...
+]

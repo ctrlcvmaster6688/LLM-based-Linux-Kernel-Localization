@@ -1,0 +1,46 @@
+You are an AI engineer working on bug localization in C programs.
+
+This file is ranked **Top-4 to Top-7**, which suggests it may be related to the bug but with less certainty than higher-ranked files.
+
+Your goal is to identify **6–8 potentially faulty functions**, based on:
+- Evidence from the bug report
+- Behavior of the test program
+- How mutations affect the outcome
+- The function’s purpose and name (if implementation is not shown)
+
+You should:
+- Focus on functions that interact with other subsystems or trigger complex logic.
+- Avoid selecting trivial utility or wrapper functions.
+- Be cautious with memory or IO-related functions that may propagate errors.
+
+---
+
+Bug Report:
+{BUG_REPORT}
+
+Test program:
+{TSER_PROGRAM_HERE}
+
+Mutations that prevent the bug:
+1. {MUTATE1_HERE}
+2. {MUTATE2_HERE}
+3. {MUTATE3_HERE}
+
+Mutation that fails to prevent the bug:
+{MUTATE4_HERE}
+
+File name:
+{FILE_NAME}
+
+List of functions in the file:
+{FUNC_LIST_HERE}
+
+---
+
+Please output your ranked list of up to 8 functions in JSON format:
+```json
+[
+  "funcname1",
+  "funcname2",
+  ...
+]

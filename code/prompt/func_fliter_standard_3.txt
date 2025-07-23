@@ -1,0 +1,7 @@
+{
+    "function": [
+        "func_name1",
+        "func_name2",
+        "func_name3"
+    ]
+}

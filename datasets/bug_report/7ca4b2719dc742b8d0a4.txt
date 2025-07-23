@@ -1,0 +1,51 @@
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 5071 at mm/memory.c:1520 zap_pte_range mm/memory.c:1520 [inline]
+WARNING: CPU: 0 PID: 5071 at mm/memory.c:1520 zap_pmd_range mm/memory.c:1582 [inline]
+WARNING: CPU: 0 PID: 5071 at mm/memory.c:1520 zap_pud_range mm/memory.c:1611 [inline]
+WARNING: CPU: 0 PID: 5071 at mm/memory.c:1520 zap_p4d_range mm/memory.c:1632 [inline]
+WARNING: CPU: 0 PID: 5071 at mm/memory.c:1520 unmap_page_range+0x1711/0x2c00 mm/memory.c:1653
+Modules linked in:
+CPU: 0 PID: 5071 Comm: syz-executor186 Not tainted 6.7.0-rc1-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/09/2023
+RIP: 0010:zap_pte_range mm/memory.c:1520 [inline]
+RIP: 0010:zap_pmd_range mm/memory.c:1582 [inline]
+RIP: 0010:zap_pud_range mm/memory.c:1611 [inline]
+RIP: 0010:zap_p4d_range mm/memory.c:1632 [inline]
+RIP: 0010:unmap_page_range+0x1711/0x2c00 mm/memory.c:1653
+Code: 0f 8e 4a 12 00 00 48 8b 44 24 30 31 ff 0f b6 58 08 89 de e8 d1 95 be ff 84 db 0f 85 88 f3 ff ff e9 0a f4 ff ff e8 8f 9a be ff <0f> 0b e9 77 f3 ff ff e8 83 9a be ff 48 83 44 24 10 08 e9 9d f6 ff
+RSP: 0018:ffffc9000384f8f8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000007 RCX: ffffffff81ca09ed
+RDX: ffff888077293b80 RSI: ffffffff81ca0a51 RDI: 0000000000000007
+RBP: 0000000000000000 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: ffff88807cbb9008 R14: dffffc0000000000 R15: 0000000000000004
+FS:  0000000000000000(0000) GS:ffff8880b9800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f63615090d0 CR3: 000000007a6e2000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ unmap_single_vma+0x194/0x2b0 mm/memory.c:1699
+ unmap_vmas+0x229/0x470 mm/memory.c:1743
+ exit_mmap+0x1ad/0xa60 mm/mmap.c:3308
+ __mmput+0x12a/0x4d0 kernel/fork.c:1349
+ mmput+0x62/0x70 kernel/fork.c:1371
+ exit_mm kernel/exit.c:567 [inline]
+ do_exit+0x9ad/0x2ae0 kernel/exit.c:858
+ do_group_exit+0xd4/0x2a0 kernel/exit.c:1021
+ __do_sys_exit_group kernel/exit.c:1032 [inline]
+ __se_sys_exit_group kernel/exit.c:1030 [inline]
+ __x64_sys_exit_group+0x3e/0x50 kernel/exit.c:1030
+ do_syscall_x64 arch/x86/entry/common.c:51 [inline]
+ do_syscall_64+0x3f/0x110 arch/x86/entry/common.c:82
+ entry_SYSCALL_64_after_hwframe+0x63/0x6b
+RIP: 0033:0x7f636148df39
+Code: Unable to access opcode bytes at 0x7f636148df0f.
+RSP: 002b:00007ffef03bdcc8 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f636148df39
+RDX: 000000000000003c RSI: 00000000000000e7 RDI: 0000000000000000
+RBP: 00007f6361508270 R08: ffffffffffffffb8 R09: 65732f636f72702f
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f6361508270
+R13: 0000000000000000 R14: 00007f6361508cc0 R15: 00007f636145fae0
+ </TASK>

@@ -1,0 +1,175 @@
+==================================================================
+BUG: KASAN: slab-out-of-bounds in instrument_atomic_read include/linux/instrumented.h:71 [inline]
+BUG: KASAN: slab-out-of-bounds in atomic_read include/linux/atomic/atomic-instrumented.h:27 [inline]
+BUG: KASAN: slab-out-of-bounds in refcount_read include/linux/refcount.h:147 [inline]
+BUG: KASAN: slab-out-of-bounds in __refcount_add_not_zero include/linux/refcount.h:152 [inline]
+BUG: KASAN: slab-out-of-bounds in __refcount_inc_not_zero include/linux/refcount.h:227 [inline]
+BUG: KASAN: slab-out-of-bounds in refcount_inc_not_zero include/linux/refcount.h:245 [inline]
+BUG: KASAN: slab-out-of-bounds in sk_psock_get+0x123/0x410 include/linux/skmsg.h:439
+Read of size 4 at addr ffff88807da55e78 by task syz-executor287/3598
+
+CPU: 1 PID: 3598 Comm: syz-executor287 Not tainted 5.18.0-rc6-syzkaller-00153-g2fe1020d73ca #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+ print_address_description.constprop.0.cold+0xeb/0x467 mm/kasan/report.c:313
+ print_report mm/kasan/report.c:429 [inline]
+ kasan_report.cold+0xf4/0x1c6 mm/kasan/report.c:491
+ check_region_inline mm/kasan/generic.c:183 [inline]
+ kasan_check_range+0x13d/0x180 mm/kasan/generic.c:189
+ instrument_atomic_read include/linux/instrumented.h:71 [inline]
+ atomic_read include/linux/atomic/atomic-instrumented.h:27 [inline]
+ refcount_read include/linux/refcount.h:147 [inline]
+ __refcount_add_not_zero include/linux/refcount.h:152 [inline]
+ __refcount_inc_not_zero include/linux/refcount.h:227 [inline]
+ refcount_inc_not_zero include/linux/refcount.h:245 [inline]
+ sk_psock_get+0x123/0x410 include/linux/skmsg.h:439
+ tls_sw_recvmsg+0x195/0x15a0 net/tls/tls_sw.c:1783
+ inet6_recvmsg+0x11b/0x5e0 net/ipv6/af_inet6.c:671
+ sock_recvmsg_nosec net/socket.c:948 [inline]
+ sock_recvmsg net/socket.c:966 [inline]
+ sock_recvmsg net/socket.c:962 [inline]
+ ____sys_recvmsg+0x2be/0x5f0 net/socket.c:2632
+ ___sys_recvmsg+0x127/0x200 net/socket.c:2674
+ do_recvmmsg+0x24d/0x6d0 net/socket.c:2768
+ __sys_recvmmsg net/socket.c:2847 [inline]
+ __do_sys_recvmmsg net/socket.c:2870 [inline]
+ __se_sys_recvmmsg net/socket.c:2863 [inline]
+ __x64_sys_recvmmsg+0x20b/0x260 net/socket.c:2863
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fa61bd641c9
+Code: 28 c3 e8 2a 14 00 00 66 2e 0f 1f 84 00 00 00 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffdfc46b3c8 EFLAGS: 00000246 ORIG_RAX: 000000000000012b
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fa61bd641c9
+RDX: 000000000000000a RSI: 00000000200030c0 RDI: 0000000000000005
+RBP: 00007fa61bd28370 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000010000 R11: 0000000000000246 R12: 00007fa61bd28400
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 3598:
+ kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
+ kasan_set_track mm/kasan/common.c:45 [inline]
+ set_alloc_info mm/kasan/common.c:436 [inline]
+ __kasan_slab_alloc+0x85/0xb0 mm/kasan/common.c:469
+ kasan_slab_alloc include/linux/kasan.h:224 [inline]
+ slab_post_alloc_hook mm/slab.h:749 [inline]
+ slab_alloc mm/slab.c:3316 [inline]
+ __kmem_cache_alloc_lru mm/slab.c:3493 [inline]
+ kmem_cache_alloc+0x265/0x560 mm/slab.c:3513
+ kmem_cache_zalloc include/linux/slab.h:704 [inline]
+ kcm_attach net/kcm/kcmsock.c:1405 [inline]
+ kcm_attach_ioctl net/kcm/kcmsock.c:1490 [inline]
+ kcm_ioctl+0x7f1/0x1180 net/kcm/kcmsock.c:1696
+ sock_do_ioctl+0xcc/0x230 net/socket.c:1122
+ sock_ioctl+0x2f1/0x640 net/socket.c:1239
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:870 [inline]
+ __se_sys_ioctl fs/ioctl.c:856 [inline]
+ __x64_sys_ioctl+0x193/0x200 fs/ioctl.c:856
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+Last potentially related work creation:
+ kasan_save_stack+0x1e/0x40 mm/kasan/common.c:38
+ __kasan_record_aux_stack+0x7e/0x90 mm/kasan/generic.c:348
+ insert_work+0x48/0x350 kernel/workqueue.c:1358
+ __queue_work+0x62e/0x1140 kernel/workqueue.c:1517
+ queue_work_on+0xee/0x110 kernel/workqueue.c:1545
+ kcm_attach net/kcm/kcmsock.c:1466 [inline]
+ kcm_attach_ioctl net/kcm/kcmsock.c:1490 [inline]
+ kcm_ioctl+0xede/0x1180 net/kcm/kcmsock.c:1696
+ sock_do_ioctl+0xcc/0x230 net/socket.c:1122
+ sock_ioctl+0x2f1/0x640 net/socket.c:1239
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:870 [inline]
+ __se_sys_ioctl fs/ioctl.c:856 [inline]
+ __x64_sys_ioctl+0x193/0x200 fs/ioctl.c:856
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+The buggy address belongs to the object at ffff88807da55bc0
+ which belongs to the cache kcm_psock_cache of size 568
+The buggy address is located 128 bytes to the right of
+ 568-byte region [ffff88807da55bc0, ffff88807da55df8)
+
+The buggy address belongs to the physical page:
+page:ffffea0001f69500 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x7da54
+head:ffffea0001f69500 order:1 compound_mapcount:0 compound_pincount:0
+flags: 0xfff00000010200(slab|head|node=0|zone=1|lastcpupid=0x7ff)
+raw: 00fff00000010200 ffff8880249c7050 ffff8880249c7050 ffff88814bd0c600
+raw: 0000000000000000 ffff88807da54040 000000010000000b 0000000000000000
+page dumped because: kasan: bad access detected
+page_owner tracks the page as allocated
+page last allocated via order 1, migratetype Unmovable, gfp_mask 0x2420c0(__GFP_IO|__GFP_FS|__GFP_NOWARN|__GFP_COMP|__GFP_THISNODE), pid 3598, tgid 3598 (syz-executor287), ts 52379940749, free_ts 52358397606
+ prep_new_page mm/page_alloc.c:2441 [inline]
+ get_page_from_freelist+0xba2/0x3e00 mm/page_alloc.c:4182
+ __alloc_pages+0x1b2/0x500 mm/page_alloc.c:5408
+ __alloc_pages_node include/linux/gfp.h:587 [inline]
+ kmem_getpages mm/slab.c:1378 [inline]
+ cache_grow_begin+0x75/0x350 mm/slab.c:2584
+ cache_alloc_refill+0x27f/0x380 mm/slab.c:2957
+ ____cache_alloc mm/slab.c:3040 [inline]
+ ____cache_alloc mm/slab.c:3023 [inline]
+ __do_cache_alloc mm/slab.c:3267 [inline]
+ slab_alloc mm/slab.c:3309 [inline]
+ __kmem_cache_alloc_lru mm/slab.c:3493 [inline]
+ kmem_cache_alloc+0x450/0x560 mm/slab.c:3513
+ kmem_cache_zalloc include/linux/slab.h:704 [inline]
+ kcm_attach net/kcm/kcmsock.c:1405 [inline]
+ kcm_attach_ioctl net/kcm/kcmsock.c:1490 [inline]
+ kcm_ioctl+0x7f1/0x1180 net/kcm/kcmsock.c:1696
+ sock_do_ioctl+0xcc/0x230 net/socket.c:1122
+ sock_ioctl+0x2f1/0x640 net/socket.c:1239
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:870 [inline]
+ __se_sys_ioctl fs/ioctl.c:856 [inline]
+ __x64_sys_ioctl+0x193/0x200 fs/ioctl.c:856
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+page last free stack trace:
+ reset_page_owner include/linux/page_owner.h:24 [inline]
+ free_pages_prepare mm/page_alloc.c:1356 [inline]
+ free_pcp_prepare+0x549/0xd20 mm/page_alloc.c:1406
+ free_unref_page_prepare mm/page_alloc.c:3328 [inline]
+ free_unref_page+0x19/0x6a0 mm/page_alloc.c:3423
+ slab_destroy mm/slab.c:1630 [inline]
+ slabs_destroy+0x89/0xc0 mm/slab.c:1650
+ cache_flusharray mm/slab.c:3411 [inline]
+ ___cache_free+0x34e/0x670 mm/slab.c:3474
+ qlink_free mm/kasan/quarantine.c:157 [inline]
+ qlist_free_all+0x4f/0x1b0 mm/kasan/quarantine.c:176
+ kasan_quarantine_reduce+0x180/0x200 mm/kasan/quarantine.c:283
+ __kasan_slab_alloc+0x97/0xb0 mm/kasan/common.c:446
+ kasan_slab_alloc include/linux/kasan.h:224 [inline]
+ slab_post_alloc_hook mm/slab.h:749 [inline]
+ slab_alloc mm/slab.c:3316 [inline]
+ __kmem_cache_alloc_lru mm/slab.c:3493 [inline]
+ kmem_cache_alloc+0x265/0x560 mm/slab.c:3513
+ getname_flags.part.0+0x50/0x4f0 fs/namei.c:138
+ getname_flags include/linux/audit.h:323 [inline]
+ getname+0x8e/0xd0 fs/namei.c:217
+ do_sys_openat2+0xf5/0x4c0 fs/open.c:1207
+ do_sys_open fs/open.c:1229 [inline]
+ __do_sys_openat fs/open.c:1245 [inline]
+ __se_sys_openat fs/open.c:1240 [inline]
+ __x64_sys_openat+0x13f/0x1f0 fs/open.c:1240
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+Memory state around the buggy address:
+ ffff88807da55d00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff88807da55d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 fc
+>ffff88807da55e00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+                                                                ^
+ ffff88807da55e80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff88807da55f00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+==================================================================

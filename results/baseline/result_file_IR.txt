@@ -1,0 +1,668 @@
+Bug localization ranking for 050eeedd6c285d8c42f2:
+crypto/cbc.c: 0.10285156901178291 in position: 9
+
+Bug localization ranking for 703d9e154b3b58277261:
+net/l2tp/l2tp_core.c: 0.1268674065248458 in position: 20
+
+Bug localization ranking for 8b2a08dfbd25fd933d75:
+net/l2tp/l2tp_core.c: 0.1268674065248458 in position: 999
+
+Bug localization ranking for 1a0a53300ce782f8b3ad:
+fs/io_uring.c: 0.10726150979304314 in position: 1
+
+Bug localization ranking for a168dbeaaa7778273c1b:
+drivers/video/fbdev/core/fbcon.c: 0.05594819967537726 in position: 56
+
+Bug localization ranking for 10e27961f4da37c443b2:
+drivers/dma-buf/udmabuf.c: 0.13512478484496904 in position: 10
+
+Bug localization ranking for 1fa91bcd05206ff8cbb5:
+include/linux/skmsg.h: 0.034542359400917086 in position: 2004
+
+Bug localization ranking for a76f6a6e524cf2080aa3:
+fs/fscache/volume.c: 0.13105539824338142 in position: 32
+
+Bug localization ranking for 283ce5a46486d6acdbaf:
+kernel/cgroup/cgroup-v1.c: 0.030194497267292664 in position: 2721
+
+Bug localization ranking for 0b7c8bfd17c00d016fb4:
+kernel/printk/printk.c: 0.10644700796886239 in position: 80
+
+Bug localization ranking for 5b82f0e951f8c2bcdb8f:
+fs/btrfs/inode.c: 0.227895289331668 in position: 2
+
+Bug localization ranking for 31d54c60c5b254d6f75b:
+drivers/net/wireless/ath/ath9k/htc.h: 0.08933731551656683 in position: 47
+
+Bug localization ranking for 67654e51e54455f1c585:
+mm/hugetlb.c: 0.006205939746326347 in position: 4030
+
+Bug localization ranking for 178efee9e2d7f87f5103:
+net/netfilter/nf_tables_api.c: 0.015855297578332348 in position: 1218
+
+Bug localization ranking for 5d5821ad053bbbd4a11174989f2bf9d111873c52:
+net/ipv6/sit.c: 0.10847548103488233 in position: 27
+
+Bug localization ranking for 6ada951e7c0f7bc8a71e:
+include/linux/hugetlb.h: 0.06419653100079406 in position: 51
+
+Bug localization ranking for 60c52ca98513a8760a91:
+fs/io_uring.c: 0.004758680220030117 in position: 4112
+
+Bug localization ranking for 649e339fa6658ee623d3:
+net/netfilter/nft_ct.c: 0.02095015550813092 in position: 3455
+
+Bug localization ranking for 2b9b4f0895be09a6dec3:
+mm/memory.c: 0.052732276778081566 in position: 217
+
+Bug localization ranking for 9937dc42271cd87d4b98:
+drivers/block/nbd.c: 0.03588710735236486 in position: 220
+
+Bug localization ranking for 11421fbbff99b989670e:
+mm/util.c: 0.01774434312967227 in position: 1508
+
+Bug localization ranking for 958967f249155967d42a:
+kernel/bpf/btf.c: 0.08071505633114891 in position: 308
+
+Bug localization ranking for 35eebd505e97d315d01c:
+drivers/hid/hid-thrustmaster.c: 0.11453945827367668 in position: 85
+
+Bug localization ranking for 91e171a9aa357b24b62b3ab188bc04996448c99b:
+net/ipv6/addrconf.c: 0.18038758213181622 in position: 3
+
+Bug localization ranking for 4d2d56175b934b9a7bf9:
+drivers/net/wireless/ath/ath9k/htc.h: 0.04752333753238366 in position: 173
+
+Bug localization ranking for 1665a0a4a1d6d4d3f61624353f8a9e5dbfff67bd:
+net/l2tp/l2tp_core.c: 0.07255097915528289 in position: 417
+
+Bug localization ranking for 3493b1873fb3ea827986:
+net/netfilter/ipset/ip_set_hash_gen.h: 0.03381077007068127 in position: 285
+
+Bug localization ranking for d2c5e6980bfc84513464:
+net/ipv6/esp6.c: 0.047222051443904595 in position: 1156
+
+Bug localization ranking for 02617ac69815ae324053c954118c2dc7ba0e59b2:
+net/tls/tls_sw.c: 0.09020948829297859 in position: 255
+
+Bug localization ranking for 5f26f85569bd179c18ce:
+include/net/sock.h: 0.07778543753085895 in position: 42
+
+Bug localization ranking for e68c89a9510c159d9684:
+kernel/profile.c: 0.043398450581517554 in position: 129
+
+Bug localization ranking for 7ca4b2719dc742b8d0a4:
+fs/proc/task_mmu.c: 0.06209506459860726 in position: 296
+
+Bug localization ranking for 6d31bf169a8265204b8d:
+drivers/media/rc/mceusb.c: 0.0907953186719952 in position: 78
+
+Bug localization ranking for 60df062e1c41940cae0f:
+drivers/usb/core/port.c: 0.16665982176958252 in position: 1
+
+Bug localization ranking for a532b03fdfee2c137666:
+block/blk-map.c: 0.08098289146464938 in position: 14
+
+Bug localization ranking for 2ee18845e89ae76342c5:
+mm/ksm.c: 0.17713336895393503 in position: 1
+
+Bug localization ranking for 011e4ea1da6692cf881c:
+fs/pipe.c: 0.32944989881077724 in position: 1
+
+Bug localization ranking for 42d8c7c3d3e594b34346:
+drivers/media/v4l2-core/v4l2-ctrls.c: 0.2546782218897222 in position: 10
+
+Bug localization ranking for 244acf6996ae0b9122ac763d3099922258c9bd43:
+net/ipv4/tcp_output.c: 0.030093378500243108 in position: 261
+
+Bug localization ranking for c558267ad910fc494497:
+drivers/media/rc/imon.c: 0.1413571613315317 in position: 3
+
+Bug localization ranking for 6b74cf8fcd7378d8be7c:
+fs/fs-writeback.c: 0.1190055740638089 in position: 284
+
+Bug localization ranking for 6087eafb76a94c4ac9eb:
+mm/damon/dbgfs.c: 0.09912309899753681 in position: 17
+
+Bug localization ranking for 92beb3d46aab498710fa:
+drivers/net/bonding/bond_main.c: 0.07932963533968301 in position: 82
+
+Bug localization ranking for 793a590957d9c1b96620:
+include/net/netfilter/nf_conntrack_core.h: 0.07305883402574617 in position: 518
+
+Bug localization ranking for 2b50dd7e9d79da3a1949141a7f38c2af0d01ddf3:
+net/ipv4/tcp.c: 0.08566677091437357 in position: 13
+
+Bug localization ranking for c203af981f0f7cc27debda75f35d852546cc6013:
+net/ipv6/ip6_gre.c: 0.033720682587941246 in position: 350
+
+Bug localization ranking for c94a3675a626f6333d74:
+drivers/infiniband/core/cma.c: 0.056148951745480534 in position: 855
+
+Bug localization ranking for 63dec323ac56c28e644f:
+block/blk-map.c: 0.07797975341165526 in position: 10
+
+Bug localization ranking for 6879187cf57845801267:
+fs/io_uring.c: 0.007093019626237561 in position: 2227
+
+Bug localization ranking for ea8d2792959aee015d8eb96d362df0c7a0d5130e:
+drivers/net/ppp/ppp_generic.c: 0.009155745800936773 in position: 5137
+
+Bug localization ranking for 3faecbfd845a895c04cb:
+fs/erofs/zdata.c: 0.22187549689616518 in position: 2
+
+Bug localization ranking for afd2d80e495f96049571:
+net/netfilter/nfnetlink.c: 0.08314254500319875 in position: 22
+
+Bug localization ranking for ec3b3128c576e109171d:
+drivers/media/rc/mceusb.c: 0.09021577674323493 in position: 77
+
+Bug localization ranking for 97ea55669d5b2e909c5a6b7be2f9f8991499dbbd:
+net/core/dev.c: 0.053771606116630205 in position: 92
+
+Bug localization ranking for cd43695a64bcd21b8596:
+net/netfilter/nf_tables_api.c: 0.01996110015412587 in position: 990
+
+Bug localization ranking for c70d87ac1d001f29a058:
+kernel/watch_queue.c: 0.021136465470106773 in position: 1983
+
+Bug localization ranking for e94c5aaf7890901ebf9b:
+fs/proc/task_mmu.c: 0.09632731649779398 in position: 12
+
+Bug localization ranking for fadc0aaf497e6a493b9f:
+drivers/md/md.c: 0.08872046539743998 in position: 14
+
+Bug localization ranking for 62120febbd1ee3c3c860:
+fs/ext4/xattr.c: 0.25019271758133893 in position: 3
+
+Bug localization ranking for e3563f0c94e188366dbb:
+drivers/tty/n_gsm.c: 0.11664378572367222 in position: 1
+
+Bug localization ranking for 4903218f7fba0a2d6226:
+net/netfilter/nfnetlink.c: 0.10865020775318802 in position: 4
+
+Bug localization ranking for 7bf7b22759195c9a21e9:
+include/net/nl802154.h: 0.06713934756021664 in position: 108
+
+Bug localization ranking for 7b99aafdcc2eedea6178:
+net/core/skbuff.c: 0.006493500948998047 in position: 7302
+
+Bug localization ranking for 61e04e51b7ac86930589:
+drivers/block/loop.c: 0.01857766542285857 in position: 2368
+
+Bug localization ranking for 0a89a7b56db04c21a656:
+fs/jfs/inode.c: 0.10530029906015896 in position: 25
+
+Bug localization ranking for 2d4f8693f438d2bd4bdb:
+net/l2tp/l2tp_core.c: 0.1268674065248458 in position: 999
+
+Bug localization ranking for d1e3b1d92d25abf97943:
+security/security.c: 0.0031357019167681673 in position: 9171
+
+Bug localization ranking for 8b2a08dfbd25fd933d75:
+net/l2tp/l2tp_core.c: 0.1268674065248458 in position: 999
+
+Bug localization ranking for 77e4f005cb899d4268d1:
+fs/nilfs2/sufile.c: 0.03224923873803051 in position: 95
+
+Bug localization ranking for d8fc21bfa138a5ae916d:
+include/linux/blkdev.h: 0.018362819503825616 in position: 3058
+
+Bug localization ranking for 1917d778024161609247:
+net/qrtr/qrtr.c: 0.09887567545086522 in position: 159
+
+Bug localization ranking for 92968395eedbdbd3617d:
+net/netfilter/nfnetlink_cttimeout.c: 0.05620213427718348 in position: 48
+
+Bug localization ranking for fa4648a5446460b7b963:
+fs/ntfs3/bitmap.c: 0.007923753325965318 in position: 7070
+
+Bug localization ranking for 1631f09646bc214d2e76:
+fs/ntfs3/super.c: 0.07895295278916323 in position: 53
+
+Bug localization ranking for 33f3faaa0c08744f7d40:
+fs/ntfs3/super.c: 0.04332489296965346 in position: 256
+
+Bug localization ranking for 92340f7b2b4789907fdb:
+lib/kobject_uevent.c: 0.0010889141912401492 in position: 33289
+
+Bug localization ranking for 3dea30b047f41084de66:
+drivers/usb/usbip/vhci_hcd.c: 0.08595091818550002 in position: 203
+
+Bug localization ranking for d451401ffd00a60677ee:
+net/wireless/reg.c: 0.03899559108958417 in position: 353
+
+Bug localization ranking for f31428628ef672716ea8:
+net/qrtr/qrtr.c: 0.1779054223871703 in position: 2
+
+Bug localization ranking for 2af3bc9585be7f23f290:
+fs/nilfs2/segment.c: 0.00829637553568857 in position: 6076
+
+Bug localization ranking for cce9ef2dd25246f815ee:
+arch/x86/kvm/vmx/vmx.c: 0.002782406867041281 in position: 3727
+
+Bug localization ranking for 7e9494b8b399902e994e:
+fs/xfs/xfs_buf_item_recover.c: 0.1489134864943718 in position: 165
+
+Bug localization ranking for a3fcd59df1b372066f5a:
+mm/hugetlb.c: 0.019802978722731637 in position: 1073
+
+Bug localization ranking for cbff7a52b6f99059e67f:
+fs/nilfs2/dat.c: 0.06582868059680208 in position: 75
+
+Bug localization ranking for 12e098239d20385264d3:
+fs/btrfs/send.c: 0.1148014682684292 in position: 59
+
+Bug localization ranking for 68223fe9f6c95ad43bed:
+fs/ext4/balloc.c: 0.20673044280849587 in position: 21
+
+Bug localization ranking for 5925509f78293baa7331:
+drivers/usb/gadget/udc/dummy_hcd.c: 0.10316687655182413 in position: 100
+
+Bug localization ranking for b308f5fd049fbbc6e74f:
+drivers/tty/vt/vt_ioctl.c: 0.04360255438588737 in position: 767
+
+Bug localization ranking for 348331f63b034f89b622:
+drivers/input/mouse/bcm5974.c: 0.13175573829156853 in position: 1
+
+Bug localization ranking for 9b658439133becd38da1:
+drivers/block/nbd.c: 0.0332407397844583 in position: 183
+
+Bug localization ranking for 0d5b462a6f07447991b3:
+fs/nilfs2/super.c: 0.06817667921302312 in position: 64
+
+Bug localization ranking for dcf33a7aae997956fe06:
+fs/gfs2/ops_fstype.c: 0.21206809981015556 in position: 2
+
+Bug localization ranking for a7e701c8385bd8543074:
+net/xfrm/xfrm_compat.c: 0.13968092818898636 in position: 12
+
+Bug localization ranking for e2787430e752a92b8750:
+fs/hfsplus/inode.c: 0.1279216269344927 in position: 24
+
+Bug localization ranking for 1f4ba1e5520762c523c6:
+fs/io_uring.c: 0.02908674343935221 in position: 1484
+
+Bug localization ranking for 8357fbef0d7bb602de45:
+drivers/hid/hid-core.c: 0.0286191390215521 in position: 146
+
+Bug localization ranking for 28a246747e0a465127f3:
+drivers/net/ieee802154/atusb.c: 0.10404953877907969 in position: 34
+
+Bug localization ranking for c3729cda01706a04fb98:
+fs/erofs/zdata.c: 0.0001100939137802817 in position: 18968
+
+Bug localization ranking for deb631beeb93bdb2df4c:
+fs/ntfs3/ntfs_fs.h: 0.008532148893489437 in position: 2087
+
+Bug localization ranking for 28207acc70bbf3d85b74:
+fs/ntfs3/ntfs_fs.h: 0.02908326941227701 in position: 374
+
+Bug localization ranking for 298c5d8fb4a128bc27b0:
+fs/ext4/xattr.c: 0.43571122073729285 in position: 1
+
+Bug localization ranking for e5fd3e65515b48c02a30:
+drivers/video/fbdev/core/fbcon_ud.c: 0.00865731045699009 in position: 1851
+
+Bug localization ranking for 46a4ad33f345d1dd346e:
+net/netfilter/nf_conntrack_proto_sctp.c: 0.008679629128059169 in position: 2382
+
+Bug localization ranking for 4d99a966fd74bdeeec36:
+fs/ext4/xattr.c: 0.2856698883450126 in position: 5
+
+Bug localization ranking for e2eae5639e7203360018:
+drivers/usb/class/usbtmc.c: 0.004130501341862926 in position: 22423
+
+Bug localization ranking for 05139c4039d0679e19ff:
+fs/f2fs/inode.c: 0.0854308916166218 in position: 51
+
+Bug localization ranking for a84b8783366ecb1c65d0:
+fs/io_uring.c: 0.0033052908474071893 in position: 4440
+
+Bug localization ranking for 0c601d7fbb8122d39093:
+drivers/hid/hid-core.c: 0.03005130848838732 in position: 137
+
+Bug localization ranking for b33c1cb0a30ebdc8a5f9:
+net/sched/sch_red.c: 0.008175689799575529 in position: 6620
+
+Bug localization ranking for a8e049cd3abd342936b6:
+fs/erofs/zmap.c: 0.05424736144119673 in position: 121
+
+Bug localization ranking for 9c37714c07194d816417:
+fs/btrfs/ctree.h: 0.25825514019587914 in position: 2
+
+Bug localization ranking for 0da157a412d1aceba532ae787bb14797f31031b6:
+net/ethtool/bitset.c: 0.0 in position: 39634
+
+Bug localization ranking for 5ea725c25d06fb9114c4:
+net/packet/af_packet.c: 0.024546626984124416 in position: 2339
+
+Bug localization ranking for 27b0b464864741b18b99:
+drivers/media/usb/siano/smsusb.c: 0.0638703882664933 in position: 117
+
+Bug localization ranking for 3db80bbf66b88d68af9d:
+fs/reiserfs/stree.c: 0.05882079450394286 in position: 58
+
+Bug localization ranking for a8f26a403c169b7593fe:
+fs/ntfs3/namei.c: 0.01873094880092032 in position: 711
+
+Bug localization ranking for f816042a7ae2225f25ba:
+fs/quota/quota_v2.c: 0.049189048582283214 in position: 230
+
+Bug localization ranking for df33000f01fc8cd31a9b7555db19bf583548ed04:
+crypto/af_alg.c: 0.013137487470418556 in position: 1245
+
+Bug localization ranking for df400f2f24a1677cd7e0:
+net/rxrpc/af_rxrpc.c: 0.0014374701633461991 in position: 12472
+
+Bug localization ranking for 55cc72f8cc3a549119df:
+include/linux/pgtable.h: 0.08206734829594514 in position: 571
+
+Bug localization ranking for 02c44c7f92e70a73730a:
+fs/bfs/inode.c: 0.19912991203851965 in position: 3
+
+Bug localization ranking for 560e6a32d484d7293e37:
+fs/btrfs/ctree.h: 0.3503495164269589 in position: 7
+
+Bug localization ranking for 244acf6996ae0b9122ac763d3099922258c9bd43:
+net/ipv4/tcp_output.c: 0.030067152460082337 in position: 262
+
+Bug localization ranking for 34ef28bb2aeb28724aa0:
+fs/nilfs2/page.c: 0.02842930300052364 in position: 1010
+
+Bug localization ranking for d43608d061e8847ec9f3:
+net/tipc/socket.c: 0.0010611879356128321 in position: 30989
+
+Bug localization ranking for 7bf7b22759195c9a21e9:
+include/net/nl802154.h: 0.06701231613526956 in position: 112
+
+Bug localization ranking for 91edf9178386a07d06a7:
+include/linux/mm_inline.h: 0.006446408570863012 in position: 4408
+
+Bug localization ranking for 5e70d01ee8985ae62a3b:
+drivers/infiniband/sw/siw/siw_main.c: 0.01214301239526513 in position: 8064
+
+Bug localization ranking for 54b10a5da9e59f1ed979:
+fs/bfs/inode.c: 0.21731589029359516 in position: 3
+
+Bug localization ranking for f1faa20eec55e0c8644c:
+fs/jfs/namei.c: 0.07215393368430884 in position: 154
+
+Bug localization ranking for fbe81b56f7df4c0fb21b:
+net/ipv6/ipv6_sockglue.c: 0.01187422760660073 in position: 4217
+
+Bug localization ranking for 0871b14ca2e2fb64f6e3:
+drivers/gpu/drm/omapdrm/omap_drv.c: 0.04403805660664612 in position: 416
+
+Bug localization ranking for 1bb51491ca5df96a5f724899d1dbb87afda61419:
+net/bluetooth/hci_conn.c: 0.03881398213297194 in position: 1968
+
+Bug localization ranking for 01383b29d139cf9c9f9d9bd6e9947474ffe657a6:
+mm/gup.c: 0.20310888254857185 in position: 1
+
+Bug localization ranking for 08d09127d5fca845e6d94dea344c5b758bc45615:
+net/rxrpc/sendmsg.c: 0.16040782025298267 in position: 1
+
+Bug localization ranking for 0b6b2d6d6cefa8b462930e55be699efba635788f:
+net/netfilter/nft_chain_filter.c: 0.01703231913843193 in position: 2438
+
+Bug localization ranking for 12be9aa373be9d8727cdd172f190de39528a413a:
+net/mptcp/protocol.c: 0.01928037223353508 in position: 526
+
+Bug localization ranking for 1665a0a4a1d6d4d3f61624353f8a9e5dbfff67bd:
+net/l2tp/l2tp_core.c: 0.07261995245265392 in position: 417
+
+Bug localization ranking for 19a04b43c75ed1092021010419b5e560a8172c4f:
+drivers/hid/hidraw.c: 0.07724786024730054 in position: 123
+
+Bug localization ranking for 1a201ce4f0f4ab2f165b93d0ce5c15ebe1a5b321:
+include/linux/mm_inline.h: 0.006436520914174603 in position: 4415
+
+Bug localization ranking for 1bc76a5779300075e3466a0e2abcd753df212779:
+drivers/bluetooth/hci_h5.c: 0.0025916124263172797 in position: 32133
+
+Bug localization ranking for 1bef50bdd9622a1969608d1090b2b4a588d0c6ac:
+fs/file.c: 0.022495754424888634 in position: 2966
+
+Bug localization ranking for 2482c46517c04822f40780fde741031bf9493450:
+drivers/net/ieee802154/atusb.c: 0.09825176016347892 in position: 34
+
+Bug localization ranking for 251bb5cec78ffc6f0f277696516aafb04b1e1bd9:
+
+Bug localization ranking for 2a42bcdee55085e729aa4e472bf86adf2036ad40:
+fs/namespace.c: 0.01344630928036193 in position: 2857
+
+Bug localization ranking for 2dbce17f865f34c37da63de733f31001f293d78f:
+fs/namespace.c: 0.0223721639857554 in position: 1380
+
+Bug localization ranking for 32577e96d88447ded2d3b76d71254fb855245837:
+drivers/tty/vt/vt_ioctl.c: 0.043622328318500075 in position: 769
+
+Bug localization ranking for 32c85d199d85c11202246570956a2cbe272f235a:
+net/wireless/reg.c: 0.03669477310738253 in position: 516
+
+Bug localization ranking for 33e08264ba252fcf3ed89b69fd088ac976363535:
+fs/udf/file.c: 0.2543405884062363 in position: 1
+
+Bug localization ranking for 35ca150acc791b7283bb643a0edbbc185aa4a69e:
+net/smc/smc_ib.c: 0.05744240374985383 in position: 107
+
+Bug localization ranking for 35dd38010e383ee37d27b39f6b50eb25b4c92dd2:
+drivers/media/usb/siano/smsusb.c: 0.06231588108377251 in position: 118
+
+Bug localization ranking for 38efa4618c3379cf98642b9379d6e340b14d2702:
+fs/io_uring.c: 0.10886201174535766 in position: 1
+
+Bug localization ranking for 39b560f8c5d46a5c107b83c6a1e8ae4051826de0:
+net/ethtool/pse-pd.c: 0.050992020767293214 in position: 82
+
+Bug localization ranking for 3ac451d171eed4f6027b4c46176f6eda99e8547b:
+fs/fcntl.c: 0.02072514995114968 in position: 2588
+
+Bug localization ranking for 4894a6d412735394296e80976329c1a6848acc14:
+fs/file_table.c: 0.0719476063162266 in position: 272
+
+Bug localization ranking for 49b6f675bead6969f913a3f7dcef4d28fdd13296:
+mm/mmap.c: 0.14609506634689617 in position: 10
+
+Bug localization ranking for 4a547542bb29dc957c096f0c95ef9154e93d68d3:
+fs/ext4/inode.c: 0.20390866500125865 in position: 1
+
+Bug localization ranking for 4ed0d6eea4561854b366170155a78652da4cef29:
+drivers/usb/usbip/vhci_hcd.c: 0.08387413546093084 in position: 212
+
+Bug localization ranking for 52eac4b79cfb13db9907627c1afc185252168cdc:
+sound/usb/midi.c: 0.12133897143425318 in position: 255
+
+Bug localization ranking for 602383e46c337fd7a0b8346ee047fe2778b76647:
+fs/fcntl.c: 0.02122371143113183 in position: 3293
+
+Bug localization ranking for 625eef83808cdc8a4d6775801b04e985eb32fcf7:
+fs/btrfs/inode.c: 0.2825548248887749 in position: 1
+
+Bug localization ranking for 637351e3088fc2aed419d941674f2774f4162ea2:
+drivers/tty/vt/vt.c: 0.06175049121890687 in position: 43
+
+Bug localization ranking for 67d5dc5f84651b05fc3c2cb3d163037f414a10f4:
+net/qrtr/tun.c: 0.027303401511602952 in position: 305
+
+Bug localization ranking for 6922c8c31f1fdd120d1cef3f58b319b6dd1d8c00:
+drivers/misc/vmw_vmci/vmci_queue_pair.c: 0.0029394862373033595 in position: 12159
+
+Bug localization ranking for 699e4f546c33df9781a67891d42766bbbe3ca30b:
+fs/fuse/dir.c: 0.15882632230940424 in position: 10
+
+Bug localization ranking for 6e185619b66eae1ef09684c5f6e283d6cfb5ba84:
+fs/btrfs/file.c: 0.2330112233003737 in position: 2
+
+Bug localization ranking for 6e96f5bd56bfecdaa0bfeaf2695a25cc80bfbd9a:
+net/netfilter/ipset/ip_set_hash_gen.h: 0.09453791363245737 in position: 35
+
+Bug localization ranking for 75a2a727e4636c7a34dbd49197b15c3de92a8f7f:
+mm/gup.c: 0.11961353720995216 in position: 10
+
+Bug localization ranking for 789df5b54ebd19aec0b5c3900c933d1910db8ec5:
+fs/ext4/xattr.c: 0.27864874419752084 in position: 5
+
+Bug localization ranking for 7f34dec8b4c3be61baad2f552b05d2011d64ae87:
+drivers/media/v4l2-core/v4l2-ctrls.c: 0.2544589708359466 in position: 10
+
+Bug localization ranking for 8d31c0d56f794feb72c2d359795c74908dab34c0:
+net/ethtool/bitset.c: 0.08986823576941061 in position: 339
+
+Bug localization ranking for 8dc7a6aed7b8ead4c982ecdf2cd1ea5a4c3b57bb:
+fs/fuse/file.c: 0.1315389108840958 in position: 2
+
+Bug localization ranking for 91e171a9aa357b24b62b3ab188bc04996448c99b:
+net/ipv6/addrconf.c: 0.18038886442402727 in position: 3
+
+Bug localization ranking for 949ecf93b67ab1df8f890571d24ef9db50872c96:
+net/rxrpc/af_rxrpc.c: 0.0017348600451873894 in position: 13301
+
+Bug localization ranking for ac6fc97113de554dc57614c3ffa4c6a2c2668a97:
+drivers/hid/hid-core.c: 0.1818032985339051 in position: 10
+
+Bug localization ranking for b36d7e444fe532685b683ae7980f4e3a184f0ad8:
+net/ethtool/bitset.c: 0.10285255644291112 in position: 25
+
+Bug localization ranking for b5b251b9bcc4653c39164dfee969dafb903ae25e:
+drivers/usb/gadget/udc/dummy_hcd.c: 0.10313008449745 in position: 101
+
+Bug localization ranking for b5ecc684bb9e49db213e88f69d4ce80f7e20238d:
+drivers/nfc/virtual_ncidev.c: 0.13609613886910724 in position: 42
+
+Bug localization ranking for b929091c762f0a3060a9941dcacfed0c3b4a903d:
+net/can/j1939/transport.c: 0.24963736735789718 in position: 5
+
+Bug localization ranking for b96fbfdb1cf23b90ac7ee98b9c66235110e4a943:
+net/sched/sch_red.c: 0.031291821634268316 in position: 693
+
+Bug localization ranking for bf7780df648105d40e1fdbb0566defda3605ed93:
+net/packet/af_packet.c: 0.07816749999648265 in position: 52
+
+Bug localization ranking for ca2299cf11b3e3d3d0f44ac479410a14eecbd326:
+net/qrtr/qrtr.c: 0.15253624210908007 in position: 9
+
+Bug localization ranking for cd246a3e7f0fd69a115b910b3b2cf6fa96351278:
+fs/nilfs2/btree.c: 0.061171628159768676 in position: 49
+
+Bug localization ranking for cdf00205127303ca523678fbb9d7eb7613632dba:
+fs/io_uring.c: 0.005994157475977082 in position: 4547
+
+Bug localization ranking for d21cb12ee03822236d82ba4e83a1f8968e7832fb:
+mm/filemap.c: 0.04423418703554101 in position: 750
+
+Bug localization ranking for d2ad6548d6f4f8f52f8fa250310fb027f04cfd18:
+net/ieee802154/nl802154.c: 0.04834267162417257 in position: 84
+
+Bug localization ranking for d524c1aac21f8ea2759b6314c2e48bfa230c38b0:
+net/rds/rdma.c: 0.03252905126166595 in position: 326
+
+Bug localization ranking for d58fe2a53afa4ffbfaf3df368acb70d137e46c9f:
+fs/f2fs/inode.c: 0.35527199581134383 in position: 3
+
+Bug localization ranking for d92cc44e8c8ce5af6d2bea9f7a73cee791989fc8:
+fs/ext4/inode.c: 0.33916119967467484 in position: 3
+
+Bug localization ranking for daa1858cc0258eb026f89eecf342f6b3fdad7b05:
+net/sched/ematch.c: 0.12995746070812772 in position: 17
+
+Bug localization ranking for de88544daafacdbc8ec3b2d75ca9e7e0f03346e0:
+net/ipv4/tcp.c: 0.008569918443394161 in position: 5982
+
+Bug localization ranking for deb061ff946b02c2f4821f91683d89a68b2f45f8:
+fs/hfsplus/inode.c: 0.08089289671780296 in position: 57
+
+Bug localization ranking for e2907149c69cbccae0842eb502b8af4f6fac52a0:
+fs/xfs/xfs_buf_item_recover.c: 0.1579265972950394 in position: 167
+
+Bug localization ranking for e58343393efd3e0657ca37cf4466fc38d1f4d4df:
+drivers/dma-buf/udmabuf.c: 0.0842831016364689 in position: 23
+
+Bug localization ranking for e6028c53b349b6a97a83fe01a2013ac52db59710:
+net/9p/trans_fd.c: 0.006743020173299157 in position: 7146
+
+Bug localization ranking for e9d3ca982b76224e183481018baa693a26655ac4:
+fs/ext4/xattr.c: 0.08551964205661818 in position: 66
+
+Bug localization ranking for ee107e687b29b99d101ba328f28abfad4e58a91a:
+block/bsg.c: 0.04201970282614343 in position: 140
+
+Bug localization ranking for f1b41b503f18f268d11e52f80deffcd0c62e0865:
+net/mac80211/rx.c: 0.014085485589774004 in position: 2436
+
+Bug localization ranking for f1d54f488af5e3967ea8e664e514cb1c2820db45:
+fs/btrfs/extent-io-tree.c: 0.08408381522514785 in position: 106
+
+Bug localization ranking for f55849742bdcdf58f6eaae61e747ac00e5c061f4:
+mm/memory.c: 0.04995518089634863 in position: 218
+
+Bug localization ranking for f7c5a86e747f9b7ce333e7295875cd4ede2c7a0d:
+mm/util.c: 0.01626873645190802 in position: 1511
+
+Bug localization ranking for ffb9228cab75ad9d812af93d19e9637873d18439:
+net/ipv4/ip_gre.c: 0.02994002143941473 in position: 1915
+
+Bug localization ranking for 0784eb04ffd5b9955880826669badef2ffb32285:
+fs/btrfs/inode.c: 0.19924174937082695 in position: 1
+
+Bug localization ranking for 11cb6eec3ac0b37e657e8af0612342e140379e49:
+net/bluetooth/l2cap_core.c: 0.0034359089741308594 in position: 11437
+
+Bug localization ranking for 14f3125f37b7c76896b25c222159f6c205ff7e08:
+net/wireless/nl80211.c: 0.033410048217062296 in position: 651
+
+Bug localization ranking for 1fbd9fd0ef463a9811d2c5b7d206f119cf259601:
+net/smc/smc_sysctl.c: 0.0978814834894628 in position: 31
+
+Bug localization ranking for 223c64b1a2c03f0d67d64fdf69606ee2d5e26672:
+net/batman-adv/bridge_loop_avoidance.c: 0.01566614368552735 in position: 1529
+
+Bug localization ranking for 2e1943a94647f7732dd6fc60368642d6e8dc91b1:
+include/net/bluetooth/hci_core.h: 0.009031585895659805 in position: 6042
+
+Bug localization ranking for 362b5b49fced29361c0ba3007a2b3e5cd13776b5:
+drivers/infiniband/core/cma.c: 0.0561135959816667 in position: 856
+
+Bug localization ranking for 64182208616de0ae5ebd9b1652cb213485d61fce:
+net/nfc/netlink.c: 0.022686718160667353 in position: 937
+
+Bug localization ranking for 64bdf1f25f8db3d754e7b56c4d0f63a17edd8839:
+net/can/j1939/transport.c: 0.3056576481251151 in position: 4
+
+Bug localization ranking for 6bb7224cd01f8742533b486573005f65d512fdf6:
+include/net/sctp/stream_sched.h: 0.1572901652274725 in position: 21
+
+Bug localization ranking for 6c4345574ac937d9ccc195fdadb44f7cc95a19f9:
+net/netfilter/nf_tables_api.c: 0.059360571371590454 in position: 273
+
+Bug localization ranking for 76c0afb6e24e6dc4093c36801d0b3a61b486ec4d:
+fs/nilfs2/sufile.c: 0.049621670038598444 in position: 83
+
+Bug localization ranking for 7c512c7b421b211e4408a4bc7ac759e3a3eb0d44:
+net/qrtr/qrtr.c: 0.07848929536277446 in position: 58
+
+Bug localization ranking for 7d3c28ba3d4bf4b26e89ed1f1ca146e0223a2d36:
+kernel/watch_queue.c: 0.002916906481329651 in position: 19019
+
+Bug localization ranking for 802aba2422de4218ad0c01b46c9525cc9d4e4aa3:
+net/netfilter/nf_tables_api.c: 0.01582909937360938 in position: 1225
+
+Bug localization ranking for 95277dbea9484baea60662d0243a93011a21ceb5:
+net/bridge/netfilter/ebtables.c: 0.041077817131193885 in position: 14
+
+Bug localization ranking for a1a049fcf154a2c466232111c09a030ac656a833:
+drivers/net/wireguard/device.c: 0.021705540902871235 in position: 169
+
+Bug localization ranking for ab98490c0e3b48a71b7c203ee51366c99ceeda84:
+net/netfilter/nf_tables_api.c: 0.0689443387596513 in position: 170
+
+Bug localization ranking for bf3e592d3ed61b8f86b8ffba072adcde5485a5f6:
+io_uring/rw.c: 0.046912371245676036 in position: 781
+
+Bug localization ranking for cd95cb722bfa1234ac4c78345c8953ee2e7170d0:
+fs/ext4/extents.c: 0.185057938895075 in position: 23
+
+Bug localization ranking for cfec079d55325bc20e929c60cc2dca149448f9b1:
+kernel/watch_queue.c: 0.005036698330654929 in position: 8453
+

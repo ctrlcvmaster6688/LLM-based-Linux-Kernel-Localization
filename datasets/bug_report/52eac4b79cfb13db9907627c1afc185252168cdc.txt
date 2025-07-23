@@ -1,0 +1,20 @@
+usb 1-1: config 0 interface 0 altsetting 0 bulk endpoint 0x8A has invalid maxpacket 31
+usb 1-1: New USB device found, idVendor=324b, idProduct=5963, bcdDevice= 0.d2
+usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+usb 1-1: config 0 descriptor??
+usb 1-1: MIDIStreaming interface descriptor not found
+================================================================================
+UBSAN: shift-out-of-bounds in sound/usb/midi.c:1928:8
+shift exponent 244 is too large for 32-bit type 'int'
+CPU: 1 PID: 17 Comm: kworker/1:0 Not tainted 5.10.0-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Workqueue: usb_hub_wq hub_event
+Call Trace:
+ __dump_stack lib/dump_stack.c:79 [inline]
+ dump_stack+0x107/0x163 lib/dump_stack.c:120
+ ubsan_epilogue+0xb/0x5a lib/ubsan.c:148
+ __ubsan_handle_shift_out_of_bounds.cold+0xb1/0x181 lib/ubsan.c:395
+ snd_usbmidi_get_ms_info.cold+0x83/0xd4 sound/usb/midi.c:1928
+ __snd_usbmidi_create+0x380/0x2320 sound/usb/midi.c:2404
+ snd_usb_create_quirk+0xa5/0xe0 sound/usb/quirks.c:562
+ usb_audio_probe+0x623/0x2ab0 sound/usb/card.c:795

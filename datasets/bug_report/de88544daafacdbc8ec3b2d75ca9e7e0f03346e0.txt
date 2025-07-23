@@ -1,0 +1,81 @@
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 3601 at net/ipv4/tcp_input.c:2132 tcp_enter_loss+0xf86/0x14b0 net/ipv4/tcp_input.c:2145
+Modules linked in:
+CPU: 0 PID: 3601 Comm: strace-static-x Not tainted 6.1.0-rc2-syzkaller-00105-gb229b6ca5abb #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/11/2022
+RIP: 0010:tcp_timeout_mark_lost net/ipv4/tcp_input.c:2132 [inline]
+RIP: 0010:tcp_enter_loss+0xf86/0x14b0 net/ipv4/tcp_input.c:2145
+Code: 41 5d 41 5e 41 5f 5d c3 e8 17 31 be f8 e9 13 fc ff ff e8 0d 31 be f8 31 ed eb b0 e8 04 31 be f8 e9 ac f9 ff ff e8 fa 30 be f8 <0f> 0b e9 f6 f8 ff ff e8 ee 30 be f8 0f 0b e9 7a fc ff ff 48 8b 4c
+RSP: 0018:ffffc900000079a8 EFLAGS: 00010246
+RAX: ffffffff88cb7516 RBX: 0000000000000011 RCX: ffff8880218457c0
+RDX: 0000000000000101 RSI: 0000000000000009 RDI: 0000000000000011
+RBP: 0000000000000009 R08: ffffffff88cb6e06 R09: ffffffff88d1f216
+R10: 0000000000000002 R11: ffff8880218457c0 R12: ffff8880738a954c
+R13: ffff8880738a8c00 R14: 1ffff110039bf8a6 R15: dffffc0000000000
+FS:  0000000000d96340(0000) GS:ffff8880b9a00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe39b338718 CR3: 000000001f8ab000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:tcp_retransmit_timer+0x18c4/0x2890 net/ipv4/tcp_timer.c:503
+ tcp_write_timer+0x176/0x280 net/ipv4/tcp_timer.c:637
+ call_timer_fn+0xf5/0x210 kernel/time/timer.c:1474
+ expire_timers kernel/time/timer.c:1519 [inline]
+ __run_timers+0x76a/0x980 kernel/time/timer.c:1790
+ run_timer_softirq+0x63/0xf0 kernel/time/timer.c:1803
+ __do_softirq+0x277/0x75b kernel/softirq.c:571
+ __irq_exit_rcu+0xec/0x170 kernel/softirq.c:650
+ irq_exit_rcu+0x5/0x20 kernel/softirq.c:662
+ sysvec_apic_timer_interrupt+0x91/0xb0 arch/x86/kernel/apic/apic.c:1107asm_sysvec_apic_timer_interrupt+0x16/0x20 arch/x86/include/asm/idtentry.h:649
+RIP: 0010:stack_trace_consume_entry+0xd2/0x270 kernel/stacktrace.c:93
+Code: 49 89 f5 4d 89 c6 e8 2d 45 67 00 4d 89 f0 4c 8b 0c 24 4c 89 ee 48 ba 00 00 00 00 00 fc ff df 48 8b 1b 45 8d 70 01 41 8a 04 17 <84> c0 0f 85 2c 01 00 00 45 89 31 4a 8d 1c c3 48 89 d8 48 c1 e8 03
+RSP: 0018:ffffc90003c1f4f0 EFLAGS: 00000246
+RAX: 1ffff92000783e00 RBX: ffffc90003c1f6d0 RCX: ffffffff8f74e000
+RDX: dffffc0000000000 RSI: ffffffff8830ab24 RDI: ffffc90003c1f62c
+RBP: ffffc90003c1f628 R08: 0000000000000007 R09: ffffc90003c1f630
+R10: fffff52000783eb4 R11: 1ffff92000783eb2 R12: 1ffff92000783ec5
+R13: 1ffff92000783ec5 R14: 0000000000000008 R15: 1ffff92000783ec6
+ arch_stack_walk+0x106/0x140 arch/x86/kernel/stacktrace.c:27
+ stack_trace_save+0x12d/0x1f0 kernel/stacktrace.c:122
+ kasan_save_stack mm/kasan/common.c:45 [inline]
+ kasan_set_track+0x4c/0x70 mm/kasan/common.c:52
+ kasan_save_free_info+0x27/0x40 mm/kasan/generic.c:511
+ ____kasan_slab_free+0xd6/0x120 mm/kasan/common.c:236
+ kasan_slab_free include/linux/kasan.h:177 [inline]
+ slab_free_hook mm/slub.c:1724 [inline]
+ slab_free_freelist_hook+0x12e/0x1a0 mm/slub.c:1750
+ slab_free mm/slub.c:3661 [inline]
+ kmem_cache_free+0x94/0x1d0 mm/slub.c:3683
+ netlink_recvmsg+0x5c1/0x10f0 net/netlink/af_netlink.c:1998
+ ____sys_recvmsg+0x285/0x530
+ ___sys_recvmsg net/socket.c:2743 [inline]
+ __sys_recvmsg+0x294/0x390 net/socket.c:2773
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x2b/0x70 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x46c083
+Code: c7 c2 b8 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff eb bf 0f 1f 44 00 00 64 8b 04 25 18 00 00 00 85 c0 75 14 b8 2f 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 55 c3 0f 1f 40 00 48 83 ec 28 89 54 24 1c 48
+RSP: 002b:00007fff768fbf58 EFLAGS: 00000246 ORIG_RAX: 000000000000002f
+RAX: ffffffffffffffda RBX: 0000000000000014 RCX: 000000000046c083
+RDX: 0000000000000040 RSI: 00007fff768fbfa0 RDI: 0000000000000003
+RBP: 0000000000562195 R08: 0000000000562195 R09: 0000000000562195
+R10: 000000000045be50 R11: 0000000000000246 R12: 000000000045bfc0
+R13: 0000000000006ffb R14: 0000000000000040 R15: 0000000000000000----------------
+Code disassembly (best guess):
+   0:	49 89 f5             	mov    %rsi,%r13
+   3:	4d 89 c6             	mov    %r8,%r14
+   6:	e8 2d 45 67 00       	callq  0x674538
+   b:	4d 89 f0             	mov    %r14,%r8
+   e:	4c 8b 0c 24          	mov    (%rsp),%r9
+  12:	4c 89 ee             	mov    %r13,%rsi
+  15:	48 ba 00 00 00 00 00 	movabs $0xdffffc0000000000,%rdx
+  1c:	fc ff df
+  1f:	48 8b 1b             	mov    (%rbx),%rbx
+  22:	45 8d 70 01          	lea    0x1(%r8),%r14d
+  26:	41 8a 04 17          	mov    (%r15,%rdx,1),%al
+* 2a:	84 c0                	test   %al,%al <-- trapping instruction
+  2c:	0f 85 2c 01 00 00    	jne    0x15e
+  32:	45 89 31             	mov    %r14d,(%r9)
+  35:	4a 8d 1c c3          	lea    (%rbx,%r8,8),%rbx
+  39:	48 89 d8             	mov    %rbx,%rax
+  3c:	48 c1 e8 03          	shr    $0x3,%rax

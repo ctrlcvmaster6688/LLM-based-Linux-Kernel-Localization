@@ -1,0 +1,183 @@
+==================================================================
+BUG: KASAN: use-after-free in __list_del_entry_valid+0xe8/0x110 lib/list_debug.c:62
+Read of size 8 at addr ffff888072bc95d0 by task syz-executor214/3609
+
+CPU: 1 PID: 3609 Comm: syz-executor214 Not tainted 6.1.0-rc4-syzkaller-00011-g59f2f4b8a757 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/26/2022
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+ print_address_description mm/kasan/report.c:284 [inline]
+ print_report+0x15e/0x45d mm/kasan/report.c:395
+ kasan_report+0xbb/0x1f0 mm/kasan/report.c:495
+ __list_del_entry_valid+0xe8/0x110 lib/list_debug.c:62
+ __list_del_entry include/linux/list.h:134 [inline]
+ list_del_init include/linux/list.h:206 [inline]
+ inode_io_list_del+0x7b/0x200 fs/fs-writeback.c:1240
+ evict+0x112/0x6b0 fs/inode.c:651
+ iput_final fs/inode.c:1747 [inline]
+ iput.part.0+0x59b/0x880 fs/inode.c:1773
+ iput+0x58/0x70 fs/inode.c:1763
+ dentry_unlink_inode+0x2b1/0x460 fs/dcache.c:401
+ __dentry_kill+0x3c0/0x640 fs/dcache.c:607
+ dentry_kill fs/dcache.c:745 [inline]
+ dput+0x64d/0xdb0 fs/dcache.c:913
+ __fput+0x3cc/0xa90 fs/file_table.c:328
+ task_work_run+0x16b/0x270 kernel/task_work.c:179
+ exit_task_work include/linux/task_work.h:38 [inline]
+ do_exit+0xb35/0x2a20 kernel/exit.c:820
+ do_group_exit+0xd0/0x2a0 kernel/exit.c:950
+ __do_sys_exit_group kernel/exit.c:961 [inline]
+ __se_sys_exit_group kernel/exit.c:959 [inline]
+ __x64_sys_exit_group+0x3a/0x50 kernel/exit.c:959
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f776b6c13e9
+Code: Unable to access opcode bytes at 0x7f776b6c13bf.
+RSP: 002b:00007ffc7ff00188 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007f776b735330 RCX: 00007f776b6c13e9
+RDX: 000000000000003c RSI: 00000000000000e7 RDI: 0000000000000000
+RBP: 0000000000000000 R08: ffffffffffffffc0 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000246 R12: 00007f776b735330
+R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+
+Allocated by task 3607:
+ kasan_save_stack+0x1e/0x40 mm/kasan/common.c:45
+ kasan_set_track+0x21/0x30 mm/kasan/common.c:52
+ __kasan_slab_alloc+0x7e/0x80 mm/kasan/common.c:325
+ kasan_slab_alloc include/linux/kasan.h:201 [inline]
+ slab_post_alloc_hook mm/slab.h:737 [inline]
+ slab_alloc_node mm/slub.c:3398 [inline]
+ slab_alloc mm/slub.c:3406 [inline]
+ __kmem_cache_alloc_lru mm/slub.c:3413 [inline]
+ kmem_cache_alloc_lru+0x254/0x730 mm/slub.c:3429
+ alloc_inode_sb include/linux/fs.h:3117 [inline]
+ fat_alloc_inode+0x23/0x1e0 fs/fat/inode.c:750
+ alloc_inode+0x61/0x230 fs/inode.c:259
+ new_inode_pseudo fs/inode.c:1018 [inline]
+ new_inode+0x27/0x270 fs/inode.c:1046
+ fat_build_inode+0x146/0x2d0 fs/fat/inode.c:603
+ vfat_create+0x1c7/0x260 fs/fat/namei_vfat.c:776
+ lookup_open.isra.0+0xf05/0x12a0 fs/namei.c:3413
+ open_last_lookups fs/namei.c:3481 [inline]
+ path_openat+0x996/0x2860 fs/namei.c:3710
+ do_filp_open+0x1b6/0x400 fs/namei.c:3740
+ do_sys_openat2+0x16d/0x4c0 fs/open.c:1310
+ do_sys_open fs/open.c:1326 [inline]
+ __do_sys_creat fs/open.c:1402 [inline]
+ __se_sys_creat fs/open.c:1396 [inline]
+ __x64_sys_creat+0xc9/0x120 fs/open.c:1396
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+Freed by task 0:
+ kasan_save_stack+0x1e/0x40 mm/kasan/common.c:45
+ kasan_set_track+0x21/0x30 mm/kasan/common.c:52
+ kasan_save_free_info+0x2a/0x40 mm/kasan/generic.c:511
+ ____kasan_slab_free mm/kasan/common.c:236 [inline]
+ ____kasan_slab_free+0x160/0x1c0 mm/kasan/common.c:200
+ kasan_slab_free include/linux/kasan.h:177 [inline]
+ slab_free_hook mm/slub.c:1724 [inline]
+ slab_free_freelist_hook+0x8b/0x1c0 mm/slub.c:1750
+ slab_free mm/slub.c:3661 [inline]
+ kmem_cache_free+0xea/0x5b0 mm/slub.c:3683
+ i_callback+0x3f/0x70 fs/inode.c:248
+ rcu_do_batch kernel/rcu/tree.c:2250 [inline]
+ rcu_core+0x81f/0x1980 kernel/rcu/tree.c:2510
+ __do_softirq+0x1f7/0xad8 kernel/softirq.c:571
+
+Last potentially related work creation:
+ kasan_save_stack+0x1e/0x40 mm/kasan/common.c:45
+ __kasan_record_aux_stack+0xbc/0xd0 mm/kasan/generic.c:481
+ call_rcu+0x99/0x820 kernel/rcu/tree.c:2798
+ destroy_inode+0x129/0x1b0 fs/inode.c:314
+ iput_final fs/inode.c:1747 [inline]
+ iput.part.0+0x59b/0x880 fs/inode.c:1773
+ iput+0x58/0x70 fs/inode.c:1763
+ dentry_unlink_inode+0x2b1/0x460 fs/dcache.c:401
+ __dentry_kill+0x3c0/0x640 fs/dcache.c:607
+ dentry_kill fs/dcache.c:745 [inline]
+ dput+0x64d/0xdb0 fs/dcache.c:913
+ __fput+0x3cc/0xa90 fs/file_table.c:328
+ task_work_run+0x16b/0x270 kernel/task_work.c:179
+ exit_task_work include/linux/task_work.h:38 [inline]
+ do_exit+0xb35/0x2a20 kernel/exit.c:820
+ do_group_exit+0xd0/0x2a0 kernel/exit.c:950
+ __do_sys_exit_group kernel/exit.c:961 [inline]
+ __se_sys_exit_group kernel/exit.c:959 [inline]
+ __x64_sys_exit_group+0x3a/0x50 kernel/exit.c:959
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+The buggy address belongs to the object at ffff888072bc92f0
+ which belongs to the cache fat_inode_cache of size 1488
+The buggy address is located 736 bytes inside of
+ 1488-byte region [ffff888072bc92f0, ffff888072bc98c0)
+
+The buggy address belongs to the physical page:
+page:ffffea0001caf200 refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x72bc8
+head:ffffea0001caf200 order:3 compound_mapcount:0 compound_pincount:0
+flags: 0xfff00000010200(slab|head|node=0|zone=1|lastcpupid=0x7ff)
+raw: 00fff00000010200 0000000000000000 dead000000000122 ffff888018bf7640
+raw: 0000000000000000 0000000080140014 00000001ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+page_owner tracks the page as allocated
+page last allocated via order 3, migratetype Reclaimable, gfp_mask 0xd2050(__GFP_IO|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_NOMEMALLOC|__GFP_RECLAIMABLE), pid 3607, tgid 3607 (syz-executor214), ts 41307576812, free_ts 10475354501
+ prep_new_page mm/page_alloc.c:2539 [inline]
+ get_page_from_freelist+0x10b5/0x2d50 mm/page_alloc.c:4288
+ __alloc_pages+0x1c7/0x5a0 mm/page_alloc.c:5555
+ alloc_pages+0x1a6/0x270 mm/mempolicy.c:2285
+ alloc_slab_page mm/slub.c:1794 [inline]
+ allocate_slab+0x213/0x300 mm/slub.c:1939
+ new_slab mm/slub.c:1992 [inline]
+ ___slab_alloc+0xa91/0x1400 mm/slub.c:3180
+ __slab_alloc.constprop.0+0x56/0xa0 mm/slub.c:3279
+ slab_alloc_node mm/slub.c:3364 [inline]
+ slab_alloc mm/slub.c:3406 [inline]
+ __kmem_cache_alloc_lru mm/slub.c:3413 [inline]
+ kmem_cache_alloc_lru+0x4ad/0x730 mm/slub.c:3429
+ alloc_inode_sb include/linux/fs.h:3117 [inline]
+ fat_alloc_inode+0x23/0x1e0 fs/fat/inode.c:750
+ alloc_inode+0x61/0x230 fs/inode.c:259
+ new_inode_pseudo fs/inode.c:1018 [inline]
+ new_inode+0x27/0x270 fs/inode.c:1046
+ fat_fill_super+0x1b60/0x3680 fs/fat/inode.c:1847
+ mount_bdev+0x34d/0x410 fs/super.c:1401
+ legacy_get_tree+0x105/0x220 fs/fs_context.c:610
+ vfs_get_tree+0x89/0x2f0 fs/super.c:1531
+ do_new_mount fs/namespace.c:3040 [inline]
+ path_mount+0x1326/0x1e20 fs/namespace.c:3370
+ do_mount fs/namespace.c:3383 [inline]
+ __do_sys_mount fs/namespace.c:3591 [inline]
+ __se_sys_mount fs/namespace.c:3568 [inline]
+ __x64_sys_mount+0x27f/0x300 fs/namespace.c:3568
+page last free stack trace:
+ reset_page_owner include/linux/page_owner.h:24 [inline]
+ free_pages_prepare mm/page_alloc.c:1459 [inline]
+ free_pcp_prepare+0x65c/0xd90 mm/page_alloc.c:1509
+ free_unref_page_prepare mm/page_alloc.c:3387 [inline]
+ free_unref_page+0x19/0x4d0 mm/page_alloc.c:3483
+ free_contig_range+0xb1/0x180 mm/page_alloc.c:9493
+ destroy_args+0xa8/0x64c mm/debug_vm_pgtable.c:1031
+ debug_vm_pgtable+0x2954/0x29e5 mm/debug_vm_pgtable.c:1354
+ do_one_initcall+0x13d/0x780 init/main.c:1303
+ do_initcall_level init/main.c:1376 [inline]
+ do_initcalls init/main.c:1392 [inline]
+ do_basic_setup init/main.c:1411 [inline]
+ kernel_init_freeable+0x6ff/0x788 init/main.c:1631
+ kernel_init+0x1a/0x1d0 init/main.c:1519
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:306
+
+Memory state around the buggy address:
+ ffff888072bc9480: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888072bc9500: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+>ffff888072bc9580: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                                 ^
+ ffff888072bc9600: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888072bc9680: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================

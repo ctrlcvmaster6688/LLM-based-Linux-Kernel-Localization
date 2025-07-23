@@ -1,0 +1,37 @@
+You are an expert in large-scale software analysis and Linux kernel understanding. Your task is to analyze a list of kernel functions and summarize each function’s purpose and context in order to assist later fault localization.
+You are provided with a list of candidate functions in the format:
+<file_path>:<function_name>(<parameter list>)
+Each function originates from a set of top-ranked suspicious files, based on dynamic analysis and prior heuristics. Your goal is to help characterize each function for the next stage of localization.
+
+---
+
+### Instructions:
+
+For each function in the list, produce the following information:
+
+1. **Purpose and Behavior**:
+   - Briefly describe what the function is intended to do.
+   - You can infer from the function name, parameters, and file path.
+   - Use your knowledge of Linux kernel structure (e.g., `drivers/usb/usbip` deals with virtual USB devices, `mm/` for memory management, etc.)
+
+2. **Subsystem / Module Classification**:
+   - Identify the kernel subsystem or module the function belongs to (e.g., USB, networking, memory, block I/O).
+
+3. **Function Category**:
+   - Classify the function type (e.g., memory allocation, device management, cleanup routine, synchronization logic, I/O handler).
+
+Input here:
+{FUNCTION_LIST_HERE}
+
+Output: You should output as json format like followed provided:
+```json
+[
+  {
+    "function": "<function_name>",
+    "file": "<file_path>",
+    "purpose": "<brief summary>",
+    "subsystem": "<e.g., USB, networking, memory>",
+    "category": "<e.g., cleanup, device access, synchronization>"
+  },
+  ...
+]

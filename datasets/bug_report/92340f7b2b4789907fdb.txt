@@ -1,0 +1,69 @@
+microsoft 0003:045E:07DA.0001: unknown main item tag 0x0
+HID 045e:07da: Invalid code 65791 type 1
+------------[ cut here ]------------
+init_uevent_argv: buffer size too small
+WARNING: CPU: 0 PID: 3202 at lib/kobject_uevent.c:259 init_uevent_argv lib/kobject_uevent.c:259 [inline]
+WARNING: CPU: 0 PID: 3202 at lib/kobject_uevent.c:259 kobject_uevent_env+0x1640/0x1680 lib/kobject_uevent.c:608
+Modules linked in:
+CPU: 0 PID: 3202 Comm: kworker/0:3 Not tainted 5.10.0-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Workqueue: usb_hub_wq hub_event
+RIP: 0010:init_uevent_argv lib/kobject_uevent.c:259 [inline]
+RIP: 0010:kobject_uevent_env+0x1640/0x1680 lib/kobject_uevent.c:608
+Code: 8b e8 64 ac fe ff e9 cf f8 ff ff 48 8b 3c 24 e8 e6 76 e1 fd e9 a9 f8 ff ff e8 3c f9 9f fd 48 c7 c7 c0 bb a0 89 e8 bc 47 dc 04 <0f> 0b 41 bf f4 ff ff ff e9 51 ec ff ff 4c 89 ff e8 3b 76 e1 fd e9
+RSP: 0018:ffffc9000209e8e0 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: 0000000000000005 RCX: 0000000000000000
+RDX: ffff88801a559a40 RSI: ffffffff8158c865 RDI: fffff52000413d0e
+RBP: 00000000000007fb R08: 0000000000000001 R09: ffff8880b9e30627
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000005
+R13: 00000000000007fb R14: 0000000000000005 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8880b9e00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004c41a8 CR3: 000000000b08e000 CR4: 00000000001506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ device_add+0xb47/0x1ce0 drivers/base/core.c:2917
+ input_register_device+0x73a/0xce0 drivers/input/input.c:2212
+ hidinput_connect+0x5056/0x9d50 drivers/hid/hid-input.c:1952
+ hid_connect+0x958/0xbc0 drivers/hid/hid-core.c:1949
+ hid_hw_start drivers/hid/hid-core.c:2053 [inline]
+ hid_hw_start+0xa2/0x130 drivers/hid/hid-core.c:2044
+ ms_probe+0x159/0x4b0 drivers/hid/hid-microsoft.c:391
+ hid_device_probe+0x2bd/0x3f0 drivers/hid/hid-core.c:2281
+ really_probe+0x291/0xde0 drivers/base/dd.c:554
+ driver_probe_device+0x26b/0x3d0 drivers/base/dd.c:738
+ __device_attach_driver+0x1d1/0x290 drivers/base/dd.c:844
+ bus_for_each_drv+0x15f/0x1e0 drivers/base/bus.c:431
+ __device_attach+0x228/0x4a0 drivers/base/dd.c:912
+ bus_probe_device+0x1e4/0x290 drivers/base/bus.c:491
+ device_add+0xbb2/0x1ce0 drivers/base/core.c:2936
+ hid_add_device+0x344/0x9d0 drivers/hid/hid-core.c:2437
+ usbhid_probe+0xaae/0xfc0 drivers/hid/usbhid/hid-core.c:1407
+ usb_probe_interface+0x315/0x7f0 drivers/usb/core/driver.c:396
+ really_probe+0x291/0xde0 drivers/base/dd.c:554
+ driver_probe_device+0x26b/0x3d0 drivers/base/dd.c:738
+ __device_attach_driver+0x1d1/0x290 drivers/base/dd.c:844
+ bus_for_each_drv+0x15f/0x1e0 drivers/base/bus.c:431
+ __device_attach+0x228/0x4a0 drivers/base/dd.c:912
+ bus_probe_device+0x1e4/0x290 drivers/base/bus.c:491
+ device_add+0xbb2/0x1ce0 drivers/base/core.c:2936
+ usb_set_configuration+0x113c/0x1910 drivers/usb/core/message.c:2159
+ usb_generic_driver_probe+0xba/0x100 drivers/usb/core/generic.c:238
+ usb_probe_device+0xd9/0x2c0 drivers/usb/core/driver.c:293
+ really_probe+0x291/0xde0 drivers/base/dd.c:554
+ driver_probe_device+0x26b/0x3d0 drivers/base/dd.c:738
+ __device_attach_driver+0x1d1/0x290 drivers/base/dd.c:844
+ bus_for_each_drv+0x15f/0x1e0 drivers/base/bus.c:431
+ __device_attach+0x228/0x4a0 drivers/base/dd.c:912
+ bus_probe_device+0x1e4/0x290 drivers/base/bus.c:491
+ device_add+0xbb2/0x1ce0 drivers/base/core.c:2936
+ usb_new_device.cold+0x71d/0xfe9 drivers/usb/core/hub.c:2554
+ hub_port_connect drivers/usb/core/hub.c:5222 [inline]
+ hub_port_connect_change drivers/usb/core/hub.c:5362 [inline]
+ port_event drivers/usb/core/hub.c:5508 [inline]
+ hub_event+0x2348/0x42d0 drivers/usb/core/hub.c:5590
+ process_one_work+0x933/0x15a0 kernel/workqueue.c:2272
+ worker_thread+0x64c/0x1120 kernel/workqueue.c:2418
+ kthread+0x3b1/0x4a0 kernel/kthread.c:292
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:296

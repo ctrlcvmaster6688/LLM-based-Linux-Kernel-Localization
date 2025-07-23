@@ -1,0 +1,50 @@
+------------[ cut here ]------------
+refcount_t: saturated; leaking memory.
+WARNING: CPU: 1 PID: 3607 at lib/refcount.c:19 refcount_warn_saturate+0xf4/0x1e0 lib/refcount.c:19
+Modules linked in:
+CPU: 0 PID: 3607 Comm: syz-executor332 Not tainted 5.19.0-rc6-syzkaller-00115-g4a57a8400075 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 06/29/2022
+RIP: 0010:refcount_warn_saturate+0xf4/0x1e0 lib/refcount.c:19
+Code: 1d 4a 59 aa 09 31 ff 89 de e8 28 e7 7d fd 84 db 75 ab e8 1f eb 7d fd 48 c7 c7 a0 20 28 8a c6 05 2a 59 aa 09 01 e8 16 ef 35 05 <0f> 0b eb 8f e8 03 eb 7d fd 0f b6 1d 14 59 aa 09 31 ff 89 de e8 f3
+RSP: 0018:ffffc9000301f9d0 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: ffff888024cd9d80 RSI: ffffffff8160d028 RDI: fffff52000603f2c
+RBP: 0000000000000000 R08: 0000000000000005 R09: 0000000000000000
+R10: 0000000080000000 R11: 0000000000000001 R12: 1ffff92000603f3d
+R13: 00000000912cc501 R14: ffff888072fa8000 R15: ffffc9000301fa08
+FS:  0000555555cb3300(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000642040 CR3: 0000000024c61000 CR4: 0000000000350ee0
+Call Trace:
+ <TASK>
+ __refcount_add_not_zero include/linux/refcount.h:163 [inline]
+ __refcount_inc_not_zero include/linux/refcount.h:227 [inline]
+ refcount_inc_not_zero include/linux/refcount.h:245 [inline]
+ sk_psock_get+0x3bc/0x410 include/linux/skmsg.h:439
+ tls_data_ready+0x6d/0x1b0 net/tls/tls_sw.c:2091
+ tcp_data_ready+0x106/0x520 net/ipv4/tcp_input.c:4986
+ tcp_data_queue+0x1bb2/0x4c60 net/ipv4/tcp_input.c:5060
+ tcp_rcv_state_process+0x1798/0x4eb0 net/ipv4/tcp_input.c:6662
+ tcp_v4_do_rcv+0x339/0x9b0 net/ipv4/tcp_ipv4.c:1682
+ sk_backlog_rcv include/net/sock.h:1047 [inline]
+ __release_sock+0x134/0x3b0 net/core/sock.c:2849
+ release_sock+0x54/0x1b0 net/core/sock.c:3404
+ inet_shutdown+0x1e0/0x430 net/ipv4/af_inet.c:909
+ __sys_shutdown_sock net/socket.c:2326 [inline]
+ __sys_shutdown_sock net/socket.c:2320 [inline]
+ __sys_shutdown+0xf1/0x1b0 net/socket.c:2338
+ __do_sys_shutdown net/socket.c:2346 [inline]
+ __se_sys_shutdown net/socket.c:2344 [inline]
+ __x64_sys_shutdown+0x50/0x70 net/socket.c:2344
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7fd3d30b8969
+Code: 28 c3 e8 4a 15 00 00 66 2e 0f 1f 84 00 00 00 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe39ca75d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000030
+RAX: ffffffffffffffda RBX: 00007ffe39ca75e8 RCX: 00007fd3d30b8969
+RDX: 00007fd3d30b8969 RSI: 0000000000000001 RDI: 0000000000000003
+RBP: 0000000000000003 R08: bb1414ac00000000 R09: bb1414ac00000000
+R10: 0000000000000028 R11: 0000000000000246 R12: 00007ffe39ca75f0
+R13: 00007ffe39ca75e4 R14: 0000000000000003 R15: 0000000000000000
+ </TASK>

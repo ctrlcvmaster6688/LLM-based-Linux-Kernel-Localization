@@ -1,0 +1,77 @@
+loop0: detected capacity change from 0 to 4096
+ntfs3: loop0: Different NTFS' sector size (1024) and media sector size (512)
+ntfs3: loop0: Mark volume as dirty due to NTFS errors
+general protection fault, probably for non-canonical address 0xdffffc0000000001: 0000 [#1] PREEMPT SMP KASAN
+KASAN: null-ptr-deref in range [0x0000000000000008-0x000000000000000f]
+CPU: 0 PID: 3606 Comm: syz-executor276 Not tainted 6.0.0-syzkaller-09423-g493ffd6605b2 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/22/2022
+RIP: 0010:d_flags_for_inode fs/dcache.c:1980 [inline]
+RIP: 0010:__d_add+0x5ce/0x800 fs/dcache.c:2796
+Code: 00 fc ff df 80 3c 08 00 74 08 48 89 df e8 ea c0 ea ff 48 8b 1b 48 83 c3 08 48 89 d8 48 c1 e8 03 48 b9 00 00 00 00 00 fc ff df <80> 3c 08 00 74 08 48 89 df e8 c4 c0 ea ff 48 83 3b 00 0f 85 b7 01
+RSP: 0018:ffffc90003cff870 EFLAGS: 00010202
+RAX: 0000000000000001 RBX: 0000000000000008 RCX: dffffc0000000000
+RDX: ffff88801c181d80 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: ffff8880741270f2 R08: ffffffff81ef2679 R09: ffff888075bba128
+R10: ffffed100eb77427 R11: 1ffff1100eb77425 R12: 0000000000000008
+R13: 1ffff1100e824e1e R14: ffff888075bba000 R15: 0000000000000000
+FS:  0000555557353300(0000) GS:ffff8880b9a00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fff1887b000 CR3: 00000000730e1000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:d_splice_alias+0x122/0x3b0 fs/dcache.c:3191
+ lookup_open fs/namei.c:3391 [inline]
+ open_last_lookups fs/namei.c:3481 [inline]
+ path_openat+0x10e6/0x2df0 fs/namei.c:3688
+ do_filp_open+0x264/0x4f0 fs/namei.c:3718
+ do_sys_openat2+0x124/0x4e0 fs/open.c:1310
+ do_sys_open fs/open.c:1326 [inline]
+ __do_sys_open fs/open.c:1334 [inline]
+ __se_sys_open fs/open.c:1330 [inline]
+ __x64_sys_open+0x221/0x270 fs/open.c:1330
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x3d/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f651e934f79
+Code: ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff1887a418 EFLAGS: 00000246 ORIG_RAX: 0000000000000002
+RAX: ffffffffffffffda RBX: 0030656c69662f2e RCX: 00007f651e934f79
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000020000080
+RBP: 00007f651e8f4740 R08: 00005555573532c0 R09: 0000000000000000
+R10: 00007fff1887a2e0 R11: 0000000000000246 R12: 00000000ffffffff
+R13: 0000000000000000 R14: 00030030454c4946 R15: 0000000000000000Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:d_flags_for_inode fs/dcache.c:1980 [inline]
+RIP: 0010:__d_add+0x5ce/0x800 fs/dcache.c:2796
+Code: 00 fc ff df 80 3c 08 00 74 08 48 89 df e8 ea c0 ea ff 48 8b 1b 48 83 c3 08 48 89 d8 48 c1 e8 03 48 b9 00 00 00 00 00 fc ff df <80> 3c 08 00 74 08 48 89 df e8 c4 c0 ea ff 48 83 3b 00 0f 85 b7 01
+RSP: 0018:ffffc90003cff870 EFLAGS: 00010202
+RAX: 0000000000000001 RBX: 0000000000000008 RCX: dffffc0000000000
+RDX: ffff88801c181d80 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: ffff8880741270f2 R08: ffffffff81ef2679 R09: ffff888075bba128
+R10: ffffed100eb77427 R11: 1ffff1100eb77425 R12: 0000000000000008
+R13: 1ffff1100e824e1e R14: ffff888075bba000 R15: 0000000000000000
+FS:  0000555557353300(0000) GS:ffff8880b9a00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fff1887b000 CR3: 00000000730e1000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+----------------
+Code disassembly (best guess), 4 bytes skipped:
+   0:	80 3c 08 00          	cmpb   $0x0,(%rax,%rcx,1)
+   4:	74 08                	je     0xe
+   6:	48 89 df             	mov    %rbx,%rdi
+   9:	e8 ea c0 ea ff       	callq  0xffeac0f8
+   e:	48 8b 1b             	mov    (%rbx),%rbx
+  11:	48 83 c3 08          	add    $0x8,%rbx
+  15:	48 89 d8             	mov    %rbx,%rax
+  18:	48 c1 e8 03          	shr    $0x3,%rax
+  1c:	48 b9 00 00 00 00 00 	movabs $0xdffffc0000000000,%rcx
+  23:	fc ff df
+* 26:	80 3c 08 00          	cmpb   $0x0,(%rax,%rcx,1) <-- trapping instruction
+  2a:	74 08                	je     0x34
+  2c:	48 89 df             	mov    %rbx,%rdi
+  2f:	e8 c4 c0 ea ff       	callq  0xffeac0f8
+  34:	48 83 3b 00          	cmpq   $0x0,(%rbx)
+  38:	0f                   	.byte 0xf
+  39:	85                   	.byte 0x85
+  3a:	b7 01                	mov    $0x1,%bh

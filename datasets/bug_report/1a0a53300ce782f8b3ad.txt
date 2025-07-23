@@ -1,0 +1,62 @@
+BUG: kernel NULL pointer dereference, address: 0000000000000000
+#PF: supervisor instruction fetch in kernel mode
+#PF: error_code(0x0010) - not-present page
+PGD 0 P4D 0 
+Oops: 0010 [#1] PREEMPT SMP KASAN
+CPU: 1 PID: 3597 Comm: syz-executor652 Not tainted 5.18.0-rc7-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:0x0
+Code: Unable to access opcode bytes at RIP 0xffffffffffffffd6.
+RSP: 0018:ffffc90002f4fb68 EFLAGS: 00010246
+RAX: ffffffff89dad220 RBX: dffffc0000000000 RCX: 0000000000000000
+RDX: 0000000000000003 RSI: ffffc90002f4fbe0 RDI: ffff888019b838c0
+RBP: ffff888019b83901 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff81ec11a0 R11: 0000000000000000 R12: 0000000000000003
+R13: ffffc90002f4fbe0 R14: ffff888019b838c0 R15: ffff888019b83938
+FS:  0000000000000000(0000) GS:ffff8880b9d00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffffffffffd6 CR3: 000000000ba8e000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ io_do_iopoll+0x262/0x1080 fs/io_uring.c:2776
+ io_iopoll_try_reap_events+0xba/0x158 fs/io_uring.c:2829
+ io_ring_ctx_wait_and_kill+0x1d9/0x327 fs/io_uring.c:10167
+ io_uring_release+0x42/0x46 fs/io_uring.c:10184
+ __fput+0x277/0x9d0 fs/file_table.c:317
+ task_work_run+0xdd/0x1a0 kernel/task_work.c:164
+ exit_task_work include/linux/task_work.h:37 [inline]
+ do_exit+0xaff/0x2a00 kernel/exit.c:795
+ do_group_exit+0xd2/0x2f0 kernel/exit.c:925
+ __do_sys_exit_group kernel/exit.c:936 [inline]
+ __se_sys_exit_group kernel/exit.c:934 [inline]
+ __x64_sys_exit_group+0x3a/0x50 kernel/exit.c:934
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f6ba5d6ff19
+Code: Unable to access opcode bytes at RIP 0x7f6ba5d6feef.
+RSP: 002b:00007ffee0f8cb58 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007f6ba5de4290 RCX: 00007f6ba5d6ff19
+RDX: 000000000000003c RSI: 00000000000000e7 RDI: 0000000000000000
+RBP: 0000000000000000 R08: ffffffffffffffc0 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f6ba5de4290
+R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>
+Modules linked in:
+CR2: 0000000000000000
+---[ end trace 0000000000000000 ]---
+RIP: 0010:0x0
+Code: Unable to access opcode bytes at RIP 0xffffffffffffffd6.
+RSP: 0018:ffffc90002f4fb68 EFLAGS: 00010246
+RAX: ffffffff89dad220 RBX: dffffc0000000000 RCX: 0000000000000000
+RDX: 0000000000000003 RSI: ffffc90002f4fbe0 RDI: ffff888019b838c0
+RBP: ffff888019b83901 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff81ec11a0 R11: 0000000000000000 R12: 0000000000000003
+R13: ffffc90002f4fbe0 R14: ffff888019b838c0 R15: ffff888019b83938
+FS:  0000000000000000(0000) GS:ffff8880b9d00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffffffffffd6 CR3: 000000000ba8e000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400

@@ -1,0 +1,49 @@
+You are an experienced AI software engineer working on bug localization in C programs (especially the Linux kernel).
+
+This file is ranked **Top-3**, meaning it is highly suspicious of containing the faulty code.
+
+Your task is to identify the **most likely buggy functions** in this file — with a particular focus on functions that:
+- Perform **memory allocation or deallocation** (e.g., alloc, free)
+- Handle **system-level resources** (e.g., file descriptors, kernel objects, locks)
+- Deal with **low-level operations** such as page access, IO, concurrency
+
+Please analyze carefully based on:
+1. **Bug report**: Identify the likely root cause and whether resource misuse is involved.
+2. **Test program**: What resource-related paths does the test trigger?
+3. **Successful mutations**: What resource behavior is avoided or fixed?
+4. **Failed mutation**: What stays unchanged that might still be faulty?
+5. **Function list analysis**: Which functions perform resource operations or align with the bug behavior?
+
+Your goal is to **select 12–15 highly suspicious functions**, focusing on resource operations or error-prone logic.
+
+---
+
+Bug Report:
+{BUG_REPORT}
+
+Test program:
+{TSER_PROGRAM_HERE}
+
+Mutations that prevent the bug:
+1. {MUTATE1_HERE}
+2. {MUTATE2_HERE}
+3. {MUTATE3_HERE}
+
+Mutation that fails to prevent the bug:
+{MUTATE4_HERE}
+
+File name:
+{FILE_NAME}
+
+List of functions in the file:
+{FUNC_LIST_HERE}
+
+---
+
+Please output your ranked list of up to 15 suspicious functions in JSON format:
+```json
+[
+  "funcname1",
+  "funcname2",
+  ...
+]

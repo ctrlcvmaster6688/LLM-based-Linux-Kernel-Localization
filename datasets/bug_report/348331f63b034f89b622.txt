@@ -1,0 +1,25 @@
+------------[ cut here ]------------
+usb 1-1: BOGUS urb xfer, pipe 1 != type 3
+WARNING: CPU: 1 PID: 2959 at drivers/usb/core/urb.c:503 usb_submit_urb+0xce2/0x1920 drivers/usb/core/urb.c:502
+Modules linked in:
+CPU: 1 PID: 2959 Comm: acpid Not tainted 6.0.0-syzkaller-09589-g55be6084c8e0 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/22/2022
+RIP: 0010:usb_submit_urb+0xce2/0x1920 drivers/usb/core/urb.c:502
+Code: 48 c1 e8 03 8a 04 18 84 c0 0f 85 d4 08 00 00 45 8b 06 48 c7 c7 e0 e3 54 8b 48 8b 74 24 20 4c 89 fa 89 e9 31 c0 e8 fe d7 39 fb <0f> 0b 4c 8b 74 24 30 44 89 e5 48 89 ef 48 c7 c6 b0 e6 77 8d e8 65
+RSP: 0018:ffffc9000314f590 EFLAGS: 00010246
+RAX: 0df343a797085100 RBX: dffffc0000000000 RCX: ffff88807d9e8000
+RDX: 0000000000000000 RSI: 0000000080000000 RDI: 0000000000000000
+RBP: 0000000000000001 R08: ffffffff816c0f4d R09: ffffed10173667f1
+R10: ffffed10173667f1 R11: 1ffff110173667f0 R12: 0000000000000002
+R13: ffff888012f7c000 R14: ffffffff8b54e1c8 R15: ffff88801cba6b68
+FS:  00007ff1035ac740(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffd88f27f28 CR3: 0000000027c7f000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:bcm5974_start_traffic+0xd5/0x140 drivers/input/mouse/bcm5974.c:799
+ bcm5974_open+0x8e/0x120 drivers/input/mouse/bcm5974.c:839
+ input_open_device+0x184/0x2d0 drivers/input/input.c:650
+ mousedev_open_device+0xc1/0x160 drivers/input/mousedev.c:430
+ mousedev_open+0x2c6/0x460 drivers/input/mousedev.c:556
+ chrdev_open+0x5fb/0x680 fs/char_dev.c:414

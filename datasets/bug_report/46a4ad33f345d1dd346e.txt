@@ -1,0 +1,63 @@
+netlink: 'syz-executor835': attribute type 3 has an invalid length.
+netlink: 'syz-executor835': attribute type 2 has an invalid length.
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor835'.
+kasan: CONFIG_KASAN_INLINE enabled
+kasan: GPF could be caused by NULL-ptr deref or user memory access
+general protection fault: 0000 [#1] PREEMPT SMP KASAN
+CPU: 1 PID: 10703 Comm: syz-executor835 Not tainted 5.5.0-rc5-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:dccp_timeout_nlattr_to_obj+0x60/0x230 net/netfilter/nf_conntrack_proto_dccp.c:682
+Code: 89 d8 48 c1 e8 03 42 0f b6 14 30 48 89 d8 83 e0 07 83 c0 03 38 d0 7c 08 84 d2 0f 85 a1 01 00 00 4c 89 e0 44 8b 3b 48 c1 e8 03 <42> 0f b6 14 30 4c 89 e0 83 e0 07 83 c0 03 38 d0 7c 08 84 d2 0f 85
+RSP: 0018:ffffc90001cff3d8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: ffffffff8a4ca9bc RCX: ffffffff8662f3f9
+RDX: 0000000000000000 RSI: ffffffff8660e7e5 RDI: ffff88809e215a00
+RBP: ffffc90001cff418 R08: ffff888095c18640 R09: ffff88809e215a00
+R10: ffffed1013c42b47 R11: ffff88809e215a3f R12: 0000000000000000
+R13: 0000000000000000 R14: dffffc0000000000 R15: 0000000000005dc0
+FS:  0000000001b94880(0000) GS:ffff8880ae900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555aec69f140 CR3: 000000009f309000 CR4: 00000000001406e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ ctnl_timeout_parse_policy+0x150/0x1d0 net/netfilter/nfnetlink_cttimeout.c:67
+ cttimeout_default_set+0x150/0x1c0 net/netfilter/nfnetlink_cttimeout.c:368
+ nfnetlink_rcv_msg+0xcf2/0xfb0 net/netfilter/nfnetlink.c:229
+ netlink_rcv_skb+0x177/0x450 net/netlink/af_netlink.c:2477
+ nfnetlink_rcv+0x1ba/0x460 net/netfilter/nfnetlink.c:563
+ netlink_unicast_kernel net/netlink/af_netlink.c:1302 [inline]
+ netlink_unicast+0x58c/0x7d0 net/netlink/af_netlink.c:1328
+ netlink_sendmsg+0x91c/0xea0 net/netlink/af_netlink.c:1917
+ sock_sendmsg_nosec net/socket.c:639 [inline]
+ sock_sendmsg+0xd7/0x130 net/socket.c:659
+ ____sys_sendmsg+0x753/0x880 net/socket.c:2330
+ ___sys_sendmsg+0x100/0x170 net/socket.c:2384
+ __sys_sendmsg+0x105/0x1d0 net/socket.c:2417
+ __do_sys_sendmsg net/socket.c:2426 [inline]
+ __se_sys_sendmsg net/socket.c:2424 [inline]
+ __x64_sys_sendmsg+0x78/0xb0 net/socket.c:2424
+ do_syscall_64+0xfa/0x790 arch/x86/entry/common.c:294
+ entry_SYSCALL_64_after_hwframe+0x49/0xbe
+RIP: 0033:0x4401e9
+Code: 18 89 d0 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 0f 83 fb 13 fc ff c3 66 2e 0f 1f 84 00 00 00 00
+RSP: 002b:00007fff54a01658 EFLAGS: 00000246 ORIG_RAX: 000000000000002e
+RAX: ffffffffffffffda RBX: 00000000004002c8 RCX: 00000000004401e9
+RDX: 0000000000000940 RSI: 0000000020000200 RDI: 0000000000000003
+RBP: 00000000006ca018 R08: 0000000000000000 R09: 00000000004002c8
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000401a70
+R13: 0000000000401b00 R14: 0000000000000000 R15: 0000000000000000
+Modules linked in:
+---[ end trace 8d21758db4203c1b ]---
+RIP: 0010:dccp_timeout_nlattr_to_obj+0x60/0x230 net/netfilter/nf_conntrack_proto_dccp.c:682
+Code: 89 d8 48 c1 e8 03 42 0f b6 14 30 48 89 d8 83 e0 07 83 c0 03 38 d0 7c 08 84 d2 0f 85 a1 01 00 00 4c 89 e0 44 8b 3b 48 c1 e8 03 <42> 0f b6 14 30 4c 89 e0 83 e0 07 83 c0 03 38 d0 7c 08 84 d2 0f 85
+RSP: 0018:ffffc90001cff3d8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: ffffffff8a4ca9bc RCX: ffffffff8662f3f9
+RDX: 0000000000000000 RSI: ffffffff8660e7e5 RDI: ffff88809e215a00
+RBP: ffffc90001cff418 R08: ffff888095c18640 R09: ffff88809e215a00
+R10: ffffed1013c42b47 R11: ffff88809e215a3f R12: 0000000000000000
+R13: 0000000000000000 R14: dffffc0000000000 R15: 0000000000005dc0
+FS:  0000000001b94880(0000) GS:ffff8880ae900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555aec69f140 CR3: 000000009f309000 CR4: 00000000001406e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400

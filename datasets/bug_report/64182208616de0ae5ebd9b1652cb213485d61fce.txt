@@ -1,0 +1,30 @@
+executing program
+executing program
+BUG: memory leak
+unreferenced object 0xffff88810e03ca60 (size 32):
+  comm "syz-executor354", pid 5068, jiffies 4294945666 (age 13.810s)
+  hex dump (first 32 bytes):
+    02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff815090d4>] kmalloc_trace+0x24/0x90 mm/slab_common.c:1062
+    [<ffffffff846a8104>] kmalloc include/linux/slab.h:580 [inline]
+    [<ffffffff846a8104>] kzalloc include/linux/slab.h:720 [inline]
+    [<ffffffff846a8104>] nfc_genl_se_io+0xf4/0x260 net/nfc/netlink.c:1531
+    [<ffffffff83d2cede>] genl_family_rcv_msg_doit.isra.0+0xee/0x150 net/netlink/genetlink.c:968
+    [<ffffffff83d2d217>] genl_family_rcv_msg net/netlink/genetlink.c:1048 [inline]
+    [<ffffffff83d2d217>] genl_rcv_msg+0x2d7/0x430 net/netlink/genetlink.c:1065
+    [<ffffffff83d2b5a1>] netlink_rcv_skb+0x91/0x1e0 net/netlink/af_netlink.c:2574
+    [<ffffffff83d2c5a8>] genl_rcv+0x28/0x40 net/netlink/genetlink.c:1076
+    [<ffffffff83d2a4fb>] netlink_unicast_kernel net/netlink/af_netlink.c:1339 [inline]
+    [<ffffffff83d2a4fb>] netlink_unicast+0x39b/0x4d0 net/netlink/af_netlink.c:1365
+    [<ffffffff83d2a9ca>] netlink_sendmsg+0x39a/0x710 net/netlink/af_netlink.c:1942
+    [<ffffffff83b74b3a>] sock_sendmsg_nosec net/socket.c:714 [inline]
+    [<ffffffff83b74b3a>] sock_sendmsg+0x5a/0x80 net/socket.c:734
+    [<ffffffff83b750bd>] ____sys_sendmsg+0x38d/0x410 net/socket.c:2476
+    [<ffffffff83b79c68>] ___sys_sendmsg+0xa8/0x110 net/socket.c:2530
+    [<ffffffff83b79e0c>] __sys_sendmsg+0x8c/0x100 net/socket.c:2559
+    [<ffffffff8498d8a9>] do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+    [<ffffffff8498d8a9>] do_syscall_64+0x39/0xb0 arch/x86/entry/common.c:80
+    [<ffffffff84a0008b>] entry_SYSCALL_64_after_hwframe+0x63/0xcd
+

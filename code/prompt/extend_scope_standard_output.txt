@@ -1,0 +1,31 @@
+{
+  "file_where_bug_occurred": "fs/hugetlbfs/inode.c",
+  "files_in_call_trace": [
+    "fs/hugetlbfs/inode.c",
+    "fs/inode.c",
+    "fs/dcache.c",
+    "fs/file_table.c",
+    "kernel/task_work.c",
+    "kernel/exit.c",
+    "arch/x86/entry/common.c"
+  ],
+  "syscalls_used": {
+     "fs/open.c",
+     "fs/userfaultfd.c",
+    "mm/mmap.c",
+    "fs/falloc.c",
+    "fs/fuse/file.c"
+  },
+  "additional_files": [
+    "fs/hugetlbfs/super.c",
+    "fs/hugetlbfs/mempolicy.c",
+    "mm/hugetlb.c",
+    "mm/memory.c",
+    "mm/page_alloc.c",
+    "fs/namespace.c",
+    "fs/super.c",
+    "fs/fs_context.c",
+    "fs/open.c",
+    "fs/fuse/inode.c"
+  ]
+}

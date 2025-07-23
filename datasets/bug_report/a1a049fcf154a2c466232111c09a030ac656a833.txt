@@ -1,0 +1,40 @@
+divide error: 0000 [#1] PREEMPT SMP KASAN
+CPU: 0 PID: 12 Comm: kworker/0:1 Not tainted 5.6.0-rc2-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Workqueue: wg-crypt-wg0 wg_packet_encrypt_worker
+RIP: 0010:calculate_skb_padding drivers/net/wireguard/send.c:151 [inline]
+RIP: 0010:encrypt_packet+0xf8/0x920 drivers/net/wireguard/send.c:168
+Code: 89 fa 48 c1 ea 03 0f b6 14 02 48 89 f8 83 e0 07 83 c0 03 38 d0 7c 08 84 d2 0f 85 49 06 00 00 8b 4b 3c 44 89 f0 31 d2 48 89 dff1 44 8d 62 0f 41 83 e4 f0 44 39 e1 44 0f 46 e1 41 29 d4 45 8d
+RSP: 0018:ffffc90000d2f7a8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: ffff8880a8a6e440 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffff84ba491f RDI: ffff8880a8a6e440
+RBP: ffffc90000d2fc08 R08: 1ffffffff16a3385 R09: fffffbfff16a3386
+R10: fffffbfff16a3385 R11: ffffffff8b519c2f R12: dffffc0000000000
+R13: ffffc90000d2fbe0 R14: 0000000000000000 R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff8880ae800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffe724a8c40 CR3: 000000009dd60000 CR4: 00000000001406f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ wg_packet_encrypt_worker+0x33f/0xe00 drivers/net/wireguard/send.c:291
+ process_one_work+0xa05/0x17a0 kernel/workqueue.c:2264
+ worker_thread+0x98/0xe40 kernel/workqueue.c:2410
+ kthread+0x361/0x430 kernel/kthread.c:255
+ ret_from_fork+0x24/0x30 arch/x86/entry/entry_64.S:352
+Modules linked in:
+---[ end trace c9beb00afb20fc0b ]---
+RIP: 0010:calculate_skb_padding drivers/net/wireguard/send.c:151 [inline]
+RIP: 0010:encrypt_packet+0xf8/0x920 drivers/net/wireguard/send.c:168
+Code: 89 fa 48 c1 ea 03 0f b6 14 02 48 89 f8 83 e0 07 83 c0 03 38 d0 7c 08 84 d2 0f 85 49 06 00 00 8b 4b 3c 44 89 f0 31 d2 48 89 dff1 44 8d 62 0f 41 83 e4 f0 44 39 e1 44 0f 46 e1 41 29 d4 45 8d
+RSP: 0018:ffffc90000d2f7a8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: ffff8880a8a6e440 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffff84ba491f RDI: ffff8880a8a6e440
+RBP: ffffc90000d2fc08 R08: 1ffffffff16a3385 R09: fffffbfff16a3386
+R10: fffffbfff16a3385 R11: ffffffff8b519c2f R12: dffffc0000000000
+R13: ffffc90000d2fbe0 R14: 0000000000000000 R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff8880ae800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffe724a8c40 CR3: 0000000099d7d000 CR4: 00000000001406f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400

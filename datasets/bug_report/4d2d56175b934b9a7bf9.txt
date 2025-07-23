@@ -1,0 +1,154 @@
+INFO: trying to register non-static key.
+The code is fine but needs lockdep annotation, or maybe
+you didn't initialize this object before use?
+turning off the locking correctness validator.
+CPU: 1 PID: 0 Comm: swapper/1 Not tainted 5.14.0-rc7-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Call Trace:
+ <IRQ>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:105
+ assign_lock_key kernel/locking/lockdep.c:939 [inline]
+ register_lock_class+0xf79/0x10c0 kernel/locking/lockdep.c:1251
+ __lock_acquire+0x105/0x54a0 kernel/locking/lockdep.c:4894
+ lock_acquire kernel/locking/lockdep.c:5625 [inline]
+ lock_acquire+0x1ab/0x510 kernel/locking/lockdep.c:5590
+ __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:110 [inline]
+ _raw_spin_lock_irqsave+0x39/0x50 kernel/locking/spinlock.c:159
+ ath9k_htc_rxep+0x31/0x210 drivers/net/wireless/ath/ath9k/htc_drv_txrx.c:1133
+ ath9k_htc_rx_msg+0x2e4/0xb70 drivers/net/wireless/ath/ath9k/htc_hst.c:461
+ ath9k_hif_usb_reg_in_cb+0x1ac/0x630 drivers/net/wireless/ath/ath9k/hif_usb.c:733
+ __usb_hcd_giveback_urb+0x2b0/0x5c0 drivers/usb/core/hcd.c:1656
+ usb_hcd_giveback_urb+0x367/0x410 drivers/usb/core/hcd.c:1726
+ dummy_timer+0x11f9/0x32b0 drivers/usb/gadget/udc/dummy_hcd.c:1987
+ call_timer_fn+0x1a5/0x6b0 kernel/time/timer.c:1421
+ expire_timers kernel/time/timer.c:1466 [inline]
+ __run_timers.part.0+0x675/0xa20 kernel/time/timer.c:1734
+ __run_timers kernel/time/timer.c:1715 [inline]
+ run_timer_softirq+0xb3/0x1d0 kernel/time/timer.c:1747
+ __do_softirq+0x29b/0x9c2 kernel/softirq.c:558
+ invoke_softirq kernel/softirq.c:432 [inline]
+ __irq_exit_rcu+0x16e/0x1c0 kernel/softirq.c:636
+ irq_exit_rcu+0x5/0x20 kernel/softirq.c:648
+ sysvec_apic_timer_interrupt+0x93/0xc0 arch/x86/kernel/apic/apic.c:1100
+ </IRQ>
+ asm_sysvec_apic_timer_interrupt+0x12/0x20 arch/x86/include/asm/idtentry.h:638
+RIP: 0010:native_save_fl arch/x86/include/asm/irqflags.h:29 [inline]
+RIP: 0010:arch_local_save_flags arch/x86/include/asm/irqflags.h:70 [inline]
+RIP: 0010:arch_irqs_disabled arch/x86/include/asm/irqflags.h:132 [inline]
+RIP: 0010:acpi_safe_halt drivers/acpi/processor_idle.c:110 [inline]
+RIP: 0010:acpi_idle_do_entry+0x1c6/0x250 drivers/acpi/processor_idle.c:553
+Code: 89 de e8 1d 9f 48 f8 84 db 75 ac e8 d4 98 48 f8 e8 cf c1 4e f8 eb 0c e8 c8 98 48 f8 0f 00 2d 71 4e c2 00 e8 bc 98 48 f8 fb f4 <9c> 5b 81 e3 00 02 00 00 fa 31 ff 48 89 de e8 07 9e 48 f8 48 85 db
+RSP: 0018:ffffc90000d57d18 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: ffff888010a6d4c0 RSI: ffffffff892d1034 RDI: 0000000000000000
+RBP: ffff888141988064 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff817bd228 R11: 0000000000000000 R12: 0000000000000001
+R13: ffff888141988000 R14: ffff888141988064 R15: ffff888140ff7004
+ acpi_idle_enter+0x361/0x500 drivers/acpi/processor_idle.c:688
+ cpuidle_enter_state+0x1b1/0xc80 drivers/cpuidle/cpuidle.c:237
+ cpuidle_enter+0x4a/0xa0 drivers/cpuidle/cpuidle.c:351
+ call_cpuidle kernel/sched/idle.c:158 [inline]
+ cpuidle_idle_call kernel/sched/idle.c:239 [inline]
+ do_idle+0x3e8/0x590 kernel/sched/idle.c:306
+ cpu_startup_entry+0x14/0x20 kernel/sched/idle.c:403
+ start_secondary+0x265/0x340 arch/x86/kernel/smpboot.c:270
+ secondary_startup_64_no_verify+0xb0/0xbb
+BUG: unable to handle page fault for address: ffffffffffffffc8
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD b68f067 P4D b68f067 PUD b691067 PMD 0 
+Oops: 0000 [#1] PREEMPT SMP KASAN
+CPU: 1 PID: 0 Comm: swapper/1 Not tainted 5.14.0-rc7-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:ath9k_htc_rxep+0xb5/0x210 drivers/net/wireless/ath/ath9k/htc_drv_txrx.c:1135
+Code: 8b 43 38 48 8d 58 c8 49 39 c4 0f 84 ee 00 00 00 e8 70 86 6c fc 48 89 d8 48 c1 e8 03 0f b6 04 28 84 c0 74 06 0f 8e 0a 01 00 00 <44> 0f b6 3b 31 ff 44 89 fe e8 8d 8c 6c fc 45 84 ff 75 a8 e8 43 86
+RSP: 0018:ffffc90000dc09b8 EFLAGS: 00010046
+RAX: 0000000000000000 RBX: ffffffffffffffc8 RCX: 0000000000000100
+RDX: ffff888010a6d4c0 RSI: ffffffff85092280 RDI: ffffc90000dc0928
+RBP: dffffc0000000000 R08: 0000000000000001 R09: 0000000000000003
+R10: fffff520001b8125 R11: 0000000000000000 R12: ffff88803504b6d8
+R13: ffff88803504b2a0 R14: ffff88803504b6e8 R15: ffff88801dc78da8
+FS:  0000000000000000(0000) GS:ffff8880b9d00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffffffffffc8 CR3: 00000000169ea000 CR4: 00000000001506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <IRQ>
+ ath9k_htc_rx_msg+0x2e4/0xb70 drivers/net/wireless/ath/ath9k/htc_hst.c:461
+ ath9k_hif_usb_reg_in_cb+0x1ac/0x630 drivers/net/wireless/ath/ath9k/hif_usb.c:733
+ __usb_hcd_giveback_urb+0x2b0/0x5c0 drivers/usb/core/hcd.c:1656
+ usb_hcd_giveback_urb+0x367/0x410 drivers/usb/core/hcd.c:1726
+ dummy_timer+0x11f9/0x32b0 drivers/usb/gadget/udc/dummy_hcd.c:1987
+ call_timer_fn+0x1a5/0x6b0 kernel/time/timer.c:1421
+ expire_timers kernel/time/timer.c:1466 [inline]
+ __run_timers.part.0+0x675/0xa20 kernel/time/timer.c:1734
+ __run_timers kernel/time/timer.c:1715 [inline]
+ run_timer_softirq+0xb3/0x1d0 kernel/time/timer.c:1747
+ __do_softirq+0x29b/0x9c2 kernel/softirq.c:558
+ invoke_softirq kernel/softirq.c:432 [inline]
+ __irq_exit_rcu+0x16e/0x1c0 kernel/softirq.c:636
+ irq_exit_rcu+0x5/0x20 kernel/softirq.c:648
+ sysvec_apic_timer_interrupt+0x93/0xc0 arch/x86/kernel/apic/apic.c:1100
+ </IRQ>
+ asm_sysvec_apic_timer_interrupt+0x12/0x20 arch/x86/include/asm/idtentry.h:638
+RIP: 0010:native_save_fl arch/x86/include/asm/irqflags.h:29 [inline]
+RIP: 0010:arch_local_save_flags arch/x86/include/asm/irqflags.h:70 [inline]
+RIP: 0010:arch_irqs_disabled arch/x86/include/asm/irqflags.h:132 [inline]
+RIP: 0010:acpi_safe_halt drivers/acpi/processor_idle.c:110 [inline]
+RIP: 0010:acpi_idle_do_entry+0x1c6/0x250 drivers/acpi/processor_idle.c:553
+Code: 89 de e8 1d 9f 48 f8 84 db 75 ac e8 d4 98 48 f8 e8 cf c1 4e f8 eb 0c e8 c8 98 48 f8 0f 00 2d 71 4e c2 00 e8 bc 98 48 f8 fb f4 <9c> 5b 81 e3 00 02 00 00 fa 31 ff 48 89 de e8 07 9e 48 f8 48 85 db
+RSP: 0018:ffffc90000d57d18 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: ffff888010a6d4c0 RSI: ffffffff892d1034 RDI: 0000000000000000
+RBP: ffff888141988064 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff817bd228 R11: 0000000000000000 R12: 0000000000000001
+R13: ffff888141988000 R14: ffff888141988064 R15: ffff888140ff7004
+ acpi_idle_enter+0x361/0x500 drivers/acpi/processor_idle.c:688
+ cpuidle_enter_state+0x1b1/0xc80 drivers/cpuidle/cpuidle.c:237
+ cpuidle_enter+0x4a/0xa0 drivers/cpuidle/cpuidle.c:351
+ call_cpuidle kernel/sched/idle.c:158 [inline]
+ cpuidle_idle_call kernel/sched/idle.c:239 [inline]
+ do_idle+0x3e8/0x590 kernel/sched/idle.c:306
+ cpu_startup_entry+0x14/0x20 kernel/sched/idle.c:403
+ start_secondary+0x265/0x340 arch/x86/kernel/smpboot.c:270
+ secondary_startup_64_no_verify+0xb0/0xbb
+Modules linked in:
+CR2: ffffffffffffffc8
+---[ end trace 4bb5ed7315d085ca ]---
+RIP: 0010:ath9k_htc_rxep+0xb5/0x210 drivers/net/wireless/ath/ath9k/htc_drv_txrx.c:1135
+Code: 8b 43 38 48 8d 58 c8 49 39 c4 0f 84 ee 00 00 00 e8 70 86 6c fc 48 89 d8 48 c1 e8 03 0f b6 04 28 84 c0 74 06 0f 8e 0a 01 00 00 <44> 0f b6 3b 31 ff 44 89 fe e8 8d 8c 6c fc 45 84 ff 75 a8 e8 43 86
+RSP: 0018:ffffc90000dc09b8 EFLAGS: 00010046
+RAX: 0000000000000000 RBX: ffffffffffffffc8 RCX: 0000000000000100
+RDX: ffff888010a6d4c0 RSI: ffffffff85092280 RDI: ffffc90000dc0928
+RBP: dffffc0000000000 R08: 0000000000000001 R09: 0000000000000003
+R10: fffff520001b8125 R11: 0000000000000000 R12: ffff88803504b6d8
+R13: ffff88803504b2a0 R14: ffff88803504b6e8 R15: ffff88801dc78da8
+FS:  0000000000000000(0000) GS:ffff8880b9d00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffffffffffc8 CR3: 00000000169ea000 CR4: 00000000001506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+----------------
+Code disassembly (best guess):
+   0:	89 de                	mov    %ebx,%esi
+   2:	e8 1d 9f 48 f8       	callq  0xf8489f24
+   7:	84 db                	test   %bl,%bl
+   9:	75 ac                	jne    0xffffffb7
+   b:	e8 d4 98 48 f8       	callq  0xf84898e4
+  10:	e8 cf c1 4e f8       	callq  0xf84ec1e4
+  15:	eb 0c                	jmp    0x23
+  17:	e8 c8 98 48 f8       	callq  0xf84898e4
+  1c:	0f 00 2d 71 4e c2 00 	verw   0xc24e71(%rip)        # 0xc24e94
+  23:	e8 bc 98 48 f8       	callq  0xf84898e4
+  28:	fb                   	sti
+  29:	f4                   	hlt
+* 2a:	9c                   	pushfq <-- trapping instruction
+  2b:	5b                   	pop    %rbx
+  2c:	81 e3 00 02 00 00    	and    $0x200,%ebx
+  32:	fa                   	cli
+  33:	31 ff                	xor    %edi,%edi
+  35:	48 89 de             	mov    %rbx,%rsi
+  38:	e8 07 9e 48 f8       	callq  0xf8489e44
+  3d:	48 85 db             	test   %rbx,%rbx

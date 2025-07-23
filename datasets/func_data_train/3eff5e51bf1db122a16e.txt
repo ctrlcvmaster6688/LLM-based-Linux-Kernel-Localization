@@ -1,0 +1,12 @@
+crypto_register_scomp : 1 : 1 : 919.0970438177939 : 0 : 2 : 1 : 1 : 0 : 1 : 1 : 1.0 ：0
+scomp_acomp_comp_decomp : 2 : 13 : 19894.180103868846 : 0 : 3 : 10 : 4 : 0 : 8 : 4 : 0.6 ：1
+crypto_exit_scomp_ops_async : 1 : 2 : 786.5909132695 : 0 : 2 : 8 : 1 : 0 : 1 : 1 : 0.8 ：0
+crypto_unregister_scomps : 2 : 2 : 800.1208511747539 : 0 : 1 : 2 : 0 : 0 : 1 : 1 : 1.0 ：0
+crypto_scomp_alloc_scratches : 1 : 5 : 4114.427764417743 : 0 : 2 : 8 : 1 : 0 : 5 : 2 : 0.8 ：0
+crypto_register_scomps : 2 : 5 : 3957.1753275454903 : 0 : 1 : 4 : 0 : 0 : 2 : 2 : 1.0 ：0
+crypto_acomp_scomp_alloc_ctx : 0 : 2 : 2631.6377047891074 : 0 : 1 : 6 : 0 : 0 : 7 : 2 : 1.0 ：0
+crypto_init_scomp_ops_async : 1 : 3 : 4812.643299830044 : 0 : 1 : 39 : 0 : 0 : 4 : 2 : 1.0 ：0
+crypto_scomp_report : 2 : 1 : 1089.1258799116151 : 0 : 1 : 3 : 0 : 0 : 1 : 1 : 1.0 ：0
+crypto_acomp_scomp_free_ctx : 1 : 2 : 2125.15174550779 : 0 : 1 : 4 : 0 : 0 : 5 : 1 : 1.0 ：0
+crypto_scomp_free_scratches : 1 : 1 : 2073.9361317148127 : 0 : 3 : 3 : 4 : 0 : 2 : 2 : 1.0 ：0
+crypto_scomp_init_tfm : 1 : 2 : 595.1345896860494 : 0 : 1 : 11 : 0 : 0 : 2 : 1 : 0.8 ：0

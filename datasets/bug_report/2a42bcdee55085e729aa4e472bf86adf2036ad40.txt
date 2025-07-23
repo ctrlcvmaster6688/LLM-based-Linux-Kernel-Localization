@@ -1,0 +1,55 @@
+IPVS: ftp: loaded support on port[0] = 21
+BUG: Dentry 00000000ca0fe164{i=6621,n=/}  still in use (2) [unmount of hugetlbfs hugetlbfs]
+WARNING: CPU: 1 PID: 8575 at fs/dcache.c:1529 umount_check fs/dcache.c:1520 [inline]
+WARNING: CPU: 1 PID: 8575 at fs/dcache.c:1529 umount_check.cold+0xe9/0x10a fs/dcache.c:1510
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 1 PID: 8575 Comm: syz-executor975 Not tainted 5.2.0-rc5 #35
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Call Trace:
+ __dump_stack lib/dump_stack.c:77 [inline]
+ dump_stack+0x172/0x1f0 lib/dump_stack.c:113
+ panic+0x2cb/0x744 kernel/panic.c:219
+ __warn.cold+0x20/0x4d kernel/panic.c:576
+ report_bug+0x263/0x2b0 lib/bug.c:186
+ fixup_bug arch/x86/kernel/traps.c:179 [inline]
+ fixup_bug arch/x86/kernel/traps.c:174 [inline]
+ do_error_trap+0x11b/0x200 arch/x86/kernel/traps.c:272
+ do_invalid_op+0x37/0x50 arch/x86/kernel/traps.c:291
+ invalid_op+0x14/0x20 arch/x86/entry/entry_64.S:986
+RIP: 0010:umount_check fs/dcache.c:1529 [inline]
+RIP: 0010:umount_check.cold+0xe9/0x10a fs/dcache.c:1510
+Code: 89 ff e8 00 5c f0 ff 48 81 c3 68 06 00 00 45 89 e8 4c 89 e1 53 4d 8b 0f 4c 89 f2 4c 89 e6 48 c7 c7 00 00 76 87 e8 01 bd a1 ff <0f> 0b 58 e9 bd 2a ff ff e8 d0 5b f0 ff e9 29 ff ff ff 45 31 f6 e9
+RSP: 0018:ffff888097327bf8 EFLAGS: 00010286
+RAX: 000000000000005b RBX: ffff88808697f028 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffff815ad956 RDI: ffffed1012e64f71
+RBP: ffff888097327c28 R08: 000000000000005b R09: ffff88809c38aa08
+R10: 0000000000000000 R11: 0000000000000000 R12: ffff8880a324e460
+R13: 0000000000000002 R14: 0000000000006621 R15: ffffffff88cf2ac0
+ d_walk+0x194/0x950 fs/dcache.c:1264
+ do_one_tree+0x28/0x40 fs/dcache.c:1536
+ shrink_dcache_for_umount+0x72/0x170 fs/dcache.c:1552
+ generic_shutdown_super+0x6d/0x370 fs/super.c:443
+ kill_anon_super+0x3e/0x60 fs/super.c:1137
+ kill_litter_super+0x50/0x60 fs/super.c:1146
+ deactivate_locked_super+0x95/0x100 fs/super.c:331
+ deactivate_super fs/super.c:362 [inline]
+ deactivate_super+0x1b2/0x1d0 fs/super.c:358
+ cleanup_mnt+0xbf/0x160 fs/namespace.c:1120
+ __cleanup_mnt+0x16/0x20 fs/namespace.c:1127
+ task_work_run+0x145/0x1c0 kernel/task_work.c:113
+ tracehook_notify_resume include/linux/tracehook.h:185 [inline]
+ exit_to_usermode_loop+0x273/0x2c0 arch/x86/entry/common.c:168
+ prepare_exit_to_usermode arch/x86/entry/common.c:199 [inline]
+ syscall_return_slowpath arch/x86/entry/common.c:279 [inline]
+ do_syscall_64+0x58e/0x680 arch/x86/entry/common.c:304
+ entry_SYSCALL_64_after_hwframe+0x49/0xbe
+RIP: 0033:0x400e80
+Code: 01 f0 ff ff 0f 83 20 0c 00 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 83 3d 4d 18 2d 00 00 75 14 b8 03 00 00 00 0f 05 <48> 3d 01 f0 ff ff 0f 83 f4 0b 00 00 c3 48 83 ec 08 e8 5a 01 00 00
+RSP: 002b:00007ffcf1887308 EFLAGS: 00000246 ORIG_RAX: 0000000000000003
+RAX: 0000000000000000 RBX: 0000000000000005 RCX: 0000000000400e80
+RDX: 00000000004409b9 RSI: 0000000000000000 RDI: 0000000000000004
+RBP: 00000000004a2190 R08: 0000000000000100 R09: 0000000000000100
+R10: 0000000000000100 R11: 0000000000000246 R12: 0000000000401f00
+R13: 0000000000401f90 R14: 0000000000000000 R15: 0000000000000000
+Kernel Offset: disabled
+Rebooting in 86400 seconds..

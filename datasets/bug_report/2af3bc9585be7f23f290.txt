@@ -1,0 +1,47 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 5009 at fs/buffer.c:1130 mark_buffer_dirty+0x376/0x3e0 fs/buffer.c:1130
+Modules linked in:
+CPU: 1 PID: 5009 Comm: syz-executor404 Not tainted 6.4.0-rc4-syzkaller-00198-g9e87b63ed37e #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 05/25/2023
+RIP: 0010:mark_buffer_dirty+0x376/0x3e0 fs/buffer.c:1130
+Code: e9 8f 77 8d ff e8 8a 77 8d ff 48 89 ef e8 b2 13 e8 ff 5b 5d e9 7b 77 8d ff e8 76 77 8d ff 0f 0b e9 10 fe ff ff e8 6a 77 8d ff <0f> 0b e9 b7 fc ff ff e8 5e 77 8d ff 0f 0b e9 d6 fc ff ff 48 89 df
+RSP: 0018:ffffc90003aeefc0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888074a5c488 RCX: 0000000000000000
+RDX: ffff8880287e1dc0 RSI: ffffffff81f6ced6 RDI: 0000000000000001
+RBP: ffff8880749f1000 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: ffff88807c87c000
+R13: ffffed100f90f82c R14: ffff888074a5c488 R15: 0000000000000012
+FS:  0000555556527300(0000) GS:ffff8880b9900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 0000000079ccb000 CR4: 0000000000350ee0
+Call Trace:bfs_move_block fs/bfs/file.c:43 [inline]
+ bfs_move_blocks fs/bfs/file.c:56 [inline]
+ bfs_get_block+0x39b/0xdd0 fs/bfs/file.c:125
+ __block_write_begin_int+0x3bd/0x14b0 fs/buffer.c:2064
+ __block_write_begin fs/buffer.c:2114 [inline]
+ block_write_begin+0xb9/0x4d0 fs/buffer.c:2175
+ bfs_write_begin+0x31/0xd0 fs/bfs/file.c:177
+ generic_perform_write+0x256/0x570 mm/filemap.c:3923
+ __generic_file_write_iter+0x2ae/0x500 mm/filemap.c:4051
+ generic_file_write_iter+0xe3/0x350 mm/filemap.c:4083
+ __kernel_write_iter+0x262/0x7a0 fs/read_write.c:517
+ __kernel_write+0xcb/0x110 fs/read_write.c:537
+ __dump_emit fs/coredump.c:813 [inline]
+ dump_emit+0x21d/0x340 fs/coredump.c:850
+ elf_core_dump+0x2289/0x36e0 fs/binfmt_elf.c:2121
+ do_coredump+0x2f2b/0x4020 fs/coredump.c:764
+ get_signal+0x1c02/0x25b0 kernel/signal.c:2862
+ arch_do_signal_or_restart+0x79/0x5c0 arch/x86/kernel/signal.c:306
+ exit_to_user_mode_loop kernel/entry/common.c:168 [inline]
+ exit_to_user_mode_prepare+0x11f/0x240 kernel/entry/common.c:204
+ irqentry_exit_to_user_mode+0x9/0x40 kernel/entry/common.c:310
+ exc_page_fault+0xc0/0x170 arch/x86/mm/fault.c:1593
+ asm_exc_page_fault+0x26/0x30 arch/x86/include/asm/idtentry.h:570
+RIP: 0033:0x0
+Code: Unable to access opcode bytes at 0xffffffffffffffd6.
+RSP: 002b:0000000020000008 EFLAGS: 00010217
+RAX: 0000000000000000 RBX: 000000000000001c RCX: 00007ffa66653f69
+RDX: 0000000000000000 RSI: 0000000020000000 RDI: 0000000000000000
+RBP: 0000000000000003 R08: 0000000000000000 R09: 00007fff00000004
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000031
+R13: 000000000000000c R14: 00007ffff846a380 R15: 00007ffff846a342

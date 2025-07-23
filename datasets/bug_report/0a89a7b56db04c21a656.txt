@@ -1,0 +1,62 @@
+ERROR: (device loop0): xtSearch: XT_GETPAGE: xtree page corrupt
+BUG: unable to handle page fault for address: ffffffffffffff80
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD b08f067 P4D b08f067 PUD b091067 PMD 0 
+Oops: 0000 [#1] PREEMPT SMP KASAN
+CPU: 1 PID: 8472 Comm: syz-executor936 Not tainted 5.10.0-rc6-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:diFree+0x13d/0x2dc0 fs/jfs/jfs_imap.c:853
+Code: 28 48 8d 78 80 48 89 44 24 18 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 ef 23 00 00 48 8b 44 24 18 <4c> 8b 60 80 48 8b 44 24 20 49 8d 6c 24 04 48 c1 e8 0c 48 89 ea 48
+RSP: 0018:ffffc900011cf960 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: ffff88801c1aa600 RCX: ffffffff82a84967
+RDX: 1ffffffffffffff0 RSI: ffffffff82aa7952 RDI: ffffffffffffff80
+RBP: 0000000000000000 R08: 0000000000000000 R09: ffff88802f75090f
+R10: 0000000000000000 R11: 0000000000000000 R12: ffff88802f750db8
+R13: ffff88802f750d08 R14: ffffffff89829b80 R15: ffff88802f750ce0
+FS:  0000000000ca5880(0000) GS:ffff8880b9f00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffffffffff80 CR3: 000000001424e000 CR4: 0000000000350ee0
+Call Trace:
+ jfs_evict_inode+0x2c9/0x370 fs/jfs/inode.c:154
+ evict+0x2ed/0x750 fs/inode.c:578
+ iput_final fs/inode.c:1654 [inline]
+ iput.part.0+0x3fe/0x820 fs/inode.c:1680
+ iput+0x58/0x70 fs/inode.c:1670
+ diFreeSpecial fs/jfs/jfs_imap.c:550 [inline]
+ diFreeSpecial+0x6f/0x90 fs/jfs/jfs_imap.c:542
+ jfs_mount+0x23f/0x3d0 fs/jfs/jfs_mount.c:210
+ jfs_fill_super+0x5b1/0xbc0 fs/jfs/super.c:562
+ mount_bdev+0x32e/0x3f0 fs/super.c:1419
+ legacy_get_tree+0x105/0x220 fs/fs_context.c:592
+ vfs_get_tree+0x89/0x2f0 fs/super.c:1549
+ do_new_mount fs/namespace.c:2875 [inline]
+ path_mount+0x13ad/0x20c0 fs/namespace.c:3205
+ do_mount fs/namespace.c:3218 [inline]
+ __do_sys_mount fs/namespace.c:3426 [inline]
+ __se_sys_mount fs/namespace.c:3403 [inline]
+ __x64_sys_mount+0x27f/0x300 fs/namespace.c:3403
+ do_syscall_64+0x2d/0x70 arch/x86/entry/common.c:46
+ entry_SYSCALL_64_after_hwframe+0x44/0xa9
+RIP: 0033:0x446dea
+Code: b8 08 00 00 00 0f 05 48 3d 01 f0 ff ff 0f 83 fd ad fb ff c3 66 2e 0f 1f 84 00 00 00 00 00 66 90 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 0f 83 da ad fb ff c3 66 0f 1f 84 00 00 00 00 00
+RSP: 002b:00007ffd1d0fafe8 EFLAGS: 00000283 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 00007ffd1d0fb030 RCX: 0000000000446dea
+RDX: 0000000020000000 RSI: 0000000020000100 RDI: 00007ffd1d0faff0
+RBP: 00007ffd1d0faff0 R08: 00007ffd1d0fb030 R09: 6f6f6c2f7665642f
+R10: 0000000000008001 R11: 0000000000000283 R12: 0000000000000004
+R13: 0000000000000003 R14: 0000000000000003 R15: 0000000000000006
+Modules linked in:
+CR2: ffffffffffffff80
+---[ end trace 79bc54c5fb4624ff ]---
+RIP: 0010:diFree+0x13d/0x2dc0 fs/jfs/jfs_imap.c:853
+Code: 28 48 8d 78 80 48 89 44 24 18 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 ef 23 00 00 48 8b 44 24 18 <4c> 8b 60 80 48 8b 44 24 20 49 8d 6c 24 04 48 c1 e8 0c 48 89 ea 48
+RSP: 0018:ffffc900011cf960 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: ffff88801c1aa600 RCX: ffffffff82a84967
+RDX: 1ffffffffffffff0 RSI: ffffffff82aa7952 RDI: ffffffffffffff80
+RBP: 0000000000000000 R08: 0000000000000000 R09: ffff88802f75090f
+R10: 0000000000000000 R11: 0000000000000000 R12: ffff88802f750db8
+R13: ffff88802f750d08 R14: ffffffff89829b80 R15: ffff88802f750ce0
+FS:  0000000000ca5880(0000) GS:ffff8880b9f00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffffffffffff80 CR3: 000000001424e000 CR4: 0000000000350ee0

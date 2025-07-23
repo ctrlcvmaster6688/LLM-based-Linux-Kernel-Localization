@@ -1,0 +1,24 @@
+usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+usb 1-1: Product: syz
+usb 1-1: Manufacturer: syz
+usb 1-1: SerialNumber: syz
+usb 1-1: config 0 descriptor??
+smsusb:smsusb_probe: board id=8, interface number 0
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 7 at kernel/workqueue.c:3182 __flush_work+0x946/0xb60 kernel/workqueue.c:3182
+Modules linked in:
+CPU: 0 PID: 7 Comm: kworker/0:0 Not tainted 6.4.0-rc5-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 05/25/2023
+Workqueue: usb_hub_wq hub_event
+RIP: 0010:__flush_work+0x946/0xb60 kernel/workqueue.c:3182
+Code: 00 48 c7 c6 0b f8 53 81 48 c7 c7 c0 90 79 8c e8 d0 ef 11 00 e9 6f fc ff ff e8 06 4e 30 00 0f 0b e9 63 fc ff ff e8 fa 4d 30 00 <0f> 0b 45 31 ed e9 54 fc ff ff e8 cb 16 83 00 e9 3e fb ff ff e8 e1
+RSP: 0018:ffffc900000c6c08 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88802bed40e8 RCX: 0000000000000000
+RDX: ffff88801627bb80 RSI: ffffffff8153f846 RDI: 0000000000000001
+RBP: ffffc900000c6da0 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000001 R11: ffffffff810055ef R12: ffff88802bed40e8
+R13: 0000000000000001 R14: 0000000000000001 R15: ffff88802bed4100
+FS:  0000000000000000(0000) GS:ffff8880b9800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055d72c82ab40 CR3: 00000000274f9000 CR4: 0000000000350ef0
+Call Trace:

@@ -1,0 +1,44 @@
+vcan0: j1939_tp_rxtimer: 0xffff888012588c00: rx timeout, send abort
+vcan0: j1939_xtp_rx_abort_one: 0xffff88802f335800: 0x00000: (3) A timeout occurred and this is the connection abort to close the session.
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 19 at net/can/j1939/transport.c:1085 j1939_session_deactivate net/can/j1939/transport.c:1085 [inline]
+WARNING: CPU: 1 PID: 19 at net/can/j1939/transport.c:1085 j1939_session_deactivate_activate_next net/can/j1939/transport.c:1095 [inline]
+WARNING: CPU: 1 PID: 19 at net/can/j1939/transport.c:1085 j1939_xtp_rx_abort_one+0x666/0x790 net/can/j1939/transport.c:1329
+Modules linked in:
+CPU: 1 PID: 19 Comm: ksoftirqd/1 Not tainted 5.14.0-rc3-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:j1939_session_deactivate net/can/j1939/transport.c:1085 [inline]
+RIP: 0010:j1939_session_deactivate_activate_next net/can/j1939/transport.c:1095 [inline]
+RIP: 0010:j1939_xtp_rx_abort_one+0x666/0x790 net/can/j1939/transport.c:1329
+Code: e9 88 fa ff ff e8 da 5f 8b f8 4c 89 f7 be 03 00 00 00 48 83 c4 20 5b 41 5c 41 5d 41 5e 41 5f 5d e9 af 1f 11 fb e8 ba 5f 8b f8 <0f> 0b e9 4b fd ff ff e8 ae 5f 8b f8 0f 0b e9 ca fd ff ff 89 e9 80
+RSP: 0018:ffffc90000d975a0 EFLAGS: 00010246
+RAX: ffffffff88f4c4f6 RBX: 0000000000000001 RCX: ffff8880124354c0
+RDX: 0000000000000301 RSI: 0000000000000001 RDI: 0000000000000002
+RBP: 1ffff11005e66b00 R08: ffffffff88f4c23a R09: ffffed1005e66b06
+R10: ffffed1005e66b06 R11: 0000000000000000 R12: ffff88802f335800
+R13: 0000000000000009 R14: ffff8880221ad070 R15: ffff88802f335828
+FS:  0000000000000000(0000) GS:ffff8880b9d00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004b8120 CR3: 00000000334c1000 CR4: 00000000001506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ j1939_xtp_rx_abort net/can/j1939/transport.c:1340 [inline]
+ j1939_tp_cmd_recv+0x374/0x1200 net/can/j1939/transport.c:2065
+ j1939_tp_recv+0x1f7/0x540 net/can/j1939/transport.c:2098
+ j1939_can_recv+0x652/0xa10 net/can/j1939/main.c:101
+ deliver net/can/af_can.c:574 [inline]
+ can_rcv_filter+0x35e/0x800 net/can/af_can.c:608
+ can_receive+0x2e8/0x410 net/can/af_can.c:665
+ can_rcv+0xda/0x1f0 net/can/af_can.c:696
+ __netif_receive_skb_one_core net/core/dev.c:5498 [inline]
+ __netif_receive_skb+0x1d1/0x500 net/core/dev.c:5612
+ process_backlog+0x4d8/0x940 net/core/dev.c:6492
+ __napi_poll+0xba/0x4f0 net/core/dev.c:7047
+ napi_poll net/core/dev.c:7114 [inline]
+ net_rx_action+0x62c/0xf30 net/core/dev.c:7201
+ __do_softirq+0x372/0x783 kernel/softirq.c:558
+ run_ksoftirqd+0xa2/0x100 kernel/softirq.c:920
+ smpboot_thread_fn+0x533/0x9d0 kernel/smpboot.c:164
+ kthread+0x453/0x480 kernel/kthread.c:319
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295

@@ -1,0 +1,89 @@
+INFO: trying to register non-static key.
+the code is fine but needs lockdep annotation.
+turning off the locking correctness validator.
+CPU: 0 PID: 9537 Comm: syz-executor213 Not tainted 5.7.0-rc5-syzkaller #0
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.12.0-59-gc9ba5276e321-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ __dump_stack lib/dump_stack.c:77 [inline]
+ dump_stack+0x188/0x20d lib/dump_stack.c:118
+ assign_lock_key kernel/locking/lockdep.c:913 [inline]
+ register_lock_class+0x1664/0x1760 kernel/locking/lockdep.c:1225
+ __lock_acquire+0x104/0x4c50 kernel/locking/lockdep.c:4234
+ lock_acquire+0x1f2/0x8f0 kernel/locking/lockdep.c:4934
+ __raw_spin_lock_irqsave include/linux/spinlock_api_smp.h:110 [inline]
+ _raw_spin_lock_irqsave+0x8c/0xbf kernel/locking/spinlock.c:159
+ __wake_up_common_lock+0xb4/0x130 kernel/sched/wait.c:122
+ uhid_dev_destroy+0x6f/0x100 drivers/hid/uhid.c:563
+ uhid_char_release+0x4e/0xb0 drivers/hid/uhid.c:642
+ __fput+0x33e/0x880 fs/file_table.c:280
+ task_work_run+0xf4/0x1b0 kernel/task_work.c:123
+ exit_task_work include/linux/task_work.h:22 [inline]
+ do_exit+0xb34/0x2dd0 kernel/exit.c:796
+ do_group_exit+0x125/0x340 kernel/exit.c:894
+ __do_sys_exit_group kernel/exit.c:905 [inline]
+ __se_sys_exit_group kernel/exit.c:903 [inline]
+ __x64_sys_exit_group+0x3a/0x50 kernel/exit.c:903
+ do_syscall_64+0xf6/0x7d0 arch/x86/entry/common.c:295
+ entry_SYSCALL_64_after_hwframe+0x49/0xb3
+RIP: 0033:0x4337f8
+Code: Bad RIP value.
+RSP: 002b:00007ffff93d1388 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00000000004337f8
+RDX: 0000000000000000 RSI: 000000000000003c RDI: 0000000000000000
+RBP: 00000000004a79d0 R08: 00000000000000e7 R09: ffffffffffffffd0
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+R13: 00000000006b9180 R14: 0000000000000000 R15: 0000000000000000
+general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] PREEMPT SMP KASAN
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 0 PID: 9537 Comm: syz-executor213 Not tainted 5.7.0-rc5-syzkaller #0
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.12.0-59-gc9ba5276e321-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__wake_up_common+0xdf/0x650 kernel/sched/wait.c:86
+Code: 05 00 00 4c 8b 43 40 49 83 e8 18 49 8d 78 18 48 39 3c 24 0f 84 6a 02 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 f9 48 c1 e9 03 <80> 3c 01 00 0f 85 3d 05 00 00 49 8b 40 18 89 54 24 10 31 db 48 bd
+RSP: 0018:ffffc90001427b70 EFLAGS: 00010046
+RAX: dffffc0000000000 RBX: ffff88801d7113f8 RCX: 0000000000000000
+RDX: 0000000000000001 RSI: 1ffffffff1513172 RDI: 0000000000000000
+RBP: 0000000000000000 R08: ffffffffffffffe8 R09: ffffc90001427c08
+R10: 0000000000000003 R11: fffff52000284f68 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+FS:  0000000001112880(0000) GS:ffff88802ce00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004337ce CR3: 00000000257ee000 CR4: 0000000000340ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ __wake_up_common_lock+0xd0/0x130 kernel/sched/wait.c:123
+ uhid_dev_destroy+0x6f/0x100 drivers/hid/uhid.c:563
+ uhid_char_release+0x4e/0xb0 drivers/hid/uhid.c:642
+ __fput+0x33e/0x880 fs/file_table.c:280
+ task_work_run+0xf4/0x1b0 kernel/task_work.c:123
+ exit_task_work include/linux/task_work.h:22 [inline]
+ do_exit+0xb34/0x2dd0 kernel/exit.c:796
+ do_group_exit+0x125/0x340 kernel/exit.c:894
+ __do_sys_exit_group kernel/exit.c:905 [inline]
+ __se_sys_exit_group kernel/exit.c:903 [inline]
+ __x64_sys_exit_group+0x3a/0x50 kernel/exit.c:903
+ do_syscall_64+0xf6/0x7d0 arch/x86/entry/common.c:295
+ entry_SYSCALL_64_after_hwframe+0x49/0xb3
+RIP: 0033:0x4337f8
+Code: Bad RIP value.
+RSP: 002b:00007ffff93d1388 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00000000004337f8
+RDX: 0000000000000000 RSI: 000000000000003c RDI: 0000000000000000
+RBP: 00000000004a79d0 R08: 00000000000000e7 R09: ffffffffffffffd0
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+R13: 00000000006b9180 R14: 0000000000000000 R15: 0000000000000000
+Modules linked in:
+---[ end trace 148e569931f1b041 ]---
+RIP: 0010:__wake_up_common+0xdf/0x650 kernel/sched/wait.c:86
+Code: 05 00 00 4c 8b 43 40 49 83 e8 18 49 8d 78 18 48 39 3c 24 0f 84 6a 02 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 f9 48 c1 e9 03 <80> 3c 01 00 0f 85 3d 05 00 00 49 8b 40 18 89 54 24 10 31 db 48 bd
+RSP: 0018:ffffc90001427b70 EFLAGS: 00010046
+RAX: dffffc0000000000 RBX: ffff88801d7113f8 RCX: 0000000000000000
+RDX: 0000000000000001 RSI: 1ffffffff1513172 RDI: 0000000000000000
+RBP: 0000000000000000 R08: ffffffffffffffe8 R09: ffffc90001427c08
+R10: 0000000000000003 R11: fffff52000284f68 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+FS:  0000000001112880(0000) GS:ffff88802ce00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000004337ce CR3: 00000000257ee000 CR4: 0000000000340ef0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400

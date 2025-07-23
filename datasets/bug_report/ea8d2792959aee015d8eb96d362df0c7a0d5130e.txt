@@ -1,0 +1,51 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 3606 at net/core/flow_dissector.c:1016 __skb_flow_dissect+0x947/0x5920 net/core/flow_dissector.c:1016
+Modules linked in:
+CPU: 1 PID: 3606 Comm: syz-executor376 Not tainted 6.1.0-rc3-syzkaller-00239-g10d916c86eca #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/26/2022
+RIP: 0010:__skb_flow_dissect+0x947/0x5920 net/core/flow_dissector.c:1016
+Code: 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 7f 47 00 00 48 8b 9b 50 06 00 00 e8 97 66 26 fa 48 85 db 0f 85 84 f8 ff ff e8 89 66 26 fa <0f> 0b e9 56 fa ff ff 66 83 fb 08 0f 85 ea 0e 00 00 e8 73 66 26 fa
+RSP: 0018:ffffc90003e9f628 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: ffff888026b73a80 RSI: ffffffff87564607 RDI: ffff88801c329c98
+RBP: ffffffff8de29206 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: ffffffff8de29204
+R13: 0000000000000000 R14: ffffffff8de29200 R15: ffff88801c329c80
+FS:  000055555728f300(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00000000005d84c8 CR3: 000000007ac41000 CR4: 0000000000350ee0
+Call Trace:
+ <TASK>
+ skb_flow_dissect_flow_keys_basic include/linux/skbuff.h:1507 [inline]
+ skb_get_poff+0x99/0x1a0 net/core/flow_dissector.c:1843
+ ____bpf_skb_get_pay_offset net/core/filter.c:164 [inline]
+ bpf_skb_get_pay_offset+0x11/0x20 net/core/filter.c:162
+ </TASK>
+Kernel panic - not syncing: panic_on_warn set ...
+CPU: 1 PID: 3606 Comm: syz-executor376 Not tainted 6.1.0-rc3-syzkaller-00239-g10d916c86eca #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/26/2022
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+ panic+0x2c8/0x622 kernel/panic.c:274
+ __warn.cold+0x25c/0x350 kernel/panic.c:621
+ report_bug+0x1bc/0x210 lib/bug.c:198
+ handle_bug+0x3c/0x70 arch/x86/kernel/traps.c:317
+ exc_invalid_op+0x14/0x40 arch/x86/kernel/traps.c:338
+ asm_exc_invalid_op+0x16/0x20 arch/x86/include/asm/idtentry.h:568
+RIP: 0010:__skb_flow_dissect+0x947/0x5920 net/core/flow_dissector.c:1016
+Code: 89 fa 48 c1 ea 03 80 3c 02 00 0f 85 7f 47 00 00 48 8b 9b 50 06 00 00 e8 97 66 26 fa 48 85 db 0f 85 84 f8 ff ff e8 89 66 26 fa <0f> 0b e9 56 fa ff ff 66 83 fb 08 0f 85 ea 0e 00 00 e8 73 66 26 fa
+RSP: 0018:ffffc90003e9f628 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: ffff888026b73a80 RSI: ffffffff87564607 RDI: ffff88801c329c98
+RBP: ffffffff8de29206 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: ffffffff8de29204
+R13: 0000000000000000 R14: ffffffff8de29200 R15: ffff88801c329c80
+ skb_flow_dissect_flow_keys_basic include/linux/skbuff.h:1507 [inline]
+ skb_get_poff+0x99/0x1a0 net/core/flow_dissector.c:1843
+ ____bpf_skb_get_pay_offset net/core/filter.c:164 [inline]
+ bpf_skb_get_pay_offset+0x11/0x20 net/core/filter.c:162
+ </TASK>
+Kernel Offset: disabled
+Rebooting in 86400 seconds..

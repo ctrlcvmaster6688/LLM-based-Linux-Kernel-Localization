@@ -1,0 +1,67 @@
+============================================
+WARNING: possible recursive locking detected
+6.7.0-rc3-syzkaller-00298-g1b8af6552cb7 #0 Not tainted
+--------------------------------------------
+syz-executor109/5070 is trying to acquire lock:
+ffff88807a678c68 (&pipe->mutex/1){+.+.}-{3:3}, at: __pipe_lock fs/pipe.c:103 [inline]
+ffff88807a678c68 (&pipe->mutex/1){+.+.}-{3:3}, at: pipe_write+0x13a/0x1bc0 fs/pipe.c:453
+
+but task is already holding lock:
+ffff88807a678868 (&pipe->mutex/1){+.+.}-{3:3}, at: pipe_lock_nested fs/pipe.c:82 [inline]
+ffff88807a678868 (&pipe->mutex/1){+.+.}-{3:3}, at: pipe_lock fs/pipe.c:90 [inline]
+ffff88807a678868 (&pipe->mutex/1){+.+.}-{3:3}, at: pipe_lock+0x67/0x80 fs/pipe.c:85
+
+other info that might help us debug this:
+ Possible unsafe locking scenario:
+
+       CPU0
+       ----
+  lock(&pipe->mutex/1);
+  lock(&pipe->mutex/1);
+
+ *** DEADLOCK ***
+
+ May be due to missing lock nesting notation
+
+1 lock held by syz-executor109/5070:
+ #0: ffff88807a678868 (&pipe->mutex/1){+.+.}-{3:3}, at: pipe_lock_nested fs/pipe.c:82 [inline]
+ #0: ffff88807a678868 (&pipe->mutex/1){+.+.}-{3:3}, at: pipe_lock fs/pipe.c:90 [inline]
+ #0: ffff88807a678868 (&pipe->mutex/1){+.+.}-{3:3}, at: pipe_lock+0x67/0x80 fs/pipe.c:85
+
+stack backtrace:
+CPU: 1 PID: 5070 Comm: syz-executor109 Not tainted 6.7.0-rc3-syzkaller-00298-g1b8af6552cb7 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 11/10/2023
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x1b0 lib/dump_stack.c:106
+ check_deadlock kernel/locking/lockdep.c:3062 [inline]
+ validate_chain kernel/locking/lockdep.c:3856 [inline]
+ __lock_acquire+0x20f8/0x3b20 kernel/locking/lockdep.c:5137
+ lock_acquire kernel/locking/lockdep.c:5754 [inline]
+ lock_acquire+0x1ae/0x520 kernel/locking/lockdep.c:5719
+ __mutex_lock_common kernel/locking/mutex.c:603 [inline]
+ __mutex_lock+0x175/0x9d0 kernel/locking/mutex.c:747
+ __pipe_lock fs/pipe.c:103 [inline]
+ pipe_write+0x13a/0x1bc0 fs/pipe.c:453
+ call_write_iter include/linux/fs.h:2020 [inline]
+ do_iter_readv_writev+0x21e/0x3c0 fs/read_write.c:735
+ do_iter_write+0x17f/0x7f0 fs/read_write.c:860
+ vfs_iter_write+0x7a/0xb0 fs/read_write.c:901
+ iter_file_splice_write+0x698/0xc00 fs/splice.c:736
+ do_splice_from fs/splice.c:933 [inline]
+ do_splice+0x127f/0x1f80 fs/splice.c:1292
+ __do_splice+0x323/0x360 fs/splice.c:1370
+ __do_sys_splice fs/splice.c:1586 [inline]
+ __se_sys_splice fs/splice.c:1568 [inline]
+ __x64_sys_splice+0x1ce/0x260 fs/splice.c:1568
+ do_syscall_x64 arch/x86/entry/common.c:51 [inline]
+ do_syscall_64+0x40/0x110 arch/x86/entry/common.c:82
+ entry_SYSCALL_64_after_hwframe+0x63/0x6b
+RIP: 0033:0x7f01533b9329
+Code: 48 83 c4 28 c3 e8 37 17 00 00 0f 1f 80 00 00 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 b8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff628fd298 EFLAGS: 00000246 ORIG_RAX: 0000000000000113
+RAX: ffffffffffffffda RBX: 00007fff628fd478 RCX: 00007f01533b9329
+RDX: 0000000000000006 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 00007f015342c610 R08: 0000000000000005 R09: 0000000000000000
+R10: 0000000000000000 R11: 00000000000

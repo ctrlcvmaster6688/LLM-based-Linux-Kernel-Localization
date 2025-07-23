@@ -1,0 +1,41 @@
+loop0: detected capacity change from 0 to 131072
+erofs: (device loop0): mounted with root inode @ nid 36.
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 3604 at fs/iomap/iter.c:34 iomap_iter_done fs/iomap/iter.c:34 [inline]
+WARNING: CPU: 1 PID: 3604 at fs/iomap/iter.c:34 iomap_iter+0xd80/0x1100 fs/iomap/iter.c:78
+Modules linked in:
+CPU: 1 PID: 3604 Comm: syz-executor126 Not tainted 6.0.0-syzkaller-09413-g4899a36f91a9 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/22/2022
+RIP: 0010:iomap_iter_done fs/iomap/iter.c:34 [inline]
+RIP: 0010:iomap_iter+0xd80/0x1100 fs/iomap/iter.c:78
+Code: f8 ff ff e8 e2 9f d3 ff e9 34 f8 ff ff e8 c8 89 86 ff 0f 0b e9 f1 f9 ff ff e8 bc 89 86 ff 0f 0b e9 86 f7 ff ff e8 b0 89 86 ff <0f> 0b e9 5e f7 ff ff e8 a4 89 86 ff 0f 0b e9 1a f7 ff ff e8 98 89
+RSP: 0018:ffffc90003dcfa88 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffffc90003dcfb98 RCX: 0000000000000000
+RDX: ffff8880269fbb00 RSI: ffffffff81f4bd80 RDI: 0000000000000007
+RBP: 000000009566a926 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 000000000008c07c R12: 0000000000000000
+R13: 000000009566a929 R14: ffffc90003dcfbc0 R15: ffffc90003dcfc08
+FS:  0000555555cbc300(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000a82258 CR3: 00000000263ea000 CR4: 0000000000350ee0
+Call Trace:
+ <TASK>
+ iomap_fiemap+0x1e8/0x360 fs/iomap/fiemap.c:80
+ erofs_fiemap+0x6d/0xa0 fs/erofs/data.c:341
+ ioctl_fiemap fs/ioctl.c:219 [inline]
+ do_vfs_ioctl+0x466/0x15c0 fs/ioctl.c:810
+ __do_sys_ioctl fs/ioctl.c:868 [inline]
+ __se_sys_ioctl fs/ioctl.c:856 [inline]
+ __x64_sys_ioctl+0x108/0x200 fs/ioctl.c:856
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f9af13b7d89
+Code: ff ff c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc6ed83828 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f9af13b7d89
+RDX: 0000000020000380 RSI: 00000000c020660b RDI: 0000000000000005
+RBP: 00007f9af1377580 R08: 0000555555cbc2c0 R09: 0000000000000000
+R10: 00007ffc6ed836e0 R11: 0000000000000246 R12: 00007f9af1377610
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>

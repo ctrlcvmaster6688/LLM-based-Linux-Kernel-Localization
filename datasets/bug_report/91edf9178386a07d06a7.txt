@@ -1,0 +1,19 @@
+Warning: Permanently added '10.128.0.165' (ECDSA) to the list of known hosts.
+executing program
+BUG: memory leak
+unreferenced object 0xffff88810c4c57a0 (size 32):
+  comm "syz-executor948", pid 5064, jiffies 4294946184 (age 7.250s)
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff814f8d16>] __do_kmalloc_node mm/slab_common.c:967 [inline]
+    [<ffffffff814f8d16>] __kmalloc+0x46/0x120 mm/slab_common.c:981
+    [<ffffffff81564fb7>] kmalloc include/linux/slab.h:584 [inline]
+    [<ffffffff81564fb7>] anon_vma_name_alloc+0x27/0x60 mm/madvise.c:78
+    [<ffffffff8128d4df>] prctl_set_vma kernel/sys.c:2324 [inline]
+    [<ffffffff8128d4df>] __do_sys_prctl+0xaff/0xba0 kernel/sys.c:2627
+    [<ffffffff848a05d5>] do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+    [<ffffffff848a05d5>] do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+    [<ffffffff84a00087>] entry_SYSCALL_64_after_hwframe+0x63/0xcd
+

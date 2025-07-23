@@ -1,0 +1,67 @@
+executing program
+BUG: memory leak
+unreferenced object 0xffff88810b2b2080 (size 96):
+  comm "syz-executor089", pid 7270, jiffies 4294941532 (age 13.520s)
+  hex dump (first 32 bytes):
+    00 21 2b 0b 81 88 ff ff 40 06 37 1a 81 88 ff ff  .!+.....@.7.....
+    20 47 c7 82 ff ff ff ff 00 60 2e 2a 81 88 ff ff   G.......`.*....
+  backtrace:
+    [<00000000f3a29219>] kmemleak_alloc_recursive include/linux/kmemleak.h:43 [inline]
+    [<00000000f3a29219>] slab_post_alloc_hook mm/slab.h:586 [inline]
+    [<00000000f3a29219>] slab_alloc mm/slab.c:3320 [inline]
+    [<00000000f3a29219>] kmem_cache_alloc_trace+0x145/0x2c0 mm/slab.c:3549
+    [<000000005471dca6>] kmalloc include/linux/slab.h:555 [inline]
+    [<000000005471dca6>] nft_netdev_hook_alloc+0x3f/0xd0 net/netfilter/nf_tables_api.c:1653
+    [<00000000547b3e6d>] nf_tables_parse_netdev_hooks+0xaa/0x220 net/netfilter/nf_tables_api.c:1702
+    [<000000005c4bc909>] nf_tables_flowtable_parse_hook net/netfilter/nf_tables_api.c:6097 [inline]
+    [<000000005c4bc909>] nf_tables_newflowtable+0x407/0x930 net/netfilter/nf_tables_api.c:6297
+    [<000000004e57b3ed>] nfnetlink_rcv_batch+0x353/0x8c0 net/netfilter/nfnetlink.c:433
+    [<0000000095bbce6c>] nfnetlink_rcv_skb_batch net/netfilter/nfnetlink.c:543 [inline]
+    [<0000000095bbce6c>] nfnetlink_rcv+0x189/0x1c0 net/netfilter/nfnetlink.c:561
+    [<000000002a197f31>] netlink_unicast_kernel net/netlink/af_netlink.c:1303 [inline]
+    [<000000002a197f31>] netlink_unicast+0x223/0x310 net/netlink/af_netlink.c:1329
+    [<000000002fe97501>] netlink_sendmsg+0x2c0/0x570 net/netlink/af_netlink.c:1918
+    [<0000000072a2eef7>] sock_sendmsg_nosec net/socket.c:652 [inline]
+    [<0000000072a2eef7>] sock_sendmsg+0x54/0x70 net/socket.c:672
+    [<0000000049691ba6>] ____sys_sendmsg+0x2d0/0x300 net/socket.c:2343
+    [<00000000466e69b2>] ___sys_sendmsg+0x8a/0xd0 net/socket.c:2397
+    [<0000000086270dd0>] __sys_sendmsg+0x80/0xf0 net/socket.c:2430
+    [<000000001b2586e4>] __do_sys_sendmsg net/socket.c:2439 [inline]
+    [<000000001b2586e4>] __se_sys_sendmsg net/socket.c:2437 [inline]
+    [<000000001b2586e4>] __x64_sys_sendmsg+0x23/0x30 net/socket.c:2437
+    [<0000000005b8b511>] do_syscall_64+0x73/0x220 arch/x86/entry/common.c:294
+    [<000000005e09659b>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+
+BUG: memory leak
+unreferenced object 0xffff88810b2b2100 (size 96):
+  comm "syz-executor089", pid 7270, jiffies 4294941532 (age 13.520s)
+  hex dump (first 32 bytes):
+    40 06 37 1a 81 88 ff ff 80 20 2b 0b 81 88 ff ff  @.7...... +.....
+    20 47 c7 82 ff ff ff ff 00 e0 1d 25 81 88 ff ff   G.........%....
+  backtrace:
+    [<00000000f3a29219>] kmemleak_alloc_recursive include/linux/kmemleak.h:43 [inline]
+    [<00000000f3a29219>] slab_post_alloc_hook mm/slab.h:586 [inline]
+    [<00000000f3a29219>] slab_alloc mm/slab.c:3320 [inline]
+    [<00000000f3a29219>] kmem_cache_alloc_trace+0x145/0x2c0 mm/slab.c:3549
+    [<000000005471dca6>] kmalloc include/linux/slab.h:555 [inline]
+    [<000000005471dca6>] nft_netdev_hook_alloc+0x3f/0xd0 net/netfilter/nf_tables_api.c:1653
+    [<00000000547b3e6d>] nf_tables_parse_netdev_hooks+0xaa/0x220 net/netfilter/nf_tables_api.c:1702
+    [<000000005c4bc909>] nf_tables_flowtable_parse_hook net/netfilter/nf_tables_api.c:6097 [inline]
+    [<000000005c4bc909>] nf_tables_newflowtable+0x407/0x930 net/netfilter/nf_tables_api.c:6297
+    [<000000004e57b3ed>] nfnetlink_rcv_batch+0x353/0x8c0 net/netfilter/nfnetlink.c:433
+    [<0000000095bbce6c>] nfnetlink_rcv_skb_batch net/netfilter/nfnetlink.c:543 [inline]
+    [<0000000095bbce6c>] nfnetlink_rcv+0x189/0x1c0 net/netfilter/nfnetlink.c:561
+    [<000000002a197f31>] netlink_unicast_kernel net/netlink/af_netlink.c:1303 [inline]
+    [<000000002a197f31>] netlink_unicast+0x223/0x310 net/netlink/af_netlink.c:1329
+    [<000000002fe97501>] netlink_sendmsg+0x2c0/0x570 net/netlink/af_netlink.c:1918
+    [<0000000072a2eef7>] sock_sendmsg_nosec net/socket.c:652 [inline]
+    [<0000000072a2eef7>] sock_sendmsg+0x54/0x70 net/socket.c:672
+    [<0000000049691ba6>] ____sys_sendmsg+0x2d0/0x300 net/socket.c:2343
+    [<00000000466e69b2>] ___sys_sendmsg+0x8a/0xd0 net/socket.c:2397
+    [<0000000086270dd0>] __sys_sendmsg+0x80/0xf0 net/socket.c:2430
+    [<000000001b2586e4>] __do_sys_sendmsg net/socket.c:2439 [inline]
+    [<000000001b2586e4>] __se_sys_sendmsg net/socket.c:2437 [inline]
+    [<000000001b2586e4>] __x64_sys_sendmsg+0x23/0x30 net/socket.c:2437
+    [<0000000005b8b511>] do_syscall_64+0x73/0x220 arch/x86/entry/common.c:294
+    [<000000005e09659b>] entry_SYSCALL_64_after_hwframe+0x44/0xa9
+

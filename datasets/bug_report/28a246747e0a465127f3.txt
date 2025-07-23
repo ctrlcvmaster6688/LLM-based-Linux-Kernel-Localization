@@ -1,0 +1,77 @@
+BUG: memory leak
+unreferenced object 0xffff88810d920240 (size 192):
+  comm "kworker/0:2", pid 3658, jiffies 4294943075 (age 13.270s)
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 58 02 92 0d 81 88 ff ff  ........X.......
+  backtrace:
+    [] kmalloc include/linux/slab.h:559 [inline]
+    [] usb_alloc_urb+0x66/0xe0 drivers/usb/core/urb.c:74
+    [] atusb_alloc_urbs drivers/net/ieee802154/atusb.c:362 [inline]
+    [] atusb_probe+0x158/0x820 drivers/net/ieee802154/atusb.c:1038
+    [] usb_probe_interface+0x177/0x370 drivers/usb/core/driver.c:396
+    [] really_probe+0x159/0x4a0 drivers/base/dd.c:554
+    [] driver_probe_device+0x84/0x100 drivers/base/dd.c:740
+    [] __device_attach_driver+0xee/0x110 drivers/base/dd.c:846
+    [] bus_for_each_drv+0xb7/0x100 drivers/base/bus.c:431
+    [] __device_attach+0x122/0x250 drivers/base/dd.c:914
+    [] bus_probe_device+0xc6/0xe0 drivers/base/bus.c:491
+    [] device_add+0x5d5/0xc40 drivers/base/core.c:3242
+    [] usb_set_configuration+0x9d9/0xb90 drivers/usb/core/message.c:2164
+    [] usb_generic_driver_probe+0x8c/0xc0 drivers/usb/core/generic.c:238
+    [] usb_probe_device+0x5c/0x140 drivers/usb/core/driver.c:293
+    [] really_probe+0x159/0x4a0 drivers/base/dd.c:554
+    [] driver_probe_device+0x84/0x100 drivers/base/dd.c:740
+    [] __device_attach_driver+0xee/0x110 drivers/base/dd.c:846
+
+BUG: memory leak
+unreferenced object 0xffff888110fb0f00 (size 192):
+  comm "kworker/1:1", pid 36, jiffies 4294943677 (age 7.250s)
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 18 0f fb 10 81 88 ff ff  ................
+  backtrace:
+    [] kmalloc include/linux/slab.h:559 [inline]
+    [] usb_alloc_urb+0x66/0xe0 drivers/usb/core/urb.c:74
+    [] atusb_alloc_urbs drivers/net/ieee802154/atusb.c:362 [inline]
+    [] atusb_probe+0x158/0x820 drivers/net/ieee802154/atusb.c:1038
+    [] usb_probe_interface+0x177/0x370 drivers/usb/core/driver.c:396
+    [] really_probe+0x159/0x4a0 drivers/base/dd.c:554
+    [] driver_probe_device+0x84/0x100 drivers/base/dd.c:740
+    [] __device_attach_driver+0xee/0x110 drivers/base/dd.c:846
+    [] bus_for_each_drv+0xb7/0x100 drivers/base/bus.c:431
+    [] __device_attach+0x122/0x250 drivers/base/dd.c:914
+    [] bus_probe_device+0xc6/0xe0 drivers/base/bus.c:491
+    [] device_add+0x5d5/0xc40 drivers/base/core.c:3242
+    [] usb_set_configuration+0x9d9/0xb90 drivers/usb/core/message.c:2164
+    [] usb_generic_driver_probe+0x8c/0xc0 drivers/usb/core/generic.c:238
+    [] usb_probe_device+0x5c/0x140 drivers/usb/core/driver.c:293
+    [] really_probe+0x159/0x4a0 drivers/base/dd.c:554
+    [] driver_probe_device+0x84/0x100 drivers/base/dd.c:740
+    [] __device_attach_driver+0xee/0x110 drivers/base/dd.c:846
+
+BUG: memory leak
+unreferenced object 0xffff888110fb00c0 (size 192):
+  comm "kworker/1:1", pid 36, jiffies 4294943677 (age 7.250s)
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 d8 00 fb 10 81 88 ff ff  ................
+  backtrace:
+    [] kmalloc include/linux/slab.h:559 [inline]
+    [] usb_alloc_urb+0x66/0xe0 drivers/usb/core/urb.c:74
+    [] atusb_alloc_urbs drivers/net/ieee802154/atusb.c:362 [inline]
+    [] atusb_probe+0x158/0x820 drivers/net/ieee802154/atusb.c:1038
+    [] usb_probe_interface+0x177/0x370 drivers/usb/core/driver.c:396
+    [] really_probe+0x159/0x4a0 drivers/base/dd.c:554
+    [] driver_probe_device+0x84/0x100 drivers/base/dd.c:740
+    [] __device_attach_driver+0xee/0x110 drivers/base/dd.c:846
+    [] bus_for_each_drv+0xb7/0x100 drivers/base/bus.c:431
+    [] __device_attach+0x122/0x250 drivers/base/dd.c:914
+    [] bus_probe_device+0xc6/0xe0 drivers/base/bus.c:491
+    [] device_add+0x5d5/0xc40 drivers/base/core.c:3242
+    [] usb_set_configuration+0x9d9/0xb90 drivers/usb/core/message.c:2164
+    [] usb_generic_driver_probe+0x8c/0xc0 drivers/usb/core/generic.c:238
+    [] usb_probe_device+0x5c/0x140 drivers/usb/core/driver.c:293
+    [] really_probe+0x159/0x4a0 drivers/base/dd.c:554
+    [] driver_probe_device+0x84/0x100 drivers/base/dd.c:740
+    [] __device_attach_driver+0xee/0x110 drivers/base/dd.c:846

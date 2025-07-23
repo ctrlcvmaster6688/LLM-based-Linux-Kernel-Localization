@@ -1,0 +1,67 @@
+"syz-executor299" (5065) uses obsolete ecb(arc4) skcipher
+BUG: kernel NULL pointer dereference, address: 0000000000000000
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0002) - not-present page
+PGD 78051067 P4D 78051067 PUD 7e3d7067 PMD 0 
+Oops: 0002 [#1] PREEMPT SMP KASAN
+CPU: 1 PID: 5065 Comm: syz-executor299 Not tainted 6.8.0-rc1-syzkaller-00311-g3a5879d495b2 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 11/17/2023
+RIP: 0010:memcpy_orig+0x31/0x120 arch/x86/lib/memcpy_64.S:71
+Code: 48 83 fa 20 0f 82 86 00 00 00 40 38 fe 7c 35 48 83 ea 20 48 83 ea 20 4c 8b 06 4c 8b 4e 08 4c 8b 56 10 4c 8b 5e 18 48 8d 76 20 <4c> 89 07 4c 89 4f 08 4c 89 57 10 4c 89 5f 18 48 8d 7f 20 73 d4 83
+RSP: 0018:ffffc90003a378c0 EFLAGS: 00010202
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff84401c81
+RDX: 00000000000003c8 RSI: ffff888019ee1040 RDI: 0000000000000000
+RBP: ffff888019ee1000 R08: 0000000400000003 R09: 0000002200000071
+R10: 0000000800000016 R11: 0000001700000083 R12: 0000000000000000
+R13: ffff88807f225da0 R14: ffff88807929e000 R15: 0000000000000001
+FS:  00005555570b8380(0000) GS:ffff8880b9900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 000000007c30c000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ crypto_arc4_crypt+0x4b/0x70 crypto/arc4.c:33
+ crypto_lskcipher_crypt crypto/lskcipher.c:160 [inline]
+ crypto_lskcipher_decrypt+0xd4/0x130 crypto/lskcipher.c:194
+ crypto_cbc_decrypt_segment crypto/cbc.c:80 [inline]
+ crypto_cbc_decrypt+0x14f/0x330 crypto/cbc.c:133
+ crypto_lskcipher_crypt_sg+0x28c/0x460 crypto/lskcipher.c:229
+ crypto_skcipher_decrypt+0xda/0x160 crypto/skcipher.c:693
+ _skcipher_recvmsg crypto/algif_skcipher.c:199 [inline]
+ skcipher_recvmsg+0xc2b/0x1040 crypto/algif_skcipher.c:221
+ sock_recvmsg_nosec net/socket.c:1046 [inline]
+ sock_recvmsg+0xe2/0x170 net/socket.c:1068
+ __sys_recvfrom+0x1ab/0x2e0 net/socket.c:2242
+ __do_sys_recvfrom net/socket.c:2260 [inline]
+ __se_sys_recvfrom net/socket.c:2256 [inline]
+ __x64_sys_recvfrom+0xe0/0x1b0 net/socket.c:2256
+ do_syscall_x64 arch/x86/entry/common.c:52 [inline]
+ do_syscall_64+0xd3/0x250 arch/x86/entry/common.c:83
+ entry_SYSCALL_64_after_hwframe+0x63/0x6b
+RIP: 0033:0x7f23399079b9
+Code: ff e8 cb 01 00 00 66 2e 0f 1f 84 00 00 00 00 00 90 80 3d f1 56 07 00 00 41 89 ca 74 1c 45 31 c9 45 31 c0 b8 2d 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 67 c3 66 0f 1f 44 00 00 55 48 83 ec 20 48 89
+RSP: 002b:00007ffe68b37d28 EFLAGS: 00000246 ORIG_RAX: 000000000000002d
+RAX: ffffffffffffffda RBX: 00007ffe68b37db4 RCX: 00007f23399079b9
+RDX: 0000000000001000 RSI: 00007ffe68b37da0 RDI: 0000000000000004
+RBP: 0000000000000004 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe68b37da0
+R13: 00007ffe68b38f88 R14: 0000000000000001 R15: 0000000000000001
+ </TASK>
+Modules linked in:
+CR2: 0000000000000000
+---[ end trace 0000000000000000 ]---
+RIP: 0010:memcpy_orig+0x31/0x120 arch/x86/lib/memcpy_64.S:71
+Code: 48 83 fa 20 0f 82 86 00 00 00 40 38 fe 7c 35 48 83 ea 20 48 83 ea 20 4c 8b 06 4c 8b 4e 08 4c 8b 56 10 4c 8b 5e 18 48 8d 76 20 <4c> 89 07 4c 89 4f 08 4c 89 57 10 4c 89 5f 18 48 8d 7f 20 73 d4 83
+RSP: 0018:ffffc90003a378c0 EFLAGS: 00010202
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff84401c81
+RDX: 00000000000003c8 RSI: ffff888019ee1040 RDI: 0000000000000000
+RBP: ffff888019ee1000 R08: 0000000400000003 R09: 0000002200000071
+R10: 0000000800000016 R11: 0000001700000083 R12: 0000000000000000
+R13: ffff88807f225da0 R14: ffff88807929e000 R15: 0000000000000001
+FS:  00005555570b8380(0000) GS:ffff8880b9900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 000000007c30c000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+----------------

@@ -1,0 +1,39 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 3610 at net/netfilter/nfnetlink.c:703 nfnetlink_unbind net/netfilter/nfnetlink.c:703 [inline]
+WARNING: CPU: 1 PID: 3610 at net/netfilter/nfnetlink.c:703 nfnetlink_unbind+0x357/0x3b0 net/netfilter/nfnetlink.c:694
+Modules linked in:
+CPU: 1 PID: 3610 Comm: syz-executor371 Not tainted 5.18.0-syzkaller-11972-gd1dc87763f40 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:nfnetlink_unbind net/netfilter/nfnetlink.c:703 [inline]
+RIP: 0010:nfnetlink_unbind+0x357/0x3b0 net/netfilter/nfnetlink.c:694
+Code: f9 48 c7 c2 c0 a6 d9 8a be b8 02 00 00 48 c7 c7 20 a7 d9 8a c6 05 dd 6a 10 06 01 e8 72 6c 9b 01 e9 6e fd ff ff e8 99 18 e4 f9 <0f> 0b 41 c7 04 24 ff ff ff ff e9 9d fe ff ff e8 a5 d8 30 fa e9 dd
+RSP: 0018:ffffc900030afcf8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: ffff8880171ed880 RSI: ffffffff87966bb7 RDI: 0000000000000005
+RBP: ffffffff9097b8c0 R08: 0000000000000005 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff8880251d7340
+R13: ffff88814b1f3800 R14: ffff888016ac0528 R15: ffff888016ac0000
+FS:  0000555555f54300(0000) GS:ffff8880b9c00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffc61815969 CR3: 000000001bd6d000 CR4: 00000000003506f0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ netlink_setsockopt+0x932/0xda0 net/netlink/af_netlink.c:1661
+ __sys_setsockopt+0x2db/0x6a0 net/socket.c:2259
+ __do_sys_setsockopt net/socket.c:2270 [inline]
+ __se_sys_setsockopt net/socket.c:2267 [inline]
+ __x64_sys_setsockopt+0xba/0x150 net/socket.c:2267
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x46/0xb0
+RIP: 0033:0x7f895952baf9
+Code: 28 c3 e8 2a 14 00 00 66 2e 0f 1f 84 00 00 00 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc61815658 EFLAGS: 00000246 ORIG_RAX: 0000000000000036
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f895952baf9
+RDX: 0000000000000002 RSI: 000000000000010e RDI: 0000000000000003
+RBP: 00007f89594efca0 R08: 0000000000000004 R09: 0000000000000000
+R10: 0000000020000000 R11: 0000000000000246 R12: 00007f89594efd30
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ </TASK>

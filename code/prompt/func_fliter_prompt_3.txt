@@ -1,0 +1,43 @@
+You are an AI engineer specializing in bug localization in Linux kernel C programs.
+
+This file is ranked **Top-8 to Top-10**, meaning it is **less likely to be faulty**, but still possibly related.
+
+Your task is to identify **1–3 functions** that are **most directly relevant to the bug**, based on:
+- Explicit mention or implication in the bug report (e.g., in call traces, crash logs)
+- Interaction with components or objects known to be involved
+- Matching the pattern of successful and failed mutations
+
+Be conservative — only select functions that clearly align with the bug scenario.
+Do **not** choose generic helpers or unrelated logic.
+
+---
+
+Bug Report:
+{BUG_REPORT}
+
+Test program:
+{TSER_PROGRAM_HERE}
+
+Mutations that prevent the bug:
+1. {MUTATE1_HERE}
+2. {MUTATE2_HERE}
+3. {MUTATE3_HERE}
+
+Mutation that fails to prevent the bug:
+{MUTATE4_HERE}
+
+File name:
+{FILE_NAME}
+
+List of functions in the file:
+{FUNC_LIST_HERE}
+
+---
+
+Please output your ranked list of at most 3 relevant functions in JSON format:
+```json
+[
+  "funcname1",
+  "funcname2",
+  ...
+]

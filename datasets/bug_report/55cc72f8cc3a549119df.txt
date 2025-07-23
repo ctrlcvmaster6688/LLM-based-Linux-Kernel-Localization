@@ -1,0 +1,265 @@
+BUG: Bad page map in process syz-executor284  pte:fffff8d464120 pmd:74843067
+page:ffffea0001cae6c0 refcount:9 mapcount:-1 mapping:ffff888076470410 index:0x3 pfn:0x72b9b
+head:ffffea0001cae600 order:2 entire_mapcount:0 nr_pages_mapped:8388607 pincount:0
+memcg:ffff888015e5a000
+aops:xfs_address_space_operations ino:244a dentry name:"bus"
+flags: 0xfff0000000816c(referenced|uptodate|lru|active|private|head|node=0|zone=1|lastcpupid=0x7ff)
+page_type: 0xffffffff()
+raw: 00fff00000000000 ffffea0001cae601 dead000000000122 dead000000000400
+raw: 0000000000000001 0000000000000000 00000000fffffffe 0000000000000000
+head: 00fff0000000816c ffffea0001d1b008 ffff888013245030 ffff888076470410
+head: 0000000000000000 ffff88814567a100 00000009ffffffff ffff888015e5a000
+page dumped because: bad pte
+page_owner tracks the page as allocated
+page last allocated via order 2, migratetype Movable, gfp_mask 0x152c4a(GFP_NOFS|__GFP_HIGHMEM|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_HARDWALL|__GFP_MOVABLE), pid 5032, tgid 5032 (syz-executor284), ts 65940832270, free_ts 22284310038
+ set_page_owner include/linux/page_owner.h:31 [inline]
+ post_alloc_hook+0x1e6/0x210 mm/page_alloc.c:1536
+ prep_new_page mm/page_alloc.c:1543 [inline]
+ get_page_from_freelist+0x31db/0x3360 mm/page_alloc.c:3170
+ __alloc_pages+0x255/0x670 mm/page_alloc.c:4426
+ folio_alloc+0x1e/0x60 mm/mempolicy.c:2308
+ filemap_alloc_folio+0xde/0x500 mm/filemap.c:976
+ ra_alloc_folio mm/readahead.c:468 [inline]
+ page_cache_ra_order+0x423/0xcc0 mm/readahead.c:524
+ do_sync_mmap_readahead+0x444/0x850
+ filemap_fault+0x7d3/0x1710 mm/filemap.c:3291
+ __xfs_filemap_fault+0x286/0x960 fs/xfs/xfs_file.c:1354
+ __do_fault+0x133/0x4e0 mm/memory.c:4204
+ do_read_fault mm/memory.c:4568 [inline]
+ do_fault mm/memory.c:4705 [inline]
+ do_pte_missing mm/memory.c:3669 [inline]
+ handle_pte_fault mm/memory.c:4978 [inline]
+ __handle_mm_fault mm/memory.c:5119 [inline]
+ handle_mm_fault+0x48d2/0x6200 mm/memory.c:5284
+ faultin_page mm/gup.c:956 [inline]
+ __get_user_pages+0x6bd/0x15e0 mm/gup.c:1239
+ __get_user_pages_locked mm/gup.c:1504 [inline]
+ get_dump_page+0x146/0x2b0 mm/gup.c:2018
+ dump_user_range+0x126/0x910 fs/coredump.c:913
+ elf_core_dump+0x3b75/0x4490 fs/binfmt_elf.c:2142
+ do_coredump+0x1b73/0x2ab0 fs/coredump.c:764
+page last free stack trace:
+ reset_page_owner include/linux/page_owner.h:24 [inline]
+ free_pages_prepare mm/page_alloc.c:1136 [inline]
+ free_unref_page_prepare+0x8c3/0x9f0 mm/page_alloc.c:2312
+ free_unref_page+0x37/0x3f0 mm/page_alloc.c:2405
+ free_contig_range+0x9e/0x150 mm/page_alloc.c:6342
+ destroy_args+0x95/0x7c0 mm/debug_vm_pgtable.c:1028
+ debug_vm_pgtable+0x4ac/0x540 mm/debug_vm_pgtable.c:1408
+ do_one_initcall+0x23d/0x7d0 init/main.c:1232
+ do_initcall_level+0x157/0x210 init/main.c:1294
+ do_initcalls+0x3f/0x80 init/main.c:1310
+ kernel_init_freeable+0x440/0x5d0 init/main.c:1547
+ kernel_init+0x1d/0x2a0 init/main.c:1437
+ ret_from_fork+0x48/0x80 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
+addr:0000000020006000 vm_flags:080000d0 anon_vma:0000000000000000 mapping:ffff888076470410 index:5
+file:bus fault:xfs_filemap_fault mmap:xfs_file_mmap read_folio:xfs_vm_read_folio
+CPU: 1 PID: 5032 Comm: syz-executor284 Not tainted 6.6.0-rc1-syzkaller-00033-g3669558bdf35 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 08/04/2023
+Call Trace:__dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x1e7/0x2d0 lib/dump_stack.c:106
+ print_bad_pte+0x581/0x5c0 mm/memory.c:535
+ zap_pte_range mm/memory.c:1458 [inline]
+ zap_pmd_range mm/memory.c:1573 [inline]
+ zap_pud_range mm/memory.c:1602 [inline]
+ zap_p4d_range mm/memory.c:1623 [inline]
+ unmap_page_range+0x1a76/0x3300 mm/memory.c:1644
+ unmap_vmas+0x209/0x3a0 mm/memory.c:1731
+ exit_mmap+0x297/0xc50 mm/mmap.c:3210
+ __mmput+0x115/0x3c0 kernel/fork.c:1349
+ exit_mm+0x21f/0x300 kernel/exit.c:567
+ do_exit+0x612/0x2290 kernel/exit.c:861
+ do_group_exit+0x206/0x2c0 kernel/exit.c:1024
+ get_signal+0x175d/0x1840 kernel/signal.c:2892
+ arch_do_signal_or_restart+0x96/0x860 arch/x86/kernel/signal.c:309
+ exit_to_user_mode_loop+0x6a/0x100 kernel/entry/common.c:168
+ exit_to_user_mode_prepare+0xb1/0x140 kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work kernel/entry/common.c:285 [inline]
+ syscall_exit_to_user_mode+0x64/0x280 kernel/entry/common.c:296
+ do_syscall_64+0x4d/0xc0 arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f10ea512eb9
+Code: Unable to access opcode bytes at 0x7f10ea512e8f.
+RSP: 002b:00007ffe74043128 EFLAGS: 00000246 ORIG_RAX: 0000000000000148
+RAX: ffffffffffffffe5 RBX: 0000000000000003 RCX: 00007f10ea512eb9
+RDX: 0000000000000002 RSI: 0000000020000300 RDI: 0000000000000007
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000008800000 R11: 0000000000000246 R12: 00000000000f4240
+R13: 00007ffe740433a8 R14: 0000000000000001 R15: 00007ffe74043170BUG: Bad page map in process syz-executor284  pte:fffff8d465120 pmd:74843067
+page:ffffea0001cae680 refcount:9 mapcount:-1 mapping:ffff888076470410 index:0x2 pfn:0x72b9a
+head:ffffea0001cae600 order:2 entire_mapcount:0 nr_pages_mapped:8388606 pincount:0
+memcg:ffff888015e5a000
+aops:xfs_address_space_operations ino:244a dentry name:"bus"
+flags: 0xfff0000000816c(referenced|uptodate|lru|active|private|head|node=0|zone=1|lastcpupid=0x7ff)
+page_type: 0xffffffff()
+raw: 00fff00000000000 ffffea0001cae601 ffffea0001cae690 ffffea0001cae690
+raw: 0000000000000001 0000000000000000 00000000fffffffe 0000000000000000
+head: 00fff0000000816c ffffea0001d1b008 ffff888013245030 ffff888076470410
+head: 0000000000000000 ffff88814567a100 00000009ffffffff ffff888015e5a000
+page dumped because: bad pte
+page_owner tracks the page as allocated
+page last allocated via order 2, migratetype Movable, gfp_mask 0x152c4a(GFP_NOFS|__GFP_HIGHMEM|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_HARDWALL|__GFP_MOVABLE), pid 5032, tgid 5032 (syz-executor284), ts 65940832270, free_ts 22284300404
+ set_page_owner include/linux/page_owner.h:31 [inline]
+ post_alloc_hook+0x1e6/0x210 mm/page_alloc.c:1536
+ prep_new_page mm/page_alloc.c:1543 [inline]
+ get_page_from_freelist+0x31db/0x3360 mm/page_alloc.c:3170
+ __alloc_pages+0x255/0x670 mm/page_alloc.c:4426
+ folio_alloc+0x1e/0x60 mm/mempolicy.c:2308
+ filemap_alloc_folio+0xde/0x500 mm/filemap.c:976
+ ra_alloc_folio mm/readahead.c:468 [inline]
+ page_cache_ra_order+0x423/0xcc0 mm/readahead.c:524
+ do_sync_mmap_readahead+0x444/0x850
+ filemap_fault+0x7d3/0x1710 mm/filemap.c:3291
+ __xfs_filemap_fault+0x286/0x960 fs/xfs/xfs_file.c:1354
+ __do_fault+0x133/0x4e0 mm/memory.c:4204
+ do_read_fault mm/memory.c:4568 [inline]
+ do_fault mm/memory.c:4705 [inline]
+ do_pte_missing mm/memory.c:3669 [inline]
+ handle_pte_fault mm/memory.c:4978 [inline]
+ __handle_mm_fault mm/memory.c:5119 [inline]
+ handle_mm_fault+0x48d2/0x6200 mm/memory.c:5284
+ faultin_page mm/gup.c:956 [inline]
+ __get_user_pages+0x6bd/0x15e0 mm/gup.c:1239
+ __get_user_pages_locked mm/gup.c:1504 [inline]
+ get_dump_page+0x146/0x2b0 mm/gup.c:2018
+ dump_user_range+0x126/0x910 fs/coredump.c:913
+ elf_core_dump+0x3b75/0x4490 fs/binfmt_elf.c:2142
+ do_coredump+0x1b73/0x2ab0 fs/coredump.c:764
+page last free stack trace:
+ reset_page_owner include/linux/page_owner.h:24 [inline]
+ free_pages_prepare mm/page_alloc.c:1136 [inline]
+ free_unref_page_prepare+0x8c3/0x9f0 mm/page_alloc.c:2312
+ free_unref_page+0x37/0x3f0 mm/page_alloc.c:2405
+ free_contig_range+0x9e/0x150 mm/page_alloc.c:6342
+ destroy_args+0x95/0x7c0 mm/debug_vm_pgtable.c:1028
+ debug_vm_pgtable+0x4ac/0x540 mm/debug_vm_pgtable.c:1408
+ do_one_initcall+0x23d/0x7d0 init/main.c:1232
+ do_initcall_level+0x157/0x210 init/main.c:1294
+ do_initcalls+0x3f/0x80 init/main.c:1310
+ kernel_init_freeable+0x440/0x5d0 init/main.c:1547
+ kernel_init+0x1d/0x2a0 init/main.c:1437
+ ret_from_fork+0x48/0x80 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
+addr:0000000020007000 vm_flags:080000d0 anon_vma:0000000000000000 mapping:ffff888076470410 index:6
+file:bus fault:xfs_filemap_fault mmap:xfs_file_mmap read_folio:xfs_vm_read_folio
+CPU: 0 PID: 5032 Comm: syz-executor284 Tainted: G    B              6.6.0-rc1-syzkaller-00033-g3669558bdf35 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 08/04/2023
+Call Trace:__dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x1e7/0x2d0 lib/dump_stack.c:106
+ print_bad_pte+0x581/0x5c0 mm/memory.c:535
+ zap_pte_range mm/memory.c:1458 [inline]
+ zap_pmd_range mm/memory.c:1573 [inline]
+ zap_pud_range mm/memory.c:1602 [inline]
+ zap_p4d_range mm/memory.c:1623 [inline]
+ unmap_page_range+0x1a76/0x3300 mm/memory.c:1644
+ unmap_vmas+0x209/0x3a0 mm/memory.c:1731
+ exit_mmap+0x297/0xc50 mm/mmap.c:3210
+ __mmput+0x115/0x3c0 kernel/fork.c:1349
+ exit_mm+0x21f/0x300 kernel/exit.c:567
+ do_exit+0x612/0x2290 kernel/exit.c:861
+ do_group_exit+0x206/0x2c0 kernel/exit.c:1024
+ get_signal+0x175d/0x1840 kernel/signal.c:2892
+ arch_do_signal_or_restart+0x96/0x860 arch/x86/kernel/signal.c:309
+ exit_to_user_mode_loop+0x6a/0x100 kernel/entry/common.c:168
+ exit_to_user_mode_prepare+0xb1/0x140 kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work kernel/entry/common.c:285 [inline]
+ syscall_exit_to_user_mode+0x64/0x280 kernel/entry/common.c:296
+ do_syscall_64+0x4d/0xc0 arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f10ea512eb9
+Code: Unable to access opcode bytes at 0x7f10ea512e8f.
+RSP: 002b:00007ffe74043128 EFLAGS: 00000246 ORIG_RAX: 0000000000000148
+RAX: ffffffffffffffe5 RBX: 0000000000000003 RCX: 00007f10ea512eb9
+RDX: 0000000000000002 RSI: 0000000020000300 RDI: 0000000000000007
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000008800000 R11: 0000000000000246 R12: 00000000000f4240
+R13: 00007ffe740433a8 R14: 0000000000000001 R15: 00007ffe74043170BUG: Bad page map in process syz-executor284  pte:fffff8d466120 pmd:74843067
+page:ffffea0001cae640 refcount:9 mapcount:-1 mapping:ffff888076470410 index:0x1 pfn:0x72b99
+head:ffffea0001cae600 order:2 entire_mapcount:0 nr_pages_mapped:8388605 pincount:0
+memcg:ffff888015e5a000
+aops:xfs_address_space_operations ino:244a dentry name:"bus"
+flags: 0xfff0000000816c(referenced|uptodate|lru|active|private|head|node=0|zone=1|lastcpupid=0x7ff)
+page_type: 0xffffffff()
+raw: 00fff00000000202 ffffea0001cae601 dead000000000122 fffffffdffffffff
+raw: 0000000400000000 0000000000000000 00000000fffffffe 0000000000000000
+head: 00fff0000000816c ffffea0001d1b008 ffff888013245030 ffff888076470410
+head: 0000000000000000 ffff88814567a100 00000009ffffffff ffff888015e5a000
+page dumped because: bad pte
+page_owner tracks the page as allocated
+page last allocated via order 2, migratetype Movable, gfp_mask 0x152c4a(GFP_NOFS|__GFP_HIGHMEM|__GFP_NOWARN|__GFP_NORETRY|__GFP_COMP|__GFP_HARDWALL|__GFP_MOVABLE), pid 5032, tgid 5032 (syz-executor284), ts 65940832270, free_ts 22284290709
+ set_page_owner include/linux/page_owner.h:31 [inline]
+ post_alloc_hook+0x1e6/0x210 mm/page_alloc.c:1536
+ prep_new_page mm/page_alloc.c:1543 [inline]
+ get_page_from_freelist+0x31db/0x3360 mm/page_alloc.c:3170
+ __alloc_pages+0x255/0x670 mm/page_alloc.c:4426
+ folio_alloc+0x1e/0x60 mm/mempolicy.c:2308
+ filemap_alloc_folio+0xde/0x500 mm/filemap.c:976
+ ra_alloc_folio mm/readahead.c:468 [inline]
+ page_cache_ra_order+0x423/0xcc0 mm/readahead.c:524
+ do_sync_mmap_readahead+0x444/0x850
+ filemap_fault+0x7d3/0x1710 mm/filemap.c:3291
+ __xfs_filemap_fault+0x286/0x960 fs/xfs/xfs_file.c:1354
+ __do_fault+0x133/0x4e0 mm/memory.c:4204
+ do_read_fault mm/memory.c:4568 [inline]
+ do_fault mm/memory.c:4705 [inline]
+ do_pte_missing mm/memory.c:3669 [inline]
+ handle_pte_fault mm/memory.c:4978 [inline]
+ __handle_mm_fault mm/memory.c:5119 [inline]
+ handle_mm_fault+0x48d2/0x6200 mm/memory.c:5284
+ faultin_page mm/gup.c:956 [inline]
+ __get_user_pages+0x6bd/0x15e0 mm/gup.c:1239
+ __get_user_pages_locked mm/gup.c:1504 [inline]
+ get_dump_page+0x146/0x2b0 mm/gup.c:2018
+ dump_user_range+0x126/0x910 fs/coredump.c:913
+ elf_core_dump+0x3b75/0x4490 fs/binfmt_elf.c:2142
+ do_coredump+0x1b73/0x2ab0 fs/coredump.c:764
+page last free stack trace:
+ reset_page_owner include/linux/page_owner.h:24 [inline]
+ free_pages_prepare mm/page_alloc.c:1136 [inline]
+ free_unref_page_prepare+0x8c3/0x9f0 mm/page_alloc.c:2312
+ free_unref_page+0x37/0x3f0 mm/page_alloc.c:2405
+ free_contig_range+0x9e/0x150 mm/page_alloc.c:6342
+ destroy_args+0x95/0x7c0 mm/debug_vm_pgtable.c:1028
+ debug_vm_pgtable+0x4ac/0x540 mm/debug_vm_pgtable.c:1408
+ do_one_initcall+0x23d/0x7d0 init/main.c:1232
+ do_initcall_level+0x157/0x210 init/main.c:1294
+ do_initcalls+0x3f/0x80 init/main.c:1310
+ kernel_init_freeable+0x440/0x5d0 init/main.c:1547
+ kernel_init+0x1d/0x2a0 init/main.c:1437
+ ret_from_fork+0x48/0x80 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x11/0x20 arch/x86/entry/entry_64.S:304
+addr:0000000020008000 vm_flags:080000d0 anon_vma:0000000000000000 mapping:ffff888076470410 index:7
+file:bus fault:xfs_filemap_fault mmap:xfs_file_mmap read_folio:xfs_vm_read_folio
+CPU: 0 PID: 5032 Comm: syz-executor284 Tainted: G    B              6.6.0-rc1-syzkaller-00033-g3669558bdf35 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 08/04/2023
+Call Trace:__dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x1e7/0x2d0 lib/dump_stack.c:106
+ print_bad_pte+0x581/0x5c0 mm/memory.c:535
+ zap_pte_range mm/memory.c:1458 [inline]
+ zap_pmd_range mm/memory.c:1573 [inline]
+ zap_pud_range mm/memory.c:1602 [inline]
+ zap_p4d_range mm/memory.c:1623 [inline]
+ unmap_page_range+0x1a76/0x3300 mm/memory.c:1644
+ unmap_vmas+0x209/0x3a0 mm/memory.c:1731
+ exit_mmap+0x297/0xc50 mm/mmap.c:3210
+ __mmput+0x115/0x3c0 kernel/fork.c:1349
+ exit_mm+0x21f/0x300 kernel/exit.c:567
+ do_exit+0x612/0x2290 kernel/exit.c:861
+ do_group_exit+0x206/0x2c0 kernel/exit.c:1024
+ get_signal+0x175d/0x1840 kernel/signal.c:2892
+ arch_do_signal_or_restart+0x96/0x860 arch/x86/kernel/signal.c:309
+ exit_to_user_mode_loop+0x6a/0x100 kernel/entry/common.c:168
+ exit_to_user_mode_prepare+0xb1/0x140 kernel/entry/common.c:204
+ __syscall_exit_to_user_mode_work kernel/entry/common.c:285 [inline]
+ syscall_exit_to_user_mode+0x64/0x280 kernel/entry/common.c:296
+ do_syscall_64+0x4d/0xc0 arch/x86/entry/common.c:86
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f10ea512eb9
+Code: Unable to access opcode bytes at 0x7f10ea512e8f.
+RSP: 002b:00007ffe74043128 EFLAGS: 00000246 ORIG_RAX: 0000000000000148
+RAX: ffffffffffffffe5 RBX: 0000000000000003 RCX: 00007f10ea512eb9
+RDX: 0000000000000002 RSI: 0000000020000300 RDI: 0000000000000007
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000008800000 R11: 0000000000000246 R12: 00000000000f4240
+R13: 00007ffe740433a8 R14: 0000000000000001 R15: 00007ffe74043170

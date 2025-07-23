@@ -1,0 +1,57 @@
+NILFS error (device loop0): nilfs_check_page: bad entry in directory #2: rec_len is smaller than minimal - offset=0, inode=0, rec_len=0, name_len=0
+Remounting filesystem read-only
+NILFS error (device loop0): nilfs_check_page: bad entry in directory #2: rec_len is smaller than minimal - offset=0, inode=0, rec_len=0, name_len=0
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 3605 at fs/nilfs2/dat.c:186 nilfs_dat_commit_end+0x49a/0x5f0 fs/nilfs2/dat.c:186
+Modules linked in:
+CPU: 1 PID: 3605 Comm: syz-executor110 Not tainted 6.0.0-syzkaller-09039-ga6afa4199d3d #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 09/22/2022
+RIP: 0010:nilfs_dat_commit_end+0x49a/0x5f0 fs/nilfs2/dat.c:186
+Code: 41 5f e9 39 06 59 fe e8 34 06 59 fe 48 89 ee 4c 89 e7 e8 09 f0 ff ff eb db e8 22 06 59 fe e8 b7 63 de fd eb b4 e8 16 06 59 fe <0f> 0b 4d 89 ef e9 35 fd ff ff e8 07 06 59 fe e8 9c 63 de fd e9 c6
+RSP: 0018:ffffc90003e3f5d8 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88806ec15a80 RCX: 0000000000000000
+RDX: ffff888021df0000 RSI: ffffffff8322111a RDI: 0000000000000006
+RBP: ffffc90003e3f680 R08: 0000000000000006 R09: 00000026ae000002
+R10: 0000000000000003 R11: 1ffffffff17f21b1 R12: ffff888073d20158
+R13: 0000000000000003 R14: ffffc90003e3f698 R15: 00000026ae000002
+FS:  0000000000000000(0000) GS:ffff8880b9b00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f046e0fe1d0 CR3: 000000000bc8e000 CR4: 0000000000350ee0
+Call Trace:nilfs_dat_commit_update+0x26/0x40 fs/nilfs2/dat.c:236
+ nilfs_direct_propagate fs/nilfs2/direct.c:277 [inline]
+ nilfs_direct_propagate+0x244/0x320 fs/nilfs2/direct.c:256
+ nilfs_bmap_propagate+0x73/0x170 fs/nilfs2/bmap.c:337
+ nilfs_collect_file_data+0x45/0xd0 fs/nilfs2/segment.c:568
+ nilfs_segctor_apply_buffers+0x14a/0x470 fs/nilfs2/segment.c:1012
+ nilfs_segctor_scan_file+0x3f4/0x6f0 fs/nilfs2/segment.c:1061
+ nilfs_segctor_collect_blocks fs/nilfs2/segment.c:1191 [inline]
+ nilfs_segctor_collect fs/nilfs2/segment.c:1497 [inline]
+ nilfs_segctor_do_construct+0x12f6/0x6970 fs/nilfs2/segment.c:2039
+ nilfs_segctor_construct+0x8e3/0xb30 fs/nilfs2/segment.c:2375
+ nilfs_segctor_write_out fs/nilfs2/segment.c:2697 [inline]
+ nilfs_segctor_destroy fs/nilfs2/segment.c:2730 [inline]
+ nilfs_detach_log_writer+0x3bb/0x9f0 fs/nilfs2/segment.c:2810
+ nilfs_put_super+0x3f/0x1a0 fs/nilfs2/super.c:468
+ generic_shutdown_super+0x154/0x410 fs/super.c:491
+ kill_block_super+0x97/0xf0 fs/super.c:1427
+ deactivate_locked_super+0x94/0x160 fs/super.c:331
+ deactivate_super+0xad/0xd0 fs/super.c:362
+ cleanup_mnt+0x2ae/0x3d0 fs/namespace.c:1186
+ task_work_run+0xdd/0x1a0 kernel/task_work.c:177
+ exit_task_work include/linux/task_work.h:38 [inline]
+ do_exit+0xad5/0x29b0 kernel/exit.c:795
+ do_group_exit+0xd2/0x2f0 kernel/exit.c:925
+ __do_sys_exit_group kernel/exit.c:936 [inline]
+ __se_sys_exit_group kernel/exit.c:934 [inline]
+ __x64_sys_exit_group+0x3a/0x50 kernel/exit.c:934
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f046e085b49
+Code: Unable to access opcode bytes at 0x7f046e085b1f.
+RSP: 002b:00007ffd3cac1028 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007f046e0fd330 RCX: 00007f046e085b49
+RDX: 000000000000003c RSI: 00000000000000e7 RDI: 0000000000000001
+RBP: 0000000000000001 R08: ffffffffffffffc0 R09: 00007f046e0f7e40
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f046e0fd330
+R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001

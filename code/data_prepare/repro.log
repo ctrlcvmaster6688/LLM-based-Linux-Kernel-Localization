@@ -1,0 +1,701 @@
+2025-07-22 14:41:22,149 Processing syzid: 0b7c8bfd17c00d016fb4
+2025-07-22 14:41:22,149 虚拟机 PID 文件不存在: /home/pangyesong/linux1
+2025-07-22 14:41:42,895 Command succeeded: git checkout -f aa051d36ce4a
+2025-07-22 14:41:42,895 已切换到 'aa051d36ce4a' 分支: /home/pangyesong/linux1
+2025-07-22 14:41:48,793 Command succeeded: make olddefconfig
+2025-07-22 14:41:48,793 开始编译内核: /home/pangyesong/linux1
+2025-07-22 14:47:40,960 Command succeeded: make -j40
+2025-07-22 14:47:40,960 内核编译完成: /home/pangyesong/linux1, 耗时 352.17 秒
+2025-07-22 14:47:40,960 start repro mutate case
+2025-07-22 14:47:40,960 processing-1
+2025-07-22 14:47:40,989 QEMU 启动中
+2025-07-22 14:48:41,391 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_1.syz root@localhost:/root/repro.txt
+2025-07-22 14:48:41,392 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_1.syz
+2025-07-22 14:48:42,311 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 14:48:42,543 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 14:49:47,610 repro执行完毕
+2025-07-22 14:49:47,653 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 14:49:47,653 
+2025-07-22 14:49:47,653 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 14:49:47,653 虚拟机命令执行-rm repro.txt
+2025-07-22 14:49:47,656 在日志中找到匹配的关键词: console_unlock
+2025-07-22 14:49:47,659 Command succeeded: kill -9 1452991
+2025-07-22 14:49:47,659 虚拟机已终止 (PID: 1452991): /home/pangyesong/linux1
+2025-07-22 14:49:47,659 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 14:49:47,659 processing-2
+2025-07-22 14:49:47,660 QEMU 启动中
+2025-07-22 14:50:47,817 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_2.syz root@localhost:/root/repro.txt
+2025-07-22 14:50:47,817 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_2.syz
+2025-07-22 14:50:48,402 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 14:50:48,561 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 14:51:53,622 repro执行完毕
+2025-07-22 14:51:53,666 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 14:51:53,666 
+2025-07-22 14:51:53,666 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 14:51:53,666 虚拟机命令执行-rm repro.txt
+2025-07-22 14:51:53,670 在日志中找到匹配的关键词: console_unlock
+2025-07-22 14:51:53,672 Command succeeded: kill -9 1453513
+2025-07-22 14:51:53,672 虚拟机已终止 (PID: 1453513): /home/pangyesong/linux1
+2025-07-22 14:51:53,672 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 14:51:53,672 processing-3
+2025-07-22 14:51:53,673 QEMU 启动中
+2025-07-22 14:52:53,905 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_3.syz root@localhost:/root/repro.txt
+2025-07-22 14:52:53,905 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_3.syz
+2025-07-22 14:52:54,476 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 14:52:54,629 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 14:53:59,636 repro执行完毕
+2025-07-22 14:53:59,678 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 14:53:59,678 
+2025-07-22 14:53:59,678 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 14:53:59,678 虚拟机命令执行-rm repro.txt
+2025-07-22 14:53:59,682 在日志中找到匹配的关键词: console_unlock
+2025-07-22 14:53:59,684 Command succeeded: kill -9 1454148
+2025-07-22 14:53:59,684 虚拟机已终止 (PID: 1454148): /home/pangyesong/linux1
+2025-07-22 14:53:59,684 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 14:53:59,684 processing-4
+2025-07-22 14:53:59,685 QEMU 启动中
+2025-07-22 14:54:59,894 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_4.syz root@localhost:/root/repro.txt
+2025-07-22 14:54:59,894 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_4.syz
+2025-07-22 14:55:00,405 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 14:55:00,554 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 14:56:05,618 repro执行完毕
+2025-07-22 14:56:05,660 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 14:56:05,660 
+2025-07-22 14:56:05,661 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 14:56:05,661 虚拟机命令执行-rm repro.txt
+2025-07-22 14:56:05,664 在日志中找到匹配的关键词: console_unlock
+2025-07-22 14:56:05,666 Command succeeded: kill -9 1454728
+2025-07-22 14:56:05,666 虚拟机已终止 (PID: 1454728): /home/pangyesong/linux1
+2025-07-22 14:56:05,666 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 14:56:05,666 processing-5
+2025-07-22 14:56:05,667 QEMU 启动中
+2025-07-22 14:57:05,900 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_5.syz root@localhost:/root/repro.txt
+2025-07-22 14:57:05,900 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_5.syz
+2025-07-22 14:57:06,970 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 14:57:07,119 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 14:58:12,167 repro执行完毕
+2025-07-22 14:58:12,230 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 14:58:12,230 
+2025-07-22 14:58:12,231 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 14:58:12,231 虚拟机命令执行-rm repro.txt
+2025-07-22 14:58:12,236 Command succeeded: kill -9 1455501
+2025-07-22 14:58:12,236 虚拟机已终止 (PID: 1455501): /home/pangyesong/linux1
+2025-07-22 14:58:12,236 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 14:58:12,236 processing-6
+2025-07-22 14:58:12,237 QEMU 启动中
+2025-07-22 14:59:12,448 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_6.syz root@localhost:/root/repro.txt
+2025-07-22 14:59:12,448 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_6.syz
+2025-07-22 14:59:12,975 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 14:59:13,145 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:00:18,211 repro执行完毕
+2025-07-22 15:00:18,253 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:00:18,254 
+2025-07-22 15:00:18,254 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 15:00:18,254 虚拟机命令执行-rm repro.txt
+2025-07-22 15:00:18,257 在日志中找到匹配的关键词: console_unlock
+2025-07-22 15:00:18,259 Command succeeded: kill -9 1456084
+2025-07-22 15:00:18,259 虚拟机已终止 (PID: 1456084): /home/pangyesong/linux1
+2025-07-22 15:00:18,259 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:00:18,259 processing-7
+2025-07-22 15:00:18,260 QEMU 启动中
+2025-07-22 15:01:18,458 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_7.syz root@localhost:/root/repro.txt
+2025-07-22 15:01:18,458 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_7.syz
+2025-07-22 15:01:19,346 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:01:19,499 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:02:24,507 repro执行完毕
+2025-07-22 15:02:24,570 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:02:24,570 
+2025-07-22 15:02:24,570 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 15:02:24,570 虚拟机命令执行-rm repro.txt
+2025-07-22 15:02:24,574 Command succeeded: kill -9 1456462
+2025-07-22 15:02:24,575 虚拟机已终止 (PID: 1456462): /home/pangyesong/linux1
+2025-07-22 15:02:24,575 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:02:24,575 processing-8
+2025-07-22 15:02:24,576 QEMU 启动中
+2025-07-22 15:03:24,770 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_8.syz root@localhost:/root/repro.txt
+2025-07-22 15:03:24,770 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_8.syz
+2025-07-22 15:03:25,908 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:03:26,061 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:04:31,128 repro执行完毕
+2025-07-22 15:04:31,184 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:04:31,184 
+2025-07-22 15:04:31,185 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 15:04:31,185 虚拟机命令执行-rm repro.txt
+2025-07-22 15:04:31,188 在日志中找到匹配的关键词: console_unlock
+2025-07-22 15:04:31,190 Command succeeded: kill -9 1456842
+2025-07-22 15:04:31,190 虚拟机已终止 (PID: 1456842): /home/pangyesong/linux1
+2025-07-22 15:04:31,191 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:04:31,191 processing-9
+2025-07-22 15:04:31,192 QEMU 启动中
+2025-07-22 15:05:31,404 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_9.syz root@localhost:/root/repro.txt
+2025-07-22 15:05:31,404 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_9.syz
+2025-07-22 15:05:32,387 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:05:32,542 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:06:37,607 repro执行完毕
+2025-07-22 15:06:37,655 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:06:37,656 
+2025-07-22 15:06:37,656 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 15:06:37,656 虚拟机命令执行-rm repro.txt
+2025-07-22 15:06:37,659 在日志中找到匹配的关键词: console_unlock
+2025-07-22 15:06:37,661 Command succeeded: kill -9 1457214
+2025-07-22 15:06:37,662 虚拟机已终止 (PID: 1457214): /home/pangyesong/linux1
+2025-07-22 15:06:37,662 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:06:37,662 processing-10
+2025-07-22 15:06:37,663 QEMU 启动中
+2025-07-22 15:07:37,899 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_10.syz root@localhost:/root/repro.txt
+2025-07-22 15:07:37,899 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/0b7c8bfd17c00d016fb4/0b7c8bfd17c00d016fb4_10.syz
+2025-07-22 15:07:39,105 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:07:39,256 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:08:44,274 repro执行完毕
+2025-07-22 15:08:44,335 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:08:44,335 
+2025-07-22 15:08:44,335 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 15:08:44,335 虚拟机命令执行-rm repro.txt
+2025-07-22 15:08:44,340 Command succeeded: kill -9 1457817
+2025-07-22 15:08:44,340 虚拟机已终止 (PID: 1457817): /home/pangyesong/linux1
+2025-07-22 15:08:44,340 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:08:44,340 虚拟机 PID 文件不存在: /home/pangyesong/linux1
+2025-07-22 15:08:44,340 Processing syzid: 5b82f0e951f8c2bcdb8f
+2025-07-22 15:08:44,340 虚拟机 PID 文件不存在: /home/pangyesong/linux1
+2025-07-22 15:08:58,857 Command succeeded: git checkout -f 4b810bf037e5
+2025-07-22 15:08:58,857 已切换到 '4b810bf037e5' 分支: /home/pangyesong/linux1
+2025-07-22 15:09:01,958 Command succeeded: make olddefconfig
+2025-07-22 15:09:01,958 开始编译内核: /home/pangyesong/linux1
+2025-07-22 15:15:02,709 Command succeeded: make -j40
+2025-07-22 15:15:02,710 内核编译完成: /home/pangyesong/linux1, 耗时 360.75 秒
+2025-07-22 15:15:02,710 start repro mutate case
+2025-07-22 15:15:02,710 processing-1
+2025-07-22 15:15:02,711 QEMU 启动中
+2025-07-22 15:16:02,955 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_1.syz root@localhost:/root/repro.txt
+2025-07-22 15:16:02,956 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_1.syz
+2025-07-22 15:16:03,499 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:16:03,681 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:17:08,748 repro执行完毕
+2025-07-22 15:18:23,844 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:18:23,844 
+2025-07-22 15:18:23,845 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:18:23,845 虚拟机命令执行-rm repro.txt
+2025-07-22 15:18:23,847 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:18:23,850 Command succeeded: kill -9 1548462
+2025-07-22 15:18:23,850 虚拟机已终止 (PID: 1548462): /home/pangyesong/linux1
+2025-07-22 15:18:23,850 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:18:23,850 processing-2
+2025-07-22 15:18:23,851 QEMU 启动中
+2025-07-22 15:19:24,088 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_2.syz root@localhost:/root/repro.txt
+2025-07-22 15:19:24,088 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_2.syz
+2025-07-22 15:19:25,203 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:19:25,383 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:20:30,449 repro执行完毕
+2025-07-22 15:21:45,387 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:21:45,388 
+2025-07-22 15:21:45,388 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:21:45,388 虚拟机命令执行-rm repro.txt
+2025-07-22 15:21:45,391 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:21:45,393 Command succeeded: kill -9 1549472
+2025-07-22 15:21:45,393 虚拟机已终止 (PID: 1549472): /home/pangyesong/linux1
+2025-07-22 15:21:45,393 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:21:45,393 processing-3
+2025-07-22 15:21:45,394 QEMU 启动中
+2025-07-22 15:22:45,633 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_3.syz root@localhost:/root/repro.txt
+2025-07-22 15:22:45,633 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_3.syz
+2025-07-22 15:22:47,110 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:22:47,446 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:23:52,510 repro执行完毕
+2025-07-22 15:25:07,451 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:25:07,451 
+2025-07-22 15:25:07,451 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:25:07,451 虚拟机命令执行-rm repro.txt
+2025-07-22 15:25:07,454 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:25:07,456 Command succeeded: kill -9 1550380
+2025-07-22 15:25:07,456 虚拟机已终止 (PID: 1550380): /home/pangyesong/linux1
+2025-07-22 15:25:07,457 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:25:07,457 processing-4
+2025-07-22 15:25:07,458 QEMU 启动中
+2025-07-22 15:26:07,651 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_4.syz root@localhost:/root/repro.txt
+2025-07-22 15:26:07,651 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_4.syz
+2025-07-22 15:26:08,477 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:26:08,701 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:27:13,767 repro执行完毕
+2025-07-22 15:28:28,707 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:28:28,708 
+2025-07-22 15:28:28,708 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:28:28,708 虚拟机命令执行-rm repro.txt
+2025-07-22 15:28:28,710 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:28:28,713 Command succeeded: kill -9 1551339
+2025-07-22 15:28:28,713 虚拟机已终止 (PID: 1551339): /home/pangyesong/linux1
+2025-07-22 15:28:28,713 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:28:28,713 processing-5
+2025-07-22 15:28:28,714 QEMU 启动中
+2025-07-22 15:29:28,960 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_5.syz root@localhost:/root/repro.txt
+2025-07-22 15:29:28,960 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_5.syz
+2025-07-22 15:29:29,925 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:29:30,100 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:30:35,167 repro执行完毕
+2025-07-22 15:31:50,109 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:31:50,109 
+2025-07-22 15:31:50,109 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:31:50,109 虚拟机命令执行-rm repro.txt
+2025-07-22 15:31:50,112 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:31:50,115 Command succeeded: kill -9 1552182
+2025-07-22 15:31:50,115 虚拟机已终止 (PID: 1552182): /home/pangyesong/linux1
+2025-07-22 15:31:50,115 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:31:50,115 processing-6
+2025-07-22 15:31:50,116 QEMU 启动中
+2025-07-22 15:32:50,322 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_6.syz root@localhost:/root/repro.txt
+2025-07-22 15:32:50,322 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_6.syz
+2025-07-22 15:32:51,685 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:32:51,866 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:33:56,933 repro执行完毕
+2025-07-22 15:35:11,873 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:35:11,873 
+2025-07-22 15:35:11,873 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:35:11,873 虚拟机命令执行-rm repro.txt
+2025-07-22 15:35:11,876 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:35:11,878 Command succeeded: kill -9 1553078
+2025-07-22 15:35:11,879 虚拟机已终止 (PID: 1553078): /home/pangyesong/linux1
+2025-07-22 15:35:11,879 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:35:11,879 processing-7
+2025-07-22 15:35:11,880 QEMU 启动中
+2025-07-22 15:36:12,124 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_7.syz root@localhost:/root/repro.txt
+2025-07-22 15:36:12,124 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_7.syz
+2025-07-22 15:36:12,663 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:36:12,847 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:37:17,914 repro执行完毕
+2025-07-22 15:38:32,854 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:38:32,854 
+2025-07-22 15:38:32,854 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:38:32,854 虚拟机命令执行-rm repro.txt
+2025-07-22 15:38:32,857 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:38:32,859 Command succeeded: kill -9 1553888
+2025-07-22 15:38:32,860 虚拟机已终止 (PID: 1553888): /home/pangyesong/linux1
+2025-07-22 15:38:32,860 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:38:32,860 processing-8
+2025-07-22 15:38:32,861 QEMU 启动中
+2025-07-22 15:39:33,105 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_8.syz root@localhost:/root/repro.txt
+2025-07-22 15:39:33,105 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_8.syz
+2025-07-22 15:39:34,438 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:39:34,617 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:40:39,684 repro执行完毕
+2025-07-22 15:41:54,625 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:41:54,625 
+2025-07-22 15:41:54,625 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:41:54,625 虚拟机命令执行-rm repro.txt
+2025-07-22 15:41:54,628 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:41:54,630 Command succeeded: kill -9 1554664
+2025-07-22 15:41:54,630 虚拟机已终止 (PID: 1554664): /home/pangyesong/linux1
+2025-07-22 15:41:54,630 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:41:54,630 processing-9
+2025-07-22 15:41:54,631 QEMU 启动中
+2025-07-22 15:42:54,870 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_9.syz root@localhost:/root/repro.txt
+2025-07-22 15:42:54,871 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_9.syz
+2025-07-22 15:42:55,393 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:42:55,569 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:44:00,636 repro执行完毕
+2025-07-22 15:45:15,581 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:45:15,581 
+2025-07-22 15:45:15,582 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:45:15,582 虚拟机命令执行-rm repro.txt
+2025-07-22 15:45:15,585 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:45:15,587 Command succeeded: kill -9 1555554
+2025-07-22 15:45:15,587 虚拟机已终止 (PID: 1555554): /home/pangyesong/linux1
+2025-07-22 15:45:15,587 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:45:15,587 processing-10
+2025-07-22 15:45:15,588 QEMU 启动中
+2025-07-22 15:46:15,845 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_10.syz root@localhost:/root/repro.txt
+2025-07-22 15:46:15,846 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/5b82f0e951f8c2bcdb8f/5b82f0e951f8c2bcdb8f_10.syz
+2025-07-22 15:46:16,466 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:46:16,661 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:47:21,727 repro执行完毕
+2025-07-22 15:48:36,673 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:48:36,673 
+2025-07-22 15:48:36,673 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:48:36,673 虚拟机命令执行-rm repro.txt
+2025-07-22 15:48:36,676 在日志中找到匹配的关键词: btrfs_finish_ordered_extent
+2025-07-22 15:48:36,679 Command succeeded: kill -9 1556381
+2025-07-22 15:48:36,679 虚拟机已终止 (PID: 1556381): /home/pangyesong/linux1
+2025-07-22 15:48:36,679 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:48:36,679 虚拟机 PID 文件不存在: /home/pangyesong/linux1
+2025-07-22 15:48:36,679 Processing syzid: 31d54c60c5b254d6f75b
+2025-07-22 15:48:36,679 虚拟机 PID 文件不存在: /home/pangyesong/linux1
+2025-07-22 15:48:48,507 Command succeeded: git checkout -f c9194f32bfd9
+2025-07-22 15:48:48,507 已切换到 'c9194f32bfd9' 分支: /home/pangyesong/linux1
+2025-07-22 15:48:51,423 Command succeeded: make olddefconfig
+2025-07-22 15:48:51,424 开始编译内核: /home/pangyesong/linux1
+2025-07-22 15:53:30,560 Command succeeded: make -j40
+2025-07-22 15:53:30,561 内核编译完成: /home/pangyesong/linux1, 耗时 279.14 秒
+2025-07-22 15:53:30,561 start repro mutate case
+2025-07-22 15:53:30,561 processing-1
+2025-07-22 15:53:30,563 QEMU 启动中
+2025-07-22 15:54:30,784 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_1.syz root@localhost:/root/repro.txt
+2025-07-22 15:54:30,784 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_1.syz
+2025-07-22 15:54:31,880 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:54:32,032 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:55:37,042 repro执行完毕
+2025-07-22 15:56:51,983 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 15:56:51,983 
+2025-07-22 15:56:51,983 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 15:56:51,983 虚拟机命令执行-rm repro.txt
+2025-07-22 15:56:51,986 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 15:56:51,989 Command succeeded: kill -9 1694794
+2025-07-22 15:56:51,989 虚拟机已终止 (PID: 1694794): /home/pangyesong/linux1
+2025-07-22 15:56:51,989 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 15:56:51,989 processing-2
+2025-07-22 15:56:51,990 QEMU 启动中
+2025-07-22 15:57:52,227 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_2.syz root@localhost:/root/repro.txt
+2025-07-22 15:57:52,227 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_2.syz
+2025-07-22 15:57:53,361 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 15:57:53,507 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 15:58:58,532 repro执行完毕
+2025-07-22 16:00:13,471 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:00:13,471 
+2025-07-22 16:00:13,471 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 16:00:13,471 虚拟机命令执行-rm repro.txt
+2025-07-22 16:00:13,474 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 16:00:13,476 Command succeeded: kill -9 1695538
+2025-07-22 16:00:13,476 虚拟机已终止 (PID: 1695538): /home/pangyesong/linux1
+2025-07-22 16:00:13,476 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:00:13,476 processing-3
+2025-07-22 16:00:13,477 QEMU 启动中
+2025-07-22 16:01:13,683 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_3.syz root@localhost:/root/repro.txt
+2025-07-22 16:01:13,684 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_3.syz
+2025-07-22 16:01:14,754 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 16:01:14,899 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 16:02:19,966 repro执行完毕
+2025-07-22 16:03:35,037 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:03:35,037 
+2025-07-22 16:03:35,037 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 16:03:35,037 虚拟机命令执行-rm repro.txt
+2025-07-22 16:03:35,040 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 16:03:35,043 Command succeeded: kill -9 1696258
+2025-07-22 16:03:35,043 虚拟机已终止 (PID: 1696258): /home/pangyesong/linux1
+2025-07-22 16:03:35,043 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:03:35,043 processing-4
+2025-07-22 16:03:35,044 QEMU 启动中
+2025-07-22 16:04:35,298 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_4.syz root@localhost:/root/repro.txt
+2025-07-22 16:04:35,299 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_4.syz
+2025-07-22 16:04:35,873 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 16:04:36,030 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 16:05:41,097 repro执行完毕
+2025-07-22 16:06:56,034 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:06:56,034 
+2025-07-22 16:06:56,034 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 16:06:56,034 虚拟机命令执行-rm repro.txt
+2025-07-22 16:06:56,037 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 16:06:56,039 Command succeeded: kill -9 1697083
+2025-07-22 16:06:56,039 虚拟机已终止 (PID: 1697083): /home/pangyesong/linux1
+2025-07-22 16:06:56,040 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:06:56,040 processing-5
+2025-07-22 16:06:56,041 QEMU 启动中
+2025-07-22 16:07:56,332 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_5.syz root@localhost:/root/repro.txt
+2025-07-22 16:07:56,332 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_5.syz
+2025-07-22 16:07:57,622 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 16:07:57,768 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 16:09:02,794 repro执行完毕
+2025-07-22 16:10:17,732 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:10:17,732 
+2025-07-22 16:10:17,732 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 16:10:17,732 虚拟机命令执行-rm repro.txt
+2025-07-22 16:10:17,735 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 16:10:17,737 Command succeeded: kill -9 1697903
+2025-07-22 16:10:17,737 虚拟机已终止 (PID: 1697903): /home/pangyesong/linux1
+2025-07-22 16:10:17,738 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:10:17,738 processing-6
+2025-07-22 16:10:17,739 QEMU 启动中
+2025-07-22 16:11:17,934 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_6.syz root@localhost:/root/repro.txt
+2025-07-22 16:11:17,935 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_6.syz
+2025-07-22 16:11:18,907 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 16:11:19,060 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 16:12:24,126 repro执行完毕
+2025-07-22 16:12:24,188 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:12:24,188 
+2025-07-22 16:12:24,188 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the ECDSA key sent by the remote host is
+SHA256:hUIp+xATwdzozAT1qFD9NtWLlveT6QELqvqKPobz6sY.
+Please contact your system administrator.
+Add correct host key in /home/pangyesong/.ssh/known_hosts to get rid of this message.
+Offending ECDSA key in /home/pangyesong/.ssh/known_hosts:2
+  remove with:
+  ssh-keygen -f "/home/pangyesong/.ssh/known_hosts" -R "[localhost]:10022"
+Password authentication is disabled to avoid man-in-the-middle attacks.
+Keyboard-interactive authentication is disabled to avoid man-in-the-middle attacks.
+root@localhost: Permission denied (publickey,password).
+
+2025-07-22 16:12:24,188 虚拟机命令执行-rm repro.txt
+2025-07-22 16:12:24,193 Command succeeded: kill -9 1698650
+2025-07-22 16:12:24,193 虚拟机已终止 (PID: 1698650): /home/pangyesong/linux1
+2025-07-22 16:12:24,193 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:12:24,193 processing-7
+2025-07-22 16:12:24,194 QEMU 启动中
+2025-07-22 16:13:24,401 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_7.syz root@localhost:/root/repro.txt
+2025-07-22 16:13:24,401 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_7.syz
+2025-07-22 16:13:24,915 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 16:13:25,062 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 16:14:30,127 repro执行完毕
+2025-07-22 16:15:45,066 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:15:45,066 
+2025-07-22 16:15:45,066 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 16:15:45,066 虚拟机命令执行-rm repro.txt
+2025-07-22 16:15:45,069 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 16:15:45,071 Command succeeded: kill -9 1699175
+2025-07-22 16:15:45,071 虚拟机已终止 (PID: 1699175): /home/pangyesong/linux1
+2025-07-22 16:15:45,072 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:15:45,072 processing-8
+2025-07-22 16:15:45,073 QEMU 启动中
+2025-07-22 16:16:45,276 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_8.syz root@localhost:/root/repro.txt
+2025-07-22 16:16:45,276 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_8.syz
+2025-07-22 16:16:45,795 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 16:16:45,942 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 16:17:50,963 repro执行完毕
+2025-07-22 16:19:05,903 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:19:05,903 
+2025-07-22 16:19:05,903 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 16:19:05,904 虚拟机命令执行-rm repro.txt
+2025-07-22 16:19:05,906 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 16:19:05,909 Command succeeded: kill -9 1700009
+2025-07-22 16:19:05,909 虚拟机已终止 (PID: 1700009): /home/pangyesong/linux1
+2025-07-22 16:19:05,909 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:19:05,909 processing-9
+2025-07-22 16:19:05,910 QEMU 启动中
+2025-07-22 16:20:06,091 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_9.syz root@localhost:/root/repro.txt
+2025-07-22 16:20:06,092 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_9.syz
+2025-07-22 16:20:06,657 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 16:20:06,803 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 16:21:11,869 repro执行完毕
+2025-07-22 16:22:26,808 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:22:26,808 
+2025-07-22 16:22:26,808 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 16:22:26,808 虚拟机命令执行-rm repro.txt
+2025-07-22 16:22:26,811 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 16:22:26,814 Command succeeded: kill -9 1700782
+2025-07-22 16:22:26,814 虚拟机已终止 (PID: 1700782): /home/pangyesong/linux1
+2025-07-22 16:22:26,814 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:22:26,814 processing-10
+2025-07-22 16:22:26,815 QEMU 启动中
+2025-07-22 16:23:27,053 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_10.syz root@localhost:/root/repro.txt
+2025-07-22 16:23:27,053 复现文件已传输到虚拟机中-/home/pangyesong/FLKERNEL/datasets/mutation_testcase/31d54c60c5b254d6f75b/31d54c60c5b254d6f75b_10.syz
+2025-07-22 16:23:28,183 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-execprog root@localhost:/root
+2025-07-22 16:23:28,331 Command succeeded: scp -i /home/pangyesong/vm_rootfs/bullseye.id_rsa -P 10022 -o "StrictHostKeyChecking no" /home/pangyesong/syzkaller-new/bin/linux_amd64/syz-executor root@localhost:/root
+2025-07-22 16:24:33,371 repro执行完毕
+2025-07-22 16:25:48,311 Command failed: ssh -i /home/pangyesong/vm_rootfsbullseye.id_rsa -p 10022 -o "StrictHostKeyChecking no" -t root@localhost "rm repro.txt" >> /home/pangyesong/linux1/vm.log 
+2025-07-22 16:25:48,312 
+2025-07-22 16:25:48,312 Warning: Identity file /home/pangyesong/vm_rootfsbullseye.id_rsa not accessible: No such file or directory.
+kex_exchange_identification: read: Connection reset by peer
+
+2025-07-22 16:25:48,312 虚拟机命令执行-rm repro.txt
+2025-07-22 16:25:48,315 在日志中找到匹配的关键词: ath9k_wmi_event_tasklet
+2025-07-22 16:25:48,318 Command succeeded: kill -9 1701634
+2025-07-22 16:25:48,318 虚拟机已终止 (PID: 1701634): /home/pangyesong/linux1
+2025-07-22 16:25:48,318 PID 文件已删除: /home/pangyesong/linux1/vm.pid
+2025-07-22 16:25:48,318 虚拟机 PID 文件不存在: /home/pangyesong/linux1

@@ -1,0 +1,148 @@
+loop0: detected capacity change from 0 to 512
+EXT4-fs: Warning: mounting with an experimental mount option 'dioread_nolock' for blocksize < PAGE_SIZE
+EXT4-fs (loop0): 1 truncate cleaned up
+======================================================
+WARNING: possible circular locking dependency detected
+6.4.0-rc7-syzkaller-00072-gdad9774deaf1 #0 Not tainted
+------------------------------------------------------
+syz-executor162/5119 is trying to acquire lock:
+ffff888073d04000 (&ea_inode->i_rwsem#8/1){+.+.}-{3:3}, at: inode_lock include/linux/fs.h:775 [inline]
+ffff888073d04000 (&ea_inode->i_rwsem#8/1){+.+.}-{3:3}, at: ext4_xattr_inode_iget+0x173/0x400 fs/ext4/xattr.c:461
+
+but task is already holding lock:
+ffff888073d04888 (&ei->i_data_sem/3){++++}-{3:3}, at: ext4_setattr+0x1988/0x2880 fs/ext4/inode.c:5423
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #1 (&ei->i_data_sem/3){++++}-{3:3}:
+       down_write+0x92/0x200 kernel/locking/rwsem.c:1573
+       ext4_update_i_disksize fs/ext4/ext4.h:3309 [inline]
+       ext4_xattr_inode_write fs/ext4/xattr.c:1446 [inline]
+       ext4_xattr_inode_lookup_create fs/ext4/xattr.c:1594 [inline]
+       ext4_xattr_set_entry+0x3046/0x3810 fs/ext4/xattr.c:1719
+       ext4_xattr_ibody_set+0x131/0x3a0 fs/ext4/xattr.c:2273
+       ext4_xattr_set_handle+0x968/0x1510 fs/ext4/xattr.c:2430
+       ext4_xattr_set+0x144/0x360 fs/ext4/xattr.c:2544
+       __vfs_setxattr+0x173/0x1e0 fs/xattr.c:201
+       __vfs_setxattr_noperm+0x129/0x5f0 fs/xattr.c:235
+       __vfs_setxattr_locked+0x1d3/0x260 fs/xattr.c:296
+       vfs_setxattr+0x143/0x340 fs/xattr.c:322
+       do_setxattr+0x147/0x190 fs/xattr.c:630
+       setxattr+0x146/0x160 fs/xattr.c:653
+       path_setxattr+0x197/0x1c0 fs/xattr.c:672
+       __do_sys_setxattr fs/xattr.c:688 [inline]
+       __se_sys_setxattr fs/xattr.c:684 [inline]
+       __x64_sys_setxattr+0xc4/0x160 fs/xattr.c:684
+       do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+       do_syscall_64+0x39/0xb0 arch/x86/entry/common.c:80
+       entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+-> #0 (&ea_inode->i_rwsem#8/1){+.+.}-{3:3}:
+       check_prev_add kernel/locking/lockdep.c:3113 [inline]
+       check_prevs_add kernel/locking/lockdep.c:3232 [inline]
+       validate_chain kernel/locking/lockdep.c:3847 [inline]
+       __lock_acquire+0x2fcd/0x5f30 kernel/locking/lockdep.c:5088
+       lock_acquire kernel/locking/lockdep.c:5705 [inline]
+       lock_acquire+0x1b1/0x520 kernel/locking/lockdep.c:5670
+       down_write+0x92/0x200 kernel/locking/rwsem.c:1573
+       inode_lock include/linux/fs.h:775 [inline]
+       ext4_xattr_inode_iget+0x173/0x400 fs/ext4/xattr.c:461
+       ext4_xattr_inode_get+0x162/0x830 fs/ext4/xattr.c:535
+       ext4_xattr_move_to_block fs/ext4/xattr.c:2626 [inline]
+       ext4_xattr_make_inode_space fs/ext4/xattr.c:2728 [inline]
+       ext4_expand_extra_isize_ea+0xf51/0x1810 fs/ext4/xattr.c:2820
+       __ext4_expand_extra_isize+0x33e/0x470 fs/ext4/inode.c:5795
+       ext4_try_to_expand_extra_isize fs/ext4/inode.c:5838 [inline]
+       __ext4_mark_inode_dirty+0x51b/0x800 fs/ext4/inode.c:5916
+       ext4_setattr+0x1a02/0x2880 fs/ext4/inode.c:5426
+       notify_change+0xb2c/0x1180 fs/attr.c:483
+       do_truncate+0x143/0x200 fs/open.c:66
+       handle_truncate fs/namei.c:3295 [inline]
+       do_open fs/namei.c:3640 [inline]
+       path_openat+0x2083/0x2750 fs/namei.c:3791
+       do_filp_open+0x1ba/0x410 fs/namei.c:3818
+       do_sys_openat2+0x16d/0x4c0 fs/open.c:1356
+       do_sys_open fs/open.c:1372 [inline]
+       __do_sys_creat fs/open.c:1448 [inline]
+       __se_sys_creat fs/open.c:1442 [inline]
+       __x64_sys_creat+0xcd/0x120 fs/open.c:1442
+       do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+       do_syscall_64+0x39/0xb0 arch/x86/entry/common.c:80
+       entry_SYSCALL_64_after_hwframe+0x63/0xcd
+
+other info that might help us debug this:
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(&ei->i_data_sem/3);
+                               lock(&ea_inode->i_rwsem#8/1);
+                               lock(&ei->i_data_sem/3);
+  lock(&ea_inode->i_rwsem#8/1);
+
+ *** DEADLOCK ***
+
+5 locks held by syz-executor162/5119:
+ #0: ffff88807c0f4460 (sb_writers#4){.+.+}-{0:0}, at: do_open fs/namei.c:3629 [inline]
+ #0: ffff88807c0f4460 (sb_writers#4){.+.+}-{0:0}, at: path_openat+0x19a4/0x2750 fs/namei.c:3791
+ #1: ffff888073d04a00 (&sb->s_type->i_mutex_key#8){++++}-{3:3}, at: inode_lock include/linux/fs.h:775 [inline]
+ #1: ffff888073d04a00 (&sb->s_type->i_mutex_key#8){++++}-{3:3}, at: do_truncate+0x131/0x200 fs/open.c:64
+ #2: ffff888073d04ba0 (mapping.invalidate_lock){++++}-{3:3}, at: filemap_invalidate_lock include/linux/fs.h:820 [inline]
+ #2: ffff888073d04ba0 (mapping.invalidate_lock){++++}-{3:3}, at: ext4_setattr+0x6f2/0x2880 fs/ext4/inode.c:5383
+ #3: ffff888073d04888 (&ei->i_data_sem/3){++++}-{3:3}, at: ext4_setattr+0x1988/0x2880 fs/ext4/inode.c:5423
+ #4: ffff888073d046c8 (&ei->xattr_sem){++++}-{3:3}, at: ext4_write_trylock_xattr fs/ext4/xattr.h:162 [inline]
+ #4: ffff888073d046c8 (&ei->xattr_sem){++++}-{3:3}, at: ext4_try_to_expand_extra_isize fs/ext4/inode.c:5835 [inline]
+ #4: ffff888073d046c8 (&ei->xattr_sem){++++}-{3:3}, at: __ext4_mark_inode_dirty+0x48f/0x800 fs/ext4/inode.c:5916
+
+stack backtrace:
+CPU: 1 PID: 5119 Comm: syz-executor162 Not tainted 6.4.0-rc7-syzkaller-00072-gdad9774deaf1 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 05/27/2023
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xd9/0x150 lib/dump_stack.c:106
+ check_noncircular+0x25f/0x2e0 kernel/locking/lockdep.c:2188
+ check_prev_add kernel/locking/lockdep.c:3113 [inline]
+ check_prevs_add kernel/locking/lockdep.c:3232 [inline]
+ validate_chain kernel/locking/lockdep.c:3847 [inline]
+ __lock_acquire+0x2fcd/0x5f30 kernel/locking/lockdep.c:5088
+ lock_acquire kernel/locking/lockdep.c:5705 [inline]
+ lock_acquire+0x1b1/0x520 kernel/locking/lockdep.c:5670
+ down_write+0x92/0x200 kernel/locking/rwsem.c:1573
+ inode_lock include/linux/fs.h:775 [inline]
+ ext4_xattr_inode_iget+0x173/0x400 fs/ext4/xattr.c:461
+ ext4_xattr_inode_get+0x162/0x830 fs/ext4/xattr.c:535
+ ext4_xattr_move_to_block fs/ext4/xattr.c:2626 [inline]
+ ext4_xattr_make_inode_space fs/ext4/xattr.c:2728 [inline]
+ ext4_expand_extra_isize_ea+0xf51/0x1810 fs/ext4/xattr.c:2820
+ __ext4_expand_extra_isize+0x33e/0x470 fs/ext4/inode.c:5795
+ ext4_try_to_expand_extra_isize fs/ext4/inode.c:5838 [inline]
+ __ext4_mark_inode_dirty+0x51b/0x800 fs/ext4/inode.c:5916
+ ext4_setattr+0x1a02/0x2880 fs/ext4/inode.c:5426
+ notify_change+0xb2c/0x1180 fs/attr.c:483
+ do_truncate+0x143/0x200 fs/open.c:66
+ handle_truncate fs/namei.c:3295 [inline]
+ do_open fs/namei.c:3640 [inline]
+ path_openat+0x2083/0x2750 fs/namei.c:3791
+ do_filp_open+0x1ba/0x410 fs/namei.c:3818
+ do_sys_openat2+0x16d/0x4c0 fs/open.c:1356
+ do_sys_open fs/open.c:1372 [inline]
+ __do_sys_creat fs/open.c:1448 [inline]
+ __se_sys_creat fs/open.c:1442 [inline]
+ __x64_sys_creat+0xcd/0x120 fs/open.c:1442
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f3f30ddca39
+Code: 28 00 00 00 75 05 48 83 c4 28 c3 e8 11 15 00 00 90 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe3ca2c098 EFLAGS: 00000246 ORIG_RAX: 0000000000000055
+RAX: ffffffffffffffda RBX: 0031656c69662f2e RCX: 00007f3f30ddca39
+RDX: 00007f3f30ddca39 RSI: 0000000000000000 RDI: 0000000020000040
+RBP: 0000000000000000 R08: 00007ffe3ca2c0c0 R09: 00007ffe3ca2c0c0
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe3ca2c0bc
+R13: 00007ffe3ca2c0f0 R14: 00007ffe3ca2c0d0 R15: 000000000000003a
+ </TASK>

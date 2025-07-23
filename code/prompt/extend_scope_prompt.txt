@@ -1,0 +1,70 @@
+You will need to read and analyze a bug report and a syzlang program to complete the following tasks:
+
+1. Extract the file where the bug occurred: Extract the file path where the bug occurred from the bug report.
+2. Extract files that appear in the Call Trace: Extracts all the file paths involved from the Call Trace.
+3. Analyze Syzlang Program: Identify all syscalls used (e.g., open, ioctl, socket) and Map to corresponding kernel subsystems/files.
+3. Assuming Oracle File is not in the list of files extracted: If Oracle File is not in the list of files extracted, provide an additional ten files that may contain bugs.
+
+Chain-of-Thought (CoT) Analysis Steps
+1. Read the Bug Report:
+   a. Carefully read the Bug Report to locate where the bug occurred (file path and line number).
+      - Read the Call Trace to extract all involved file paths.
+   b. Extract the file where the bug occurred:
+      - Look for statements like kernel BUG at <file path>:<line number> in the Bug Report and extract the file path.
+   c. Extract files mentioned in the Call Trace:
+      - Look for statements like <function name>+<offset> <file path>:<line number> in the Call Trace and extract the file paths.
+   d. Summarize the module where the bug occurred(e.g. drivers/gpu fs/f2fs) and the type of the bug (e.g. Memory issues,log issues)
+2. Analyze Syzlang Program:
+    a. Identify critical patterns:
+      - Target syscalls (e.g., ioctl$VIDIOC_QBUF → media subsystem)
+      - Device paths (/dev/video* → drivers/media/)
+      - Flag values (V4L2_* flags → v4l2-core)
+   b. Trace resource flows:
+      - File descriptor chains: openat → ioctl → close
+      - Memory operations: mmap → use → munmap
+      - Socket lifecycle: socket → bind → sendmsg
+   c. Analyze pseudo-syscalls:
+      - syz_ioctl$vid_cap → drivers/media/v4l2-core/
+      - syz_mount$ext4 → fs/ext4/
+
+3. Cross-reference both sources:
+   - Combine files from Bug Report and Syzlang patterns
+   - Prioritize files that:
+     * Handle same subsystem (e.g., V4L2)
+     * Manage same resources (DMA buffers)
+     * Share header files
+
+4. Provide ten additional files that might contain the bug(If the file analyzed by syscall is not in the calltrace, it must be added to the file list):
+    Use the following logic to infer additional files:
+    Call relationships:
+    Analyze function call chains from Call Trace
+    Cross-check with Syzlang syscall sequences (e.g. openat→ioctl→mmap)
+    Code structure:
+    Find same subsystem files (e.g. drivers/media/v4l2-core/)
+    Match Syzlang device paths to subsystems (e.g. /dev/video → media/)
+    Tool file functions:
+    Find the global tool files that appear in the bugreport（e.g. fs/namei.c）
+    Add the corresponding file in a specific file system(e.g. fs/ntfs3/namei.c)
+    Dependencies:
+    Header files related to bug origin
+    Headers used in Syzlang structs (e.g. v4l2_buffer → include/uapi/linux/videodev2.h)
+    Complementary files:(it must be unique to the file in calltrace!!!!)
+    Add missing .c/.h pairs
+    Add Syzlang pseudo-syscall implementations (e.g. syz_ioctl$vid_cap → v4l2-ioctl.c)（every syscall should add at least one file）
+    Synthesis of bug generation modules and syscall (e.g. openat$fb0 and drivers/gpu -> drivers/gpu/drm/drm_fbdev_generic.c)
+    Synthesis of the generation modules and the type of the bug (e.g. kernel/bpf and log issue -> kernel/bpf/log.c)
+
+Attention: file inferenced from syscall and file additional produced by bug report should not appeard in files extracted from bug report !!!!
+BUG REPORT is here:
+{BUG_REPORT_HERE}
+
+SYZ program is here:(the program is produced by syzkaller to reproduce a target bug)
+{SYZ_HERE}
+
+Output:
+Provide the results in JSON format:
+You need to give four parts of the filenames:
+1.files where bug occurred
+2.files extracted from bug report
+3.file inferenced from syscall
+4.file additional produced by bug report

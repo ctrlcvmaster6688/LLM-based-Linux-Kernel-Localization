@@ -1,0 +1,372 @@
+BUG: memory leak
+unreferenced object 0xffff8881170d6200 (size 256):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948949 (age 23.430s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 08 62 0d 17 81 88 ff ff  .........b......
+    08 62 0d 17 81 88 ff ff 10 26 65 82 ff ff ff ff  .b.......&e.....
+  backtrace:
+    [<ffffffff82657f2b>] kmalloc include/linux/slab.h:591 [inline]
+    [<ffffffff82657f2b>] kzalloc include/linux/slab.h:721 [inline]
+    [<ffffffff82657f2b>] device_private_init drivers/base/core.c:3203 [inline]
+    [<ffffffff82657f2b>] device_add+0x89b/0xdf0 drivers/base/core.c:3253
+    [<ffffffff81577864>] cdev_device_add+0x84/0xe0 fs/char_dev.c:549
+    [<ffffffff822547ff>] bsg_register_queue+0x10f/0x1d0 block/bsg.c:206
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881170da100 (size 32):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948956 (age 23.360s)
+  hex dump (first 32 bytes):
+    38 3a 30 3a 30 3a 31 00 00 00 00 00 00 00 00 00  8:0:0:1.........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8147fc76>] kstrdup+0x36/0x70 mm/util.c:60
+    [<ffffffff8147fd03>] kstrdup_const+0x53/0x80 mm/util.c:83
+    [<ffffffff82293362>] kvasprintf_const+0xc2/0x110 lib/kasprintf.c:48
+    [<ffffffff8235545b>] kobject_set_name_vargs+0x3b/0xe0 lib/kobject.c:289
+    [<ffffffff82652573>] dev_set_name+0x63/0x90 drivers/base/core.c:3147
+    [<ffffffff822547d1>] bsg_register_queue+0xe1/0x1d0 block/bsg.c:201
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881157cde00 (size 256):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948956 (age 23.360s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 08 de 7c 15 81 88 ff ff  ..........|.....
+    08 de 7c 15 81 88 ff ff 10 26 65 82 ff ff ff ff  ..|......&e.....
+  backtrace:
+    [<ffffffff82657f2b>] kmalloc include/linux/slab.h:591 [inline]
+    [<ffffffff82657f2b>] kzalloc include/linux/slab.h:721 [inline]
+    [<ffffffff82657f2b>] device_private_init drivers/base/core.c:3203 [inline]
+    [<ffffffff82657f2b>] device_add+0x89b/0xdf0 drivers/base/core.c:3253
+    [<ffffffff81577864>] cdev_device_add+0x84/0xe0 fs/char_dev.c:549
+    [<ffffffff822547ff>] bsg_register_queue+0x10f/0x1d0 block/bsg.c:206
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff888110f3b620 (size 32):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948968 (age 23.240s)
+  hex dump (first 32 bytes):
+    38 3a 30 3a 30 3a 32 00 00 00 00 00 00 00 00 00  8:0:0:2.........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8147fc76>] kstrdup+0x36/0x70 mm/util.c:60
+    [<ffffffff8147fd03>] kstrdup_const+0x53/0x80 mm/util.c:83
+    [<ffffffff82293362>] kvasprintf_const+0xc2/0x110 lib/kasprintf.c:48
+    [<ffffffff8235545b>] kobject_set_name_vargs+0x3b/0xe0 lib/kobject.c:289
+    [<ffffffff82652573>] dev_set_name+0x63/0x90 drivers/base/core.c:3147
+    [<ffffffff822547d1>] bsg_register_queue+0xe1/0x1d0 block/bsg.c:201
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff888114f6c160 (size 32):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948949 (age 24.710s)
+  hex dump (first 32 bytes):
+    38 3a 30 3a 30 3a 30 00 00 00 00 00 00 00 00 00  8:0:0:0.........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8147fc76>] kstrdup+0x36/0x70 mm/util.c:60
+    [<ffffffff8147fd03>] kstrdup_const+0x53/0x80 mm/util.c:83
+    [<ffffffff82293362>] kvasprintf_const+0xc2/0x110 lib/kasprintf.c:48
+    [<ffffffff8235545b>] kobject_set_name_vargs+0x3b/0xe0 lib/kobject.c:289
+    [<ffffffff82652573>] dev_set_name+0x63/0x90 drivers/base/core.c:3147
+    [<ffffffff822547d1>] bsg_register_queue+0xe1/0x1d0 block/bsg.c:201
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881170d6200 (size 256):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948949 (age 24.710s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 08 62 0d 17 81 88 ff ff  .........b......
+    08 62 0d 17 81 88 ff ff 10 26 65 82 ff ff ff ff  .b.......&e.....
+  backtrace:
+    [<ffffffff82657f2b>] kmalloc include/linux/slab.h:591 [inline]
+    [<ffffffff82657f2b>] kzalloc include/linux/slab.h:721 [inline]
+    [<ffffffff82657f2b>] device_private_init drivers/base/core.c:3203 [inline]
+    [<ffffffff82657f2b>] device_add+0x89b/0xdf0 drivers/base/core.c:3253
+    [<ffffffff81577864>] cdev_device_add+0x84/0xe0 fs/char_dev.c:549
+    [<ffffffff822547ff>] bsg_register_queue+0x10f/0x1d0 block/bsg.c:206
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881170da100 (size 32):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948956 (age 24.640s)
+  hex dump (first 32 bytes):
+    38 3a 30 3a 30 3a 31 00 00 00 00 00 00 00 00 00  8:0:0:1.........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8147fc76>] kstrdup+0x36/0x70 mm/util.c:60
+    [<ffffffff8147fd03>] kstrdup_const+0x53/0x80 mm/util.c:83
+    [<ffffffff82293362>] kvasprintf_const+0xc2/0x110 lib/kasprintf.c:48
+    [<ffffffff8235545b>] kobject_set_name_vargs+0x3b/0xe0 lib/kobject.c:289
+    [<ffffffff82652573>] dev_set_name+0x63/0x90 drivers/base/core.c:3147
+    [<ffffffff822547d1>] bsg_register_queue+0xe1/0x1d0 block/bsg.c:201
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881157cde00 (size 256):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948956 (age 24.640s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 08 de 7c 15 81 88 ff ff  ..........|.....
+    08 de 7c 15 81 88 ff ff 10 26 65 82 ff ff ff ff  ..|......&e.....
+  backtrace:
+    [<ffffffff82657f2b>] kmalloc include/linux/slab.h:591 [inline]
+    [<ffffffff82657f2b>] kzalloc include/linux/slab.h:721 [inline]
+    [<ffffffff82657f2b>] device_private_init drivers/base/core.c:3203 [inline]
+    [<ffffffff82657f2b>] device_add+0x89b/0xdf0 drivers/base/core.c:3253
+    [<ffffffff81577864>] cdev_device_add+0x84/0xe0 fs/char_dev.c:549
+    [<ffffffff822547ff>] bsg_register_queue+0x10f/0x1d0 block/bsg.c:206
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff888114f6c160 (size 32):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948949 (age 28.480s)
+  hex dump (first 32 bytes):
+    38 3a 30 3a 30 3a 30 00 00 00 00 00 00 00 00 00  8:0:0:0.........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8147fc76>] kstrdup+0x36/0x70 mm/util.c:60
+    [<ffffffff8147fd03>] kstrdup_const+0x53/0x80 mm/util.c:83
+    [<ffffffff82293362>] kvasprintf_const+0xc2/0x110 lib/kasprintf.c:48
+    [<ffffffff8235545b>] kobject_set_name_vargs+0x3b/0xe0 lib/kobject.c:289
+    [<ffffffff82652573>] dev_set_name+0x63/0x90 drivers/base/core.c:3147
+    [<ffffffff822547d1>] bsg_register_queue+0xe1/0x1d0 block/bsg.c:201
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881170d6200 (size 256):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948949 (age 28.480s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 08 62 0d 17 81 88 ff ff  .........b......
+    08 62 0d 17 81 88 ff ff 10 26 65 82 ff ff ff ff  .b.......&e.....
+  backtrace:
+    [<ffffffff82657f2b>] kmalloc include/linux/slab.h:591 [inline]
+    [<ffffffff82657f2b>] kzalloc include/linux/slab.h:721 [inline]
+    [<ffffffff82657f2b>] device_private_init drivers/base/core.c:3203 [inline]
+    [<ffffffff82657f2b>] device_add+0x89b/0xdf0 drivers/base/core.c:3253
+    [<ffffffff81577864>] cdev_device_add+0x84/0xe0 fs/char_dev.c:549
+    [<ffffffff822547ff>] bsg_register_queue+0x10f/0x1d0 block/bsg.c:206
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881170da100 (size 32):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948956 (age 28.410s)
+  hex dump (first 32 bytes):
+    38 3a 30 3a 30 3a 31 00 00 00 00 00 00 00 00 00  8:0:0:1.........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8147fc76>] kstrdup+0x36/0x70 mm/util.c:60
+    [<ffffffff8147fd03>] kstrdup_const+0x53/0x80 mm/util.c:83
+    [<ffffffff82293362>] kvasprintf_const+0xc2/0x110 lib/kasprintf.c:48
+    [<ffffffff8235545b>] kobject_set_name_vargs+0x3b/0xe0 lib/kobject.c:289
+    [<ffffffff82652573>] dev_set_name+0x63/0x90 drivers/base/core.c:3147
+    [<ffffffff822547d1>] bsg_register_queue+0xe1/0x1d0 block/bsg.c:201
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881157cde00 (size 256):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948956 (age 28.410s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 08 de 7c 15 81 88 ff ff  ..........|.....
+    08 de 7c 15 81 88 ff ff 10 26 65 82 ff ff ff ff  ..|......&e.....
+  backtrace:
+    [<ffffffff82657f2b>] kmalloc include/linux/slab.h:591 [inline]
+    [<ffffffff82657f2b>] kzalloc include/linux/slab.h:721 [inline]
+    [<ffffffff82657f2b>] device_private_init drivers/base/core.c:3203 [inline]
+    [<ffffffff82657f2b>] device_add+0x89b/0xdf0 drivers/base/core.c:3253
+    [<ffffffff81577864>] cdev_device_add+0x84/0xe0 fs/char_dev.c:549
+    [<ffffffff822547ff>] bsg_register_queue+0x10f/0x1d0 block/bsg.c:206
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff888114f6c160 (size 32):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948949 (age 29.750s)
+  hex dump (first 32 bytes):
+    38 3a 30 3a 30 3a 30 00 00 00 00 00 00 00 00 00  8:0:0:0.........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8147fc76>] kstrdup+0x36/0x70 mm/util.c:60
+    [<ffffffff8147fd03>] kstrdup_const+0x53/0x80 mm/util.c:83
+    [<ffffffff82293362>] kvasprintf_const+0xc2/0x110 lib/kasprintf.c:48
+    [<ffffffff8235545b>] kobject_set_name_vargs+0x3b/0xe0 lib/kobject.c:289
+    [<ffffffff82652573>] dev_set_name+0x63/0x90 drivers/base/core.c:3147
+    [<ffffffff822547d1>] bsg_register_queue+0xe1/0x1d0 block/bsg.c:201
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881170d6200 (size 256):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948949 (age 29.760s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 08 62 0d 17 81 88 ff ff  .........b......
+    08 62 0d 17 81 88 ff ff 10 26 65 82 ff ff ff ff  .b.......&e.....
+  backtrace:
+    [<ffffffff82657f2b>] kmalloc include/linux/slab.h:591 [inline]
+    [<ffffffff82657f2b>] kzalloc include/linux/slab.h:721 [inline]
+    [<ffffffff82657f2b>] device_private_init drivers/base/core.c:3203 [inline]
+    [<ffffffff82657f2b>] device_add+0x89b/0xdf0 drivers/base/core.c:3253
+    [<ffffffff81577864>] cdev_device_add+0x84/0xe0 fs/char_dev.c:549
+    [<ffffffff822547ff>] bsg_register_queue+0x10f/0x1d0 block/bsg.c:206
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881170da100 (size 32):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948956 (age 29.690s)
+  hex dump (first 32 bytes):
+    38 3a 30 3a 30 3a 31 00 00 00 00 00 00 00 00 00  8:0:0:1.........
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace:
+    [<ffffffff8147fc76>] kstrdup+0x36/0x70 mm/util.c:60
+    [<ffffffff8147fd03>] kstrdup_const+0x53/0x80 mm/util.c:83
+    [<ffffffff82293362>] kvasprintf_const+0xc2/0x110 lib/kasprintf.c:48
+    [<ffffffff8235545b>] kobject_set_name_vargs+0x3b/0xe0 lib/kobject.c:289
+    [<ffffffff82652573>] dev_set_name+0x63/0x90 drivers/base/core.c:3147
+    [<ffffffff822547d1>] bsg_register_queue+0xe1/0x1d0 block/bsg.c:201
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+BUG: memory leak
+unreferenced object 0xffff8881157cde00 (size 256):
+  comm "kworker/u4:4", pid 2996, jiffies 4294948956 (age 29.690s)
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 08 de 7c 15 81 88 ff ff  ..........|.....
+    08 de 7c 15 81 88 ff ff 10 26 65 82 ff ff ff ff  ..|......&e.....
+  backtrace:
+    [<ffffffff82657f2b>] kmalloc include/linux/slab.h:591 [inline]
+    [<ffffffff82657f2b>] kzalloc include/linux/slab.h:721 [inline]
+    [<ffffffff82657f2b>] device_private_init drivers/base/core.c:3203 [inline]
+    [<ffffffff82657f2b>] device_add+0x89b/0xdf0 drivers/base/core.c:3253
+    [<ffffffff81577864>] cdev_device_add+0x84/0xe0 fs/char_dev.c:549
+    [<ffffffff822547ff>] bsg_register_queue+0x10f/0x1d0 block/bsg.c:206
+    [<ffffffff82730abf>] scsi_sysfs_add_sdev+0x13f/0x380 drivers/scsi/scsi_sysfs.c:1376
+    [<ffffffff8272e309>] scsi_sysfs_add_devices drivers/scsi/scsi_scan.c:1727 [inline]
+    [<ffffffff8272e309>] scsi_finish_async_scan drivers/scsi/scsi_scan.c:1812 [inline]
+    [<ffffffff8272e309>] do_scan_async+0x109/0x200 drivers/scsi/scsi_scan.c:1855
+    [<ffffffff812752a4>] async_run_entry_fn+0x24/0xf0 kernel/async.c:127
+    [<ffffffff81263d1f>] process_one_work+0x2cf/0x620 kernel/workqueue.c:2297
+    [<ffffffff81264629>] worker_thread+0x59/0x5d0 kernel/workqueue.c:2444
+    [<ffffffff8126db28>] kthread+0x188/0x1d0 kernel/kthread.c:319
+    [<ffffffff8100234f>] ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:295
+
+executing program
+executing program
+executing program
+executing program

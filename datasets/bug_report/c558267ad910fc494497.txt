@@ -1,0 +1,172 @@
+======================================================
+WARNING: possible circular locking dependency detected
+5.18.0-rc7-syzkaller-00048-gf993aed406ea #0 Not tainted
+------------------------------------------------------
+syz-executor318/3594 is trying to acquire lock:
+ffffffff8cf4e6e8 (driver_lock){+.+.}-{3:3}, at: display_open+0x1f/0x220 drivers/media/rc/imon.c:503
+
+but task is already holding lock:
+ffffffff8cc8e670 (minor_rwsem#2){++++}-{3:3}, at: usb_open+0x24/0x2e0 drivers/usb/core/file.c:39
+
+which lock already depends on the new lock.
+
+
+the existing dependency chain (in reverse order) is:
+
+-> #2 (minor_rwsem#2){++++}-{3:3}:
+       down_write+0x90/0x150 kernel/locking/rwsem.c:1514
+       usb_register_dev drivers/usb/core/file.c:187 [inline]
+       usb_register_dev+0x19d/0x7e0 drivers/usb/core/file.c:156
+       imon_init_display drivers/media/rc/imon.c:2385 [inline]
+       imon_probe+0x2506/0x2b90 drivers/media/rc/imon.c:2470
+       usb_probe_interface+0x315/0x7f0 drivers/usb/core/driver.c:396
+       call_driver_probe drivers/base/dd.c:542 [inline]
+       really_probe+0x23e/0xb20 drivers/base/dd.c:621
+       __driver_probe_device+0x338/0x4d0 drivers/base/dd.c:752
+       driver_probe_device+0x4c/0x1a0 drivers/base/dd.c:782
+       __device_attach_driver+0x20b/0x2f0 drivers/base/dd.c:899
+       bus_for_each_drv+0x15f/0x1e0 drivers/base/bus.c:427
+       __device_attach+0x228/0x4a0 drivers/base/dd.c:970
+       bus_probe_device+0x1e4/0x290 drivers/base/bus.c:487
+       device_add+0xb83/0x1e20 drivers/base/core.c:3405
+       usb_set_configuration+0x101e/0x1900 drivers/usb/core/message.c:2170
+       usb_generic_driver_probe+0xba/0x100 drivers/usb/core/generic.c:238
+       usb_probe_device+0xd9/0x2c0 drivers/usb/core/driver.c:293
+       call_driver_probe drivers/base/dd.c:542 [inline]
+       really_probe+0x23e/0xb20 drivers/base/dd.c:621
+       __driver_probe_device+0x338/0x4d0 drivers/base/dd.c:752
+       driver_probe_device+0x4c/0x1a0 drivers/base/dd.c:782
+       __device_attach_driver+0x20b/0x2f0 drivers/base/dd.c:899
+       bus_for_each_drv+0x15f/0x1e0 drivers/base/bus.c:427
+       __device_attach+0x228/0x4a0 drivers/base/dd.c:970
+       bus_probe_device+0x1e4/0x290 drivers/base/bus.c:487
+       device_add+0xb83/0x1e20 drivers/base/core.c:3405
+       usb_new_device.cold+0x641/0x1091 drivers/usb/core/hub.c:2566
+       hub_port_connect drivers/usb/core/hub.c:5363 [inline]
+       hub_port_connect_change drivers/usb/core/hub.c:5507 [inline]
+       port_event drivers/usb/core/hub.c:5665 [inline]
+       hub_event+0x25c6/0x4680 drivers/usb/core/hub.c:5747
+       process_one_work+0x996/0x1610 kernel/workqueue.c:2289
+       worker_thread+0x665/0x1080 kernel/workqueue.c:2436
+       kthread+0x2e9/0x3a0 kernel/kthread.c:376
+       ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:298
+
+-> #1 (&ictx->lock){+.+.}-{3:3}:
+       __mutex_lock_common kernel/locking/mutex.c:600 [inline]
+       __mutex_lock+0x12f/0x12f0 kernel/locking/mutex.c:733
+       imon_init_intf0 drivers/media/rc/imon.c:2230 [inline]
+       imon_probe+0xff9/0x2b90 drivers/media/rc/imon.c:2431
+       usb_probe_interface+0x315/0x7f0 drivers/usb/core/driver.c:396
+       call_driver_probe drivers/base/dd.c:542 [inline]
+       really_probe+0x23e/0xb20 drivers/base/dd.c:621
+       __driver_probe_device+0x338/0x4d0 drivers/base/dd.c:752
+       driver_probe_device+0x4c/0x1a0 drivers/base/dd.c:782
+       __device_attach_driver+0x20b/0x2f0 drivers/base/dd.c:899
+       bus_for_each_drv+0x15f/0x1e0 drivers/base/bus.c:427
+       __device_attach+0x228/0x4a0 drivers/base/dd.c:970
+       bus_probe_device+0x1e4/0x290 drivers/base/bus.c:487
+       device_add+0xb83/0x1e20 drivers/base/core.c:3405
+       usb_set_configuration+0x101e/0x1900 drivers/usb/core/message.c:2170
+       usb_generic_driver_probe+0xba/0x100 drivers/usb/core/generic.c:238
+       usb_probe_device+0xd9/0x2c0 drivers/usb/core/driver.c:293
+       call_driver_probe drivers/base/dd.c:542 [inline]
+       really_probe+0x23e/0xb20 drivers/base/dd.c:621
+       __driver_probe_device+0x338/0x4d0 drivers/base/dd.c:752
+       driver_probe_device+0x4c/0x1a0 drivers/base/dd.c:782
+       __device_attach_driver+0x20b/0x2f0 drivers/base/dd.c:899
+       bus_for_each_drv+0x15f/0x1e0 drivers/base/bus.c:427
+       __device_attach+0x228/0x4a0 drivers/base/dd.c:970
+       bus_probe_device+0x1e4/0x290 drivers/base/bus.c:487
+       device_add+0xb83/0x1e20 drivers/base/core.c:3405
+       usb_new_device.cold+0x641/0x1091 drivers/usb/core/hub.c:2566
+       hub_port_connect drivers/usb/core/hub.c:5363 [inline]
+       hub_port_connect_change drivers/usb/core/hub.c:5507 [inline]
+       port_event drivers/usb/core/hub.c:5665 [inline]
+       hub_event+0x25c6/0x4680 drivers/usb/core/hub.c:5747
+       process_one_work+0x996/0x1610 kernel/workqueue.c:2289
+       worker_thread+0x665/0x1080 kernel/workqueue.c:2436
+       kthread+0x2e9/0x3a0 kernel/kthread.c:376
+       ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:298
+
+-> #0 (driver_lock){+.+.}-{3:3}:
+       check_prev_add kernel/locking/lockdep.c:3065 [inline]
+       check_prevs_add kernel/locking/lockdep.c:3188 [inline]
+       validate_chain kernel/locking/lockdep.c:3803 [inline]
+       __lock_acquire+0x2ac6/0x56c0 kernel/locking/lockdep.c:5029
+       lock_acquire kernel/locking/lockdep.c:5641 [inline]
+       lock_acquire+0x1ab/0x510 kernel/locking/lockdep.c:5606
+       __mutex_lock_common kernel/locking/mutex.c:600 [inline]
+       __mutex_lock+0x12f/0x12f0 kernel/locking/mutex.c:733
+       display_open+0x1f/0x220 drivers/media/rc/imon.c:503
+       usb_open+0x204/0x2e0 drivers/usb/core/file.c:48
+       chrdev_open+0x266/0x770 fs/char_dev.c:414
+       do_dentry_open+0x4a1/0x11e0 fs/open.c:824
+       do_open fs/namei.c:3476 [inline]
+       path_openat+0x1c71/0x2910 fs/namei.c:3609
+       do_filp_open+0x1aa/0x400 fs/namei.c:3636
+       do_sys_openat2+0x16d/0x4c0 fs/open.c:1213
+       do_sys_open fs/open.c:1229 [inline]
+       __do_sys_openat fs/open.c:1245 [inline]
+       __se_sys_openat fs/open.c:1240 [inline]
+       __x64_sys_openat+0x13f/0x1f0 fs/open.c:1240
+       do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+       do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+       entry_SYSCALL_64_after_hwframe+0x44/0xae
+
+other info that might help us debug this:
+
+Chain exists of:
+  driver_lock --> &ictx->lock --> minor_rwsem#2
+
+ Possible unsafe locking scenario:
+
+       CPU0                    CPU1
+       ----                    ----
+  lock(minor_rwsem#2);
+                               lock(&ictx->lock);
+                               lock(minor_rwsem#2);
+  lock(driver_lock);
+
+ *** DEADLOCK ***
+
+1 lock held by syz-executor318/3594:
+ #0: ffffffff8cc8e670 (minor_rwsem#2){++++}-{3:3}, at: usb_open+0x24/0x2e0 drivers/usb/core/file.c:39
+
+stack backtrace:
+CPU: 1 PID: 3594 Comm: syz-executor318 Not tainted 5.18.0-rc7-syzkaller-00048-gf993aed406ea #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0xcd/0x134 lib/dump_stack.c:106
+ check_noncircular+0x25f/0x2e0 kernel/locking/lockdep.c:2145
+ check_prev_add kernel/locking/lockdep.c:3065 [inline]
+ check_prevs_add kernel/locking/lockdep.c:3188 [inline]
+ validate_chain kernel/locking/lockdep.c:3803 [inline]
+ __lock_acquire+0x2ac6/0x56c0 kernel/locking/lockdep.c:5029
+ lock_acquire kernel/locking/lockdep.c:5641 [inline]
+ lock_acquire+0x1ab/0x510 kernel/locking/lockdep.c:5606
+ __mutex_lock_common kernel/locking/mutex.c:600 [inline]
+ __mutex_lock+0x12f/0x12f0 kernel/locking/mutex.c:733
+ display_open+0x1f/0x220 drivers/media/rc/imon.c:503
+ usb_open+0x204/0x2e0 drivers/usb/core/file.c:48
+ chrdev_open+0x266/0x770 fs/char_dev.c:414
+ do_dentry_open+0x4a1/0x11e0 fs/open.c:824
+ do_open fs/namei.c:3476 [inline]
+ path_openat+0x1c71/0x2910 fs/namei.c:3609
+ do_filp_open+0x1aa/0x400 fs/namei.c:3636
+ do_sys_openat2+0x16d/0x4c0 fs/open.c:1213
+ do_sys_open fs/open.c:1229 [inline]
+ __do_sys_openat fs/open.c:1245 [inline]
+ __se_sys_openat fs/open.c:1240 [inline]
+ __x64_sys_openat+0x13f/0x1f0 fs/open.c:1240
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f28bf00fbc7
+Code: 25 00 00 41 00 3d 00 00 41 00 74 47 64 8b 04 25 18 00 00 00 85 c0 75 6b 44 89 e2 48 89 ee bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 0f 87 95 00 00 00 48 8b 4c 24 28 64 48 2b 0c 25
+RSP: 002b:00007ffdf13b9a30 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f28bf00fbc7
+RDX: 0000000000000002 RSI: 00007ffdf13b9ab0 RDI: 00000000ffffff9c
+RBP: 00007ffdf13b9ab0 R08: 0000000000000000 R09: 000000000000000f
+R10: 0000000000

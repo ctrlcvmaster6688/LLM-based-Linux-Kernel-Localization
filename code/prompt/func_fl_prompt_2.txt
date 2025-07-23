@@ -1,0 +1,85 @@
+You are an expert in software fault localization. Your task is to locate the function most likely to contain a bug in the Linux kernel, based on information provided below. You MUST reason step-by-step using Chain-of-Thought (CoT) reasoning.
+
+The scope of the defect is limited to a list of **functions**, each with its **source file** and **parameter list**. These functions are extracted from the **top-10 most suspicious files** identified through prior analysis using call traces, bug report content, and syscall semantics.
+---
+### Your Task Includes the Following Steps:
+
+1. **Bug Understanding**
+   - Read the bug report and summarize the reason of the defect.
+   - Identify the relevant **kernel subsystem or module** (e.g., memory management, file system, USB, networking).
+   - Carefully distinguish between:
+     - The **crash point function** (where the crash actually occurs, based on the RIP / faulting instruction address).
+     - The **call stack top function** (the currently executing or about-to-execute function at crash time).
+     - Note that these two may be different, and both provide important clues.
+   - Identify which function triggered the bug (should be ranked within the top-5 candidates).
+   - List the functions at the top of the call stack, indicating which can be called by the trigger function.
+
+2. **Program Intention**
+   - Understand the goal of the original syzkaller test program.
+   - Determine which part of the kernel it tries to exercise: creation, usage, or cleanup of a resource?
+
+3. **Successful Mutation Analysis**
+   - Analyze which successful program mutations prevent the bug.
+   - Infer how those changes affect **which phase** of the resource lifecycle (creation, usage, or destruction).
+
+4. **Failed Mutation Analysis**
+   - Identify patterns that still trigger the bug.
+   - Compare to Step 3 to find which operations are essential to bug manifestation.
+
+5. **Defect Pattern and Lifecycle Inference**
+   - Based on previous steps, infer the behavioral and lifecycle characteristics of the defect.
+   - Determine if the bug likely stems from faulty **creation**, **inconsistent usage**, or **incorrect cleanup** of kernel structures.
+
+6. **Function Classification and Mapping**
+   For each function in the list:
+   - Summarize its purpose and behavior using its name, parameters, and source file.
+   - Determine whether the function plays a role in **initialization**, **execution**, or **teardown**.
+   - Identify its subsystem/module by the file path.
+   - Mark whether the function appears in the call trace.
+   - Crucially, consider the relation of the function’s position in the call trace to the inferred crash point and lifecycle phase—do not blindly prioritize functions solely by call trace presence.
+
+7. **Suspicion Inference**
+   Rank functions based on:
+   - Relevance to the subsystem/module (Step 1).
+   - Match to the lifecycle stage where the defect likely occurs (Step 5).
+   - Whether it lies in a highly ranked file from prior analysis.
+   - Behavioral match to bug type (e.g., misuse of component framework, missing binding/unbinding).
+   - Presence in call trace **only if it aligns with the inferred crash point or relevant lifecycle phase**.
+   - Consider both crash point function and call stack top function as important clues; if they differ, reason carefully which function is more likely the root cause or the immediate trigger.
+
+8. **Final Output**
+   Provide a ranked list of the top 10 most suspicious functions.
+   If the suspected root cause is **not in the trace but involved in earlier stages**, it should still rank highly.
+
+---
+
+### Inputs:
+
+**Bug Report:**
+{BUG_REPORT_HERE}
+
+**Test Program:**
+{TEST_PROGRAM_HERE}
+
+**Successful Mutations:**
+1. {MUTATE1_HERE}
+2. {MUTATE2_HERE}
+3. {MUTATE3_HERE}
+
+**Failed Mutations:**
+1. {MUTATE4_HERE}
+
+**Function Semantic Summaries:**
+This part will produced by another AI agent .And the order in which the files appear represents the top-10 order at the file level.
+(Includes function name, file path, parameter list, behavior category, subsystem, phase, call trace presence, controllability, and key resource operations)
+
+
+You should output as follow json format:
+{
+  "thought_process": "Step-by-step reasoning based on bug profile, test behavior, mutation analysis, function summaries, and mapping between defect characteristics and candidate behaviors.",
+  "standard_output": [
+    "function_name_1",
+    "function_name_2",
+    ...
+  ]
+}

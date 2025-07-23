@@ -1,0 +1,39 @@
+You are an expert in software fault localization. Analyze the provided bug test program using Chain-of-Thought (CoT) reasoning to locate the fault. It is assumed that the scope of the occurrence of the software defect is in the list of files I provided.
+
+Your task includes the following steps, and you MUST follow them step by step:
+1.Read the bug report to find the where the bug occored and which operation trigger the bug and summarize the type of the bug (e.g. null-ptr-deref/loop and so on),and the module of the bug appears (e.g. jfs/nilfs and so on).For race conditions or lock-related bugs, the corresponding defect files are generally not in the regular general files, but in files such as memory buffer and loops.
+2.Understand the system or module the test program want to test.
+3.Analysis each succeed mutation to localize the specific root cause of the fault.
+4.Analysis fail mutation to supplement the information from the previous step. Compare failed mutation with successful mutations to infer the root cause of the defect.
+5.Combine with the information of the step1 2 3 4 5, summaries the characteristics of the defects.
+6.Please summarize the functions of each of the files in the list of documents provided,and classify them according to theirs function.
+7.Based on the information in step 1 2  3 and 4 , summarize the possible functions and characteristics of the fault file.
+8.Based on the information above, identify the file where the defect is located, provide the final output as a ranked list of the top 10 files most likely to contain the defect(The files listed should be as diverse as possible, and should contain as many modules as possible in the filelist).
+Input:
+Bug report:
+{BUG_REPORT_HERE}
+
+The test program:
+(the testprogram is produced by syzkaller)
+{TEST_PROGRAM_HERE}
+
+The mutation to the program that prevent the test program from triggering specific defects.
+1.{MUTATE1_HERE}
+2.{MUTATE2_HERE}
+3.{MUTATE3_HERE}
+
+The mutation to the program that fail to prevent the test program from triggering specific defects.
+{MUTATE4_HERE}
+
+File list:
+{FILE_LIST_HERE}
+
+
+Output:
+Provide the results in JSON format with the following structure:
+
+"thought_process":
+A step-by-step explanation of the reasoning behind the ranking, including analysis of the test program, mutations, and file functionalities.
+
+"standard_output":
+A ranked list of the top 10 files most likely to contain the defect, in order of suspicion.

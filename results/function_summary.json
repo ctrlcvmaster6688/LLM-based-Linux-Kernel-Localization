@@ -1,0 +1,1590 @@
+{
+  "31d54c60c5b254d6f75b": [
+    {
+      "function": "ath9k_wmi_event_tasklet",
+      "file": "drivers/net/wireless/ath/ath9k/wmi.c",
+      "purpose": "Handles WMI (Wireless Module Interface) events asynchronously via tasklet",
+      "subsystem": "wireless networking",
+      "category": "event handling"
+    },
+    {
+      "function": "ath9k_wmi_cmd_issue",
+      "file": "drivers/net/wireless/ath/ath9k/wmi.c",
+      "purpose": "Issues WMI commands to the wireless hardware",
+      "subsystem": "wireless networking",
+      "category": "command transmission"
+    },
+    {
+      "function": "ath9k_wmi_ctrl_rx",
+      "file": "drivers/net/wireless/ath/ath9k/wmi.c",
+      "purpose": "Handles received control messages from WMI interface",
+      "subsystem": "wireless networking",
+      "category": "message reception"
+    },
+    {
+      "function": "ath9k_wmi_cmd",
+      "file": "drivers/net/wireless/ath/ath9k/wmi.c",
+      "purpose": "Main function for executing WMI commands",
+      "subsystem": "wireless networking",
+      "category": "command processing"
+    },
+    {
+      "function": "ath9k_wmi_connect",
+      "file": "drivers/net/wireless/ath/ath9k/wmi.c",
+      "purpose": "Establishes connection with WMI interface",
+      "subsystem": "wireless networking",
+      "category": "initialization"
+    },
+    {
+      "function": "ath9k_init_wmi",
+      "file": "drivers/net/wireless/ath/ath9k/wmi.c",
+      "purpose": "Initializes WMI subsystem for Atheros wireless",
+      "subsystem": "wireless networking",
+      "category": "initialization"
+    },
+    {
+      "function": "ath9k_fatal_work",
+      "file": "drivers/net/wireless/ath/ath9k/wmi.c",
+      "purpose": "Handles fatal error conditions in the wireless driver",
+      "subsystem": "wireless networking",
+      "category": "error handling"
+    },
+    {
+      "function": "htc_drv_txrx",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Main transmit/receive handler for HTC (Host Target Communication)",
+      "subsystem": "wireless networking",
+      "category": "data transmission"
+    },
+    {
+      "function": "ath9k_htc_txstatus",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Handles transmission status reports from hardware",
+      "subsystem": "wireless networking",
+      "category": "status reporting"
+    },
+    {
+      "function": "ath9k_htc_tx_process",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Processes outgoing wireless packets",
+      "subsystem": "wireless networking",
+      "category": "packet processing"
+    },
+    {
+      "function": "ath9k_htc_tx_cleanup_queue",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Cleans up the transmission queue",
+      "subsystem": "wireless networking",
+      "category": "cleanup"
+    },
+    {
+      "function": "ath9k_htc_tx_drain",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Drains pending transmissions",
+      "subsystem": "wireless networking",
+      "category": "resource management"
+    },
+    {
+      "function": "ath9k_htc_tx_start",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Initiates transmission of wireless packets",
+      "subsystem": "wireless networking",
+      "category": "transmission control"
+    },
+    {
+      "function": "ath9k_htc_tx_mgmt",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Handles transmission of management frames",
+      "subsystem": "wireless networking",
+      "category": "management operations"
+    },
+    {
+      "function": "ath9k_htc_txep",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Manages transmission endpoints",
+      "subsystem": "wireless networking",
+      "category": "endpoint management"
+    },
+    {
+      "function": "ath9k_htc_check_tx_aggr",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Checks for transmit aggregation opportunities",
+      "subsystem": "wireless networking",
+      "category": "performance optimization"
+    },
+    {
+      "function": "ath9k_htc_tx_get_packet",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Retrieves packets for transmission",
+      "subsystem": "wireless networking",
+      "category": "packet handling"
+    },
+    {
+      "function": "ath9k_htc_tx_get_slot",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Allocates transmission slots",
+      "subsystem": "wireless networking",
+      "category": "resource allocation"
+    },
+    {
+      "function": "ath9k_tx_failed_tasklet",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Handles failed transmissions asynchronously",
+      "subsystem": "wireless networking",
+      "category": "error handling"
+    },
+    {
+      "function": "ath9k_htc_check_stop_queues",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Checks if transmission queues should be stopped",
+      "subsystem": "wireless networking",
+      "category": "queue management"
+    },
+    {
+      "function": "ath9k_htc_txq_setup",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Sets up transmission queues",
+      "subsystem": "wireless networking",
+      "category": "initialization"
+    },
+    {
+      "function": "ath_htc_txq_update",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Updates transmission queue state",
+      "subsystem": "wireless networking",
+      "category": "state management"
+    },
+    {
+      "function": "ath9k_tx_init",
+      "file": "drivers/net/wireless/ath/ath9k/htc_drv_txrx.c",
+      "purpose": "Initializes transmission subsystem",
+      "subsystem": "wireless networking",
+      "category": "initialization"
+    },
+    {
+      "function": "ath9k_hif_usb_rx_cb",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "USB receive callback for wireless data",
+      "subsystem": "USB wireless networking",
+      "category": "data reception"
+    },
+    {
+      "function": "ath9k_hif_usb_reg_in_cb",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Handles USB register read callbacks",
+      "subsystem": "USB wireless networking",
+      "category": "register access"
+    },
+    {
+      "function": "hif_usb_tx_cb",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "USB transmit completion callback",
+      "subsystem": "USB wireless networking",
+      "category": "transmission completion"
+    },
+    {
+      "function": "hif_usb_mgmt_cb",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Handles USB management frame callbacks",
+      "subsystem": "USB wireless networking",
+      "category": "management operations"
+    },
+    {
+      "function": "hif_usb_regout_cb",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Handles USB register write callbacks",
+      "subsystem": "USB wireless networking",
+      "category": "register access"
+    },
+    {
+      "function": "ath9k_hif_usb_alloc_urbs",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Allocates USB Request Blocks (URBs)",
+      "subsystem": "USB wireless networking",
+      "category": "resource allocation"
+    },
+    {
+      "function": "ath9k_hif_usb_alloc_tx_urbs",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Allocates URBs for transmission",
+      "subsystem": "USB wireless networking",
+      "category": "resource allocation"
+    },
+    {
+      "function": "ath9k_hif_usb_alloc_rx_urbs",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Allocates URBs for reception",
+      "subsystem": "USB wireless networking",
+      "category": "resource allocation"
+    },
+    {
+      "function": "ath9k_hif_usb_alloc_reg_in_urbs",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Allocates URBs for register reads",
+      "subsystem": "USB wireless networking",
+      "category": "resource allocation"
+    },
+    {
+      "function": "ath9k_hif_usb_dealloc_tx_urbs",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Deallocates transmission URBs",
+      "subsystem": "USB wireless networking",
+      "category": "resource cleanup"
+    },
+    {
+      "function": "hif_usb_send",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Main USB send function",
+      "subsystem": "USB wireless networking",
+      "category": "data transmission"
+    },
+    {
+      "function": "hif_usb_send_tx",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Sends data packets over USB",
+      "subsystem": "USB wireless networking",
+      "category": "data transmission"
+    },
+    {
+      "function": "hif_usb_send_mgmt",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Sends management frames over USB",
+      "subsystem": "USB wireless networking",
+      "category": "management operations"
+    },
+    {
+      "function": "hif_usb_send_regout",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Sends register writes over USB",
+      "subsystem": "USB wireless networking",
+      "category": "register access"
+    },
+    {
+      "function": "ath9k_hif_usb_probe",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Probes and initializes USB wireless interface",
+      "subsystem": "USB wireless networking",
+      "category": "initialization"
+    },
+    {
+      "function": "_cb",
+      "file": "drivers/net/wireless/ath/ath9k/hif_usb.c",
+      "purpose": "Generic USB callback handler",
+      "subsystem": "USB wireless networking",
+      "category": "event handling"
+    },
+    {
+      "function": "register_lock_class",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Registers a new lock class for lock dependency tracking",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "assign_lock_key",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Assigns a unique key to a lock for tracking",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "__lock_acquire",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Core lock acquisition function for dependency tracking",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "lock_acquire",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Main interface for acquiring locks with tracking",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "check_prev_add",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Checks and adds lock dependencies to the graph",
+      "subsystem": "kernel locking",
+      "category": "dependency checking"
+    },
+    {
+      "function": "check_prevs_add",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Checks multiple previous lock dependencies",
+      "subsystem": "kernel locking",
+      "category": "dependency checking"
+    },
+    {
+      "function": "mark_lock",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Marks lock state for dependency tracking",
+      "subsystem": "kernel locking",
+      "category": "state tracking"
+    },
+    {
+      "function": "mark_usage",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Marks usage patterns for lock validation",
+      "subsystem": "kernel locking",
+      "category": "validation"
+    },
+    {
+      "function": "_raw_spin_lock_bh",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Low-level spin lock with bottom-half (BH) disabling",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "spin_lock_bh",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Spin lock with bottom-half (BH) disabling",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "spin_unlock_bh",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Releases spin lock and re-enables bottom halves",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "_raw_spin_unlock_bh",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Low-level spin unlock with BH re-enabling",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "spin_trylock_bh",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Attempts to acquire spin lock with BH disabling",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "_raw_spin_trylock_bh",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Low-level trylock with BH disabling",
+      "subsystem": "kernel locking",
+      "category": "synchronization"
+    },
+    {
+      "function": "spin_lock_init",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Initializes a spinlock",
+      "subsystem": "kernel locking",
+      "category": "initialization"
+    },
+    {
+      "function": "spin_is_locked",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Checks if a spinlock is currently locked",
+      "subsystem": "kernel locking",
+      "category": "status checking"
+    },
+    {
+      "function": "in_lock_functions",
+      "file": "kernel/locking/spinlock.c",
+      "purpose": "Checks if address is within lock-related functions",
+      "subsystem": "kernel locking",
+      "category": "debugging"
+    },
+    {
+      "function": "tasklet_action_common",
+      "file": "kernel/softirq.c",
+      "purpose": "Common tasklet execution handler",
+      "subsystem": "kernel tasklets",
+      "category": "deferred execution"
+    },
+    {
+      "function": "run_ksoftirqd",
+      "file": "kernel/softirq.c",
+      "purpose": "Runs the softirqd kernel thread",
+      "subsystem": "kernel softirqs",
+      "category": "interrupt handling"
+    },
+    {
+      "function": "__do_softirq",
+      "file": "kernel/softirq.c",
+      "purpose": "Main softirq processing function",
+      "subsystem": "kernel softirqs",
+      "category": "interrupt handling"
+    },
+    {
+      "function": "dump_stack",
+      "file": "lib/dump_stack.c",
+      "purpose": "Dumps the current call stack for debugging",
+      "subsystem": "kernel debugging",
+      "category": "debug output"
+    },
+    {
+      "function": "dump_stack_print_info",
+      "file": "lib/dump_stack.c",
+      "purpose": "Prints additional information with stack dump",
+      "subsystem": "kernel debugging",
+      "category": "debug output"
+    },
+    {
+      "function": "dump_stack_lvl",
+      "file": "lib/dump_stack.c",
+      "purpose": "Dumps call stack with specified verbosity level",
+      "subsystem": "kernel debugging",
+      "category": "debug output"
+    }
+  ],
+  "0b7c8bfd17c00d016fb4": [
+    {
+      "function": "pty_write",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Handles writing data to a pseudoterminal (pty) device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "I/O handler"
+    },
+    {
+      "function": "ptmx_open",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Opens a master pseudoterminal (ptmx) device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device management"
+    },
+    {
+      "function": "pty_open",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Initializes a pseudoterminal (pty) device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device management"
+    },
+    {
+      "function": "pty_common_install",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Common setup for pseudoterminal (pty) devices.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device initialization"
+    },
+    {
+      "function": "pty_close",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Handles cleanup when closing a pseudoterminal (pty).",
+      "subsystem": "TTY (Terminal)",
+      "category": "Cleanup routine"
+    },
+    {
+      "function": "pty_unix98_ioctl",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Handles Unix98-specific ioctl commands for ptys.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Control interface"
+    },
+    {
+      "function": "pty_bsd_ioctl",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Handles BSD-specific ioctl commands for ptys.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Control interface"
+    },
+    {
+      "function": "pty_set_termios",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Configures terminal attributes for a pty.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device configuration"
+    },
+    {
+      "function": "pty_resize",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Adjusts the window size of a pty.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device configuration"
+    },
+    {
+      "function": "pty_stop",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Stops data transmission on a pty.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Flow control"
+    },
+    {
+      "function": "pty_start",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Resumes data transmission on a pty.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Flow control"
+    },
+    {
+      "function": "pty_flush_buffer",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Flushes the data buffer of a pty.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Buffer management"
+    },
+    {
+      "function": "pty_signal",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Sends signals (e.g., SIGWINCH) related to pty events.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Signal handling"
+    },
+    {
+      "function": "ptm_open_peer",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Opens the slave side of a pseudoterminal pair.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device management"
+    },
+    {
+      "function": "pty_unix98_remove",
+      "file": "drivers/tty/pty.c",
+      "purpose": "Removes a Unix98-style pty device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Cleanup routine"
+    },
+    {
+      "function": "console_unlock",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Releases the console lock and flushes pending log messages.",
+      "subsystem": "Printing / Logging",
+      "category": "Synchronization"
+    },
+    {
+      "function": "console_lock_spinning_enable",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Enables spinning mode for console lock acquisition.",
+      "subsystem": "Printing / Logging",
+      "category": "Synchronization"
+    },
+    {
+      "function": "console_lock_spinning_disable_and_check",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Disables spinning mode and checks for console lock contention.",
+      "subsystem": "Printing / Logging",
+      "category": "Synchronization"
+    },
+    {
+      "function": "console_trylock_spinning",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Attempts to acquire the console lock in spinning mode.",
+      "subsystem": "Printing / Logging",
+      "category": "Synchronization"
+    },
+    {
+      "function": "call_console_drivers",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Dispatches log messages to registered console drivers.",
+      "subsystem": "Printing / Logging",
+      "category": "Message handling"
+    },
+    {
+      "function": "vprintk_emit",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Core function for emitting formatted printk messages.",
+      "subsystem": "Printing / Logging",
+      "category": "Message handling"
+    },
+    {
+      "function": "_printk",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Main kernel print function for logging messages.",
+      "subsystem": "Printing / Logging",
+      "category": "Message handling"
+    },
+    {
+      "function": "register_console",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Registers a console device with the kernel logging system.",
+      "subsystem": "Printing / Logging",
+      "category": "Device registration"
+    },
+    {
+      "function": "unregister_console",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Removes a console device from the kernel logging system.",
+      "subsystem": "Printing / Logging",
+      "category": "Device removal"
+    },
+    {
+      "function": "try_enable_preferred_console",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Attempts to enable a preferred console device (e.g., from boot args).",
+      "subsystem": "Printing / Logging",
+      "category": "Device initialization"
+    },
+    {
+      "function": "console_init",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Initializes the kernel console subsystem.",
+      "subsystem": "Printing / Logging",
+      "category": "Subsystem initialization"
+    },
+    {
+      "function": "console_unblank",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Unblanks the console (e.g., after suspend/resume).",
+      "subsystem": "Printing / Logging",
+      "category": "Power management"
+    },
+    {
+      "function": "console_flush_on_panic",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Forces console output flushing during kernel panic.",
+      "subsystem": "Printing / Logging",
+      "category": "Error handling"
+    },
+    {
+      "function": "abandon_console_lock_in_panic",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Releases the console lock during panic to allow emergency logging.",
+      "subsystem": "Printing / Logging",
+      "category": "Error handling"
+    },
+    {
+      "function": "printk_late_init",
+      "file": "kernel/printk/printk.c",
+      "purpose": "Late-stage initialization of the printk subsystem.",
+      "subsystem": "Printing / Logging",
+      "category": "Subsystem initialization"
+    },
+    {
+      "function": "tty_buffer_alloc",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Allocates a buffer for TTY (terminal) data.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Memory allocation"
+    },
+    {
+      "function": "__tty_buffer_request_room",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Ensures there is space in the TTY buffer for incoming data.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Buffer management"
+    },
+    {
+      "function": "tty_insert_flip_string_fixed_flag",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Inserts a string into the TTY flip buffer with a fixed flag.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Buffer management"
+    },
+    {
+      "function": "tty_insert_flip_string_flags",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Inserts a string into the TTY flip buffer with per-character flags.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Buffer management"
+    },
+    {
+      "function": "__tty_insert_flip_char",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Inserts a single character into the TTY flip buffer.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Buffer management"
+    },
+    {
+      "function": "tty_buffer_free",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Frees a TTY buffer.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Memory deallocation"
+    },
+    {
+      "function": "tty_buffer_free_all",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Frees all buffers associated with a TTY device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Memory deallocation"
+    },
+    {
+      "function": "tty_buffer_init",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Initializes TTY buffer structures for a device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Initialization"
+    },
+    {
+      "function": "flush_to_ldisc",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Flushes buffered data to the line discipline layer.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data transfer"
+    },
+    {
+      "function": "tty_buffer_flush",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Flushes all buffered data for a TTY device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Buffer management"
+    },
+    {
+      "function": "tty_ldisc_receive_buf",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Passes received data to the line discipline.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data transfer"
+    },
+    {
+      "function": "receive_buf",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Handles incoming data for a TTY device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data transfer"
+    },
+    {
+      "function": "tty_buffer_unlock_exclusive",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Releases an exclusive lock on the TTY buffer.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Synchronization"
+    },
+    {
+      "function": "tty_prepare_flip_string",
+      "file": "drivers/tty/tty_buffer.c",
+      "purpose": "Prepares space in the flip buffer for writing.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Buffer management"
+    },
+    {
+      "function": "check_prev_add",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Validates lock dependency chains for deadlock detection.",
+      "subsystem": "Locking",
+      "category": "Deadlock prevention"
+    },
+    {
+      "function": "check_prevs_add",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Checks previous lock acquisitions for potential deadlocks.",
+      "subsystem": "Locking",
+      "category": "Deadlock prevention"
+    },
+    {
+      "function": "validate_chain",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Validates a lock dependency chain.",
+      "subsystem": "Locking",
+      "category": "Deadlock prevention"
+    },
+    {
+      "function": "check_noncircular",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Checks for circular lock dependencies.",
+      "subsystem": "Locking",
+      "category": "Deadlock prevention"
+    },
+    {
+      "function": "print_circular_bug",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Reports detected circular lock dependencies.",
+      "subsystem": "Locking",
+      "category": "Debugging"
+    },
+    {
+      "function": "print_deadlock_bug",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Reports detected deadlock scenarios.",
+      "subsystem": "Locking",
+      "category": "Debugging"
+    },
+    {
+      "function": "lock_acquire",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Acquires a lock with lockdep tracking.",
+      "subsystem": "Locking",
+      "category": "Synchronization"
+    },
+    {
+      "function": "print_circular_lock_scenario",
+      "file": "kernel/locking/lockdep.c",
+      "purpose": "Prints details of a circular lock scenario.",
+      "subsystem": "Locking",
+      "category": "Debugging"
+    },
+    {
+      "function": "n_tty",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Implements the default line discipline (N_TTY) for TTY devices.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Line discipline"
+    },
+    {
+      "function": "n_tty_write",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Handles writing data to a TTY device with N_TTY line discipline.",
+      "subsystem": "TTY (Terminal)",
+      "category": "I/O handler"
+    },
+    {
+      "function": "__receive_buf",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Processes received data in the N_TTY line discipline.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data processing"
+    },
+    {
+      "function": "n_tty_receive_buf_common",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Common handler for incoming data in N_TTY line discipline.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data processing"
+    },
+    {
+      "function": "n_tty_receive_buf_standard",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Handles standard (non-raw) mode input processing.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data processing"
+    },
+    {
+      "function": "n_tty_receive_buf_raw",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Handles raw mode input processing (no interpretation).",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data processing"
+    },
+    {
+      "function": "process_output",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Processes output characters for N_TTY line discipline.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data processing"
+    },
+    {
+      "function": "process_output_block",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Processes a block of output characters.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data processing"
+    },
+    {
+      "function": "do_output_char",
+      "file": "drivers/tty/n_tty.c",
+      "purpose": "Handles a single output character for N_TTY.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data processing"
+    },
+    {
+      "function": "tty_io",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "Core TTY I/O operations (read/write/ioctl).",
+      "subsystem": "TTY (Terminal)",
+      "category": "I/O handler"
+    },
+    {
+      "function": "do_tty_write",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "Performs the actual write operation to a TTY device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "I/O handler"
+    },
+    {
+      "function": "file_tty_write",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "File operation handler for writing to a TTY.",
+      "subsystem": "TTY (Terminal)",
+      "category": "I/O handler"
+    },
+    {
+      "function": "tty_write_message",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "Writes a message string to a TTY device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "I/O handler"
+    },
+    {
+      "function": "tty_release",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "Releases resources associated with a TTY device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Cleanup routine"
+    },
+    {
+      "function": "tty_ioctl",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "Handles ioctl commands for TTY devices.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Control interface"
+    },
+    {
+      "function": "tty_open",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "Opens a TTY device.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device management"
+    },
+    {
+      "function": "tty_init_dev",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "Initializes a TTY device structure.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device initialization"
+    },
+    {
+      "function": "tty_fasync",
+      "file": "drivers/tty/tty_io.c",
+      "purpose": "Handles fasync (asynchronous notification) for TTY devices.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Signal handling"
+    },
+    {
+      "function": "serial8250_console_write",
+      "file": "drivers/tty/serial/8250/8250_port.c",
+      "purpose": "Writes console output via 8250 UART.",
+      "subsystem": "Serial/UART",
+      "category": "I/O handler"
+    },
+    {
+      "function": "serial8250_tx_chars",
+      "file": "drivers/tty/serial/8250/8250_port.c",
+      "purpose": "Transmits characters via 8250 UART.",
+      "subsystem": "Serial/UART",
+      "category": "I/O handler"
+    },
+    {
+      "function": "serial8250_handle_irq",
+      "file": "drivers/tty/serial/8250/8250_port.c",
+      "purpose": "Handles interrupts for 8250 UART.",
+      "subsystem": "Serial/UART",
+      "category": "Interrupt handler"
+    },
+    {
+      "function": "serial8250_default_handle_irq",
+      "file": "drivers/tty/serial/8250/8250_port.c",
+      "purpose": "Default interrupt handler for 8250 UART.",
+      "subsystem": "Serial/UART",
+      "category": "Interrupt handler"
+    },
+    {
+      "function": "serial8250_start_tx",
+      "file": "drivers/tty/serial/8250/8250_port.c",
+      "purpose": "Starts transmission on 8250 UART.",
+      "subsystem": "Serial/UART",
+      "category": "Flow control"
+    },
+    {
+      "function": "serial8250_stop_tx",
+      "file": "drivers/tty/serial/8250/8250_port.c",
+      "purpose": "Stops transmission on 8250 UART.",
+      "subsystem": "Serial/UART",
+      "category": "Flow control"
+    },
+    {
+      "function": "serial8250_rx_chars",
+      "file": "drivers/tty/serial/8250/8250_port.c",
+      "purpose": "Handles received characters from 8250 UART.",
+      "subsystem": "Serial/UART",
+      "category": "I/O handler"
+    },
+    {
+      "function": "serial8250_do_startup",
+      "file": "drivers/tty/serial/8250/8250_port.c",
+      "purpose": "Initializes an 8250 UART port.",
+      "subsystem": "Serial/UART",
+      "category": "Device initialization"
+    },
+    {
+      "function": "tty_port_tty_get",
+      "file": "drivers/tty/tty_port.c",
+      "purpose": "Retrieves the TTY device associated with a port.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device access"
+    },
+    {
+      "function": "tty_port_tty_set",
+      "file": "drivers/tty/tty_port.c",
+      "purpose": "Associates a TTY device with a port.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Device management"
+    },
+    {
+      "function": "tty_port_default_receive_buf",
+      "file": "drivers/tty/tty_port.c",
+      "purpose": "Default handler for receiving data on a TTY port.",
+      "subsystem": "TTY (Terminal)",
+      "category": "Data transfer"
+    },
+    {
+      "function": "slab_alloc_node",
+      "file": "mm/slub.c",
+      "purpose": "Allocates memory from a specific NUMA node's slab cache.",
+      "subsystem": "Memory management",
+      "category": "Memory allocation"
+    },
+    {
+      "function": "__kmalloc",
+      "file": "mm/slub.c",
+      "purpose": "General-purpose kernel memory allocation function.",
+      "subsystem": "Memory management",
+      "category": "Memory allocation"
+    },
+    {
+      "function": "kmem_cache_alloc_node",
+      "file": "mm/slub.c",
+      "purpose": "Allocates an object from a slab cache on a specific NUMA node.",
+      "subsystem": "Memory management",
+      "category": "Memory allocation"
+    },
+    {
+      "function": "should_fail",
+      "file": "lib/fault-inject.c",
+      "purpose": "Determines if a fault should be injected for testing.",
+      "subsystem": "Fault injection",
+      "category": "Testing/debugging"
+    }
+  ],
+  "5b82f0e951f8c2bcdb8f": [
+    {
+      "function": "btrfs_finish_ordered_extent",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Finalizes an ordered extent, ensuring data is written to disk and metadata is updated.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O completion"
+    },
+    {
+      "function": "btrfs_put_ordered_extent",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Releases the reference count on an ordered extent and frees it if no longer needed.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Cleanup"
+    },
+    {
+      "function": "btrfs_dec_test_ordered_pending",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Decrements the pending count of an ordered extent and checks if it can be finished.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "btrfs_start_ordered_extent",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Initiates an ordered extent, marking it as in-progress.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O initiation"
+    },
+    {
+      "function": "btrfs_mark_ordered_io_finished",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Marks an ordered I/O operation as completed, updating relevant metadata.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O completion"
+    },
+    {
+      "function": "can_finish_ordered_extent",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Checks if an ordered extent can be finalized (e.g., all I/O is complete).",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "btrfs_remove_ordered_extent",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Removes an ordered extent from the tracked list, typically during cleanup.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Cleanup"
+    },
+    {
+      "function": "btrfs_queue_ordered_fn",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Queues an ordered extent for processing (e.g., writeback).",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O scheduling"
+    },
+    {
+      "function": "btrfs_lookup_ordered_extent",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Finds an ordered extent by its range or identifier.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata lookup"
+    },
+    {
+      "function": "btrfs_lookup_ordered_range",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Searches for ordered extents overlapping a given range.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata lookup"
+    },
+    {
+      "function": "btrfs_lookup_first_ordered_extent",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Retrieves the first ordered extent in a given range.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata lookup"
+    },
+    {
+      "function": "btrfs_try_lock_ordered_range",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Attempts to lock an ordered range for exclusive access.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "btrfs_lock_and_flush_ordered_range",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Locks an ordered range and flushes pending I/O.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "btrfs_wait_ordered_range",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Waits for all ordered extents in a range to complete.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "btrfs_wait_ordered_extents",
+      "file": "fs/btrfs/ordered-data.c",
+      "purpose": "Waits for all ordered extents associated with an inode to complete.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "btrfs_dio_end_io",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Handles completion of direct I/O operations, updating metadata and cleaning up.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O completion"
+    },
+    {
+      "function": "btrfs_dio_submit_io",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Submits a direct I/O request to the block layer.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O submission"
+    },
+    {
+      "function": "btrfs_create_dio_extent",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Creates a direct I/O extent mapping for a file range.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata management"
+    },
+    {
+      "function": "btrfs_new_extent_direct",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Allocates a new extent for direct I/O writes.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Memory allocation"
+    },
+    {
+      "function": "btrfs_get_blocks_direct_write",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Maps file blocks for direct I/O writes, handling COW if needed.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Block mapping"
+    },
+    {
+      "function": "btrfs_dio_iomap_begin",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Prepares I/O mapping for direct I/O operations.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O mapping"
+    },
+    {
+      "function": "btrfs_dio_iomap_end",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Cleans up after direct I/O operations, releasing resources.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Cleanup"
+    },
+    {
+      "function": "lock_extent_direct",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Locks a file extent for direct I/O, preventing concurrent modifications.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "btrfs_encoded_read_regular",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Handles encoded reads (e.g., compressed/encrypted data) for regular files.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "btrfs_set_extent_delalloc",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Marks an extent as delayed allocation, deferring disk space reservation.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata management"
+    },
+    {
+      "function": "btrfs_clear_delalloc_extent",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Clears the delayed allocation flag from an extent.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata management"
+    },
+    {
+      "function": "btrfs_merge_delalloc_extent",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Merges adjacent delayed allocation extents.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata management"
+    },
+    {
+      "function": "btrfs_split_delalloc_extent",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Splits a delayed allocation extent into smaller ranges.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata management"
+    },
+    {
+      "function": "btrfs_cleanup_ordered_extents",
+      "file": "fs/btrfs/inode.c",
+      "purpose": "Cleans up ordered extents during inode eviction or error handling.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Cleanup"
+    },
+    {
+      "function": "btrfs_direct_write",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Handles direct writes to a file, bypassing page cache.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "btrfs_do_write_iter",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Implements the core write logic for file operations.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "btrfs_dirty_pages",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Marks pages as dirty for writeback, ensuring data persistence.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Page cache management"
+    },
+    {
+      "function": "lock_and_cleanup_extent_if_need",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Locks extents and performs cleanup if required during writes.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "prepare_pages",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Prepares pages for I/O operations (e.g., pinning, mapping).",
+      "subsystem": "Btrfs filesystem",
+      "category": "Page cache management"
+    },
+    {
+      "function": "btrfs_write_check",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Performs pre-write checks (e.g., COW, permissions).",
+      "subsystem": "Btrfs filesystem",
+      "category": "Validation"
+    },
+    {
+      "function": "btrfs_check_nocow_lock",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Checks if a write can bypass COW (no-cow mode) and locks the range.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Synchronization"
+    },
+    {
+      "function": "btrfs_fallocate",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Implements the fallocate syscall for preallocating file space.",
+      "subsystem": "Btrfs filesystem",
+      "category": "File operations"
+    },
+    {
+      "function": "btrfs_zero_range",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Zeroes a range of a file, handling holes and extent management.",
+      "subsystem": "Btrfs filesystem",
+      "category": "File operations"
+    },
+    {
+      "function": "btrfs_punch_hole",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Punches a hole in a file (deallocates a range), similar to fallocate(FALLOC_FL_PUNCH_HOLE).",
+      "subsystem": "Btrfs filesystem",
+      "category": "File operations"
+    },
+    {
+      "function": "btrfs_replace_file_extents",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Replaces file extents (e.g., during reflink or deduplication).",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata management"
+    },
+    {
+      "function": "btrfs_mark_extent_written",
+      "file": "fs/btrfs/file.c",
+      "purpose": "Marks an extent as fully written, updating metadata.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Metadata management"
+    },
+    {
+      "function": "btrfs_destroy_ordered_extents",
+      "file": "fs/btrfs/disk-io.c",
+      "purpose": "Destroys all ordered extents associated with a root or inode.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Cleanup"
+    },
+    {
+      "function": "btrfs_destroy_all_ordered_extents",
+      "file": "fs/btrfs/disk-io.c",
+      "purpose": "Destroys all ordered extents in the filesystem, typically during unmount.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Cleanup"
+    },
+    {
+      "function": "write_all_supers",
+      "file": "fs/btrfs/disk-io.c",
+      "purpose": "Writes all Btrfs superblocks to disk, ensuring consistency.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Superblock management"
+    },
+    {
+      "function": "btrfs_validate_extent_buffer",
+      "file": "fs/btrfs/disk-io.c",
+      "purpose": "Validates the checksum and structure of an extent buffer.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Validation"
+    },
+    {
+      "function": "btrfs_read_extent_buffer",
+      "file": "fs/btrfs/disk-io.c",
+      "purpose": "Reads an extent buffer from disk, verifying its integrity.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "extent_io",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Core handler for extent-based I/O operations (read/write).",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "submit_extent_page",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Submits a page for I/O, mapping it to the underlying block device.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O submission"
+    },
+    {
+      "function": "end_bio_extent_writepage",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Handles completion of write I/O for a page, updating metadata.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O completion"
+    },
+    {
+      "function": "end_bio_extent_readpage",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Handles completion of read I/O for a page, updating the page cache.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O completion"
+    },
+    {
+      "function": "__extent_writepage",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Core function for writing a page to disk, handling extent mapping.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "extent_write_locked_range",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Writes a locked range of a file to disk, ensuring data consistency.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "alloc_new_bio",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Allocates a new bio structure for I/O operations.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Memory allocation"
+    },
+    {
+      "function": "submit_one_bio",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Submits a single bio to the block layer for I/O.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O submission"
+    },
+    {
+      "function": "write_extent_buffer",
+      "file": "fs/btrfs/extent_io.c",
+      "purpose": "Writes data to an extent buffer, ensuring proper synchronization.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "btrfs_search_slot",
+      "file": "fs/btrfs/ctree.c",
+      "purpose": "Searches for a key in the B-tree, returning the slot where it should be inserted.",
+      "subsystem": "Btrfs filesystem",
+      "category": "B-tree operations"
+    },
+    {
+      "function": "__btrfs_cow_block",
+      "file": "fs/btrfs/ctree.c",
+      "purpose": "Internal function to perform copy-on-write for a B-tree block.",
+      "subsystem": "Btrfs filesystem",
+      "category": "B-tree operations"
+    },
+    {
+      "function": "btrfs_cow_block",
+      "file": "fs/btrfs/ctree.c",
+      "purpose": "Ensures a B-tree block is writable by performing COW if needed.",
+      "subsystem": "Btrfs filesystem",
+      "category": "B-tree operations"
+    },
+    {
+      "function": "btrfs_del_items",
+      "file": "fs/btrfs/ctree.c",
+      "purpose": "Deletes items from a B-tree leaf, updating the tree structure.",
+      "subsystem": "Btrfs filesystem",
+      "category": "B-tree operations"
+    },
+    {
+      "function": "split_leaf",
+      "file": "fs/btrfs/ctree.c",
+      "purpose": "Splits a full B-tree leaf into two, maintaining balance.",
+      "subsystem": "Btrfs filesystem",
+      "category": "B-tree operations"
+    },
+    {
+      "function": "push_leaf_left",
+      "file": "fs/btrfs/ctree.c",
+      "purpose": "Redistributes items from a leaf to its left neighbor to free space.",
+      "subsystem": "Btrfs filesystem",
+      "category": "B-tree operations"
+    },
+    {
+      "function": "push_leaf_right",
+      "file": "fs/btrfs/ctree.c",
+      "purpose": "Redistributes items from a leaf to its right neighbor to free space.",
+      "subsystem": "Btrfs filesystem",
+      "category": "B-tree operations"
+    },
+    {
+      "function": "balance_level",
+      "file": "fs/btrfs/ctree.c",
+      "purpose": "Balances the B-tree by redistributing items or merging nodes.",
+      "subsystem": "Btrfs filesystem",
+      "category": "B-tree operations"
+    },
+    {
+      "function": "btrfs_map_block",
+      "file": "fs/btrfs/volumes.c",
+      "purpose": "Maps a logical block to physical devices, handling RAID and striping.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Block mapping"
+    },
+    {
+      "function": "btrfs_get_chunk_map",
+      "file": "fs/btrfs/volumes.c",
+      "purpose": "Retrieves the chunk mapping for a given logical address.",
+      "subsystem": "Btrfs filesystem",
+      "category": "Block mapping"
+    },
+    {
+      "function": "btrfs_num_copies",
+      "file": "fs/btrfs/volumes.c",
+      "purpose": "Returns the number of copies (mirrors) for a given block.",
+      "subsystem": "Btrfs filesystem",
+      "category": "RAID management"
+    },
+    {
+      "function": "btrfs_max_io_len",
+      "file": "fs/btrfs/volumes.c",
+      "purpose": "Calculates the maximum I/O length for a given logical address.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O optimization"
+    },
+    {
+      "function": "btrfs_full_stripe_len",
+      "file": "fs/btrfs/volumes.c",
+      "purpose": "Returns the length of a full stripe in RAID configurations.",
+      "subsystem": "Btrfs filesystem",
+      "category": "RAID management"
+    },
+    {
+      "function": "btrfs_is_parity_mirror",
+      "file": "fs/btrfs/volumes.c",
+      "purpose": "Checks if a mirror is a parity stripe (e.g., RAID5/6).",
+      "subsystem": "Btrfs filesystem",
+      "category": "RAID management"
+    },
+    {
+      "function": "btrfs_check_raid_min_devices",
+      "file": "fs/btrfs/volumes.c",
+      "purpose": "Verifies that the minimum number of devices for a RAID level is present.",
+      "subsystem": "Btrfs filesystem",
+      "category": "RAID validation"
+    },
+    {
+      "function": "find_live_mirror",
+      "file": "fs/btrfs/volumes.c",
+      "purpose": "Finds a live mirror for a block, skipping failed devices.",
+      "subsystem": "Btrfs filesystem",
+      "category": "RAID recovery"
+    },
+    {
+      "function": "iomap_dio_submit_bio",
+      "file": "fs/iomap/direct-io.c",
+      "purpose": "Submits a bio for direct I/O under the iomap framework.",
+      "subsystem": "Filesystem",
+      "category": "I/O submission"
+    },
+    {
+      "function": "iomap_dio_bio_iter",
+      "file": "fs/iomap/direct-io.c",
+      "purpose": "Iterates over bios for direct I/O, handling chunking and submission.",
+      "subsystem": "Filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "__iomap_dio_rw",
+      "file": "fs/iomap/direct-io.c",
+      "purpose": "Core function for direct I/O read/write operations using iomap.",
+      "subsystem": "Filesystem",
+      "category": "I/O handler"
+    },
+    {
+      "function": "read_write",
+      "file": "fs/read_write.c",
+      "purpose": "Implements the core logic for read/write syscalls.",
+      "subsystem": "VFS",
+      "category": "File operations"
+    },
+    {
+      "function": "do_pwritev",
+      "file": "fs/read_write.c",
+      "purpose": "Handles the pwritev syscall for vectored writes at an offset.",
+      "subsystem": "VFS",
+      "category": "File operations"
+    },
+    {
+      "function": "vfs_writev",
+      "file": "fs/read_write.c",
+      "purpose": "Implements vectored writes to a file, calling into the filesystem.",
+      "subsystem": "VFS",
+      "category": "File operations"
+    },
+    {
+      "function": "do_iter_write",
+      "file": "fs/read_write.c",
+      "purpose": "Core function for iter-based writes, used by syscalls like writev.",
+      "subsystem": "VFS",
+      "category": "File operations"
+    },
+    {
+      "function": "btrfs_finish_ordered_extent",
+      "file": "fs/open.c",
+      "purpose": "Finalizes an ordered extent, ensuring data is written to disk and metadata is updated.",
+      "subsystem": "Btrfs filesystem",
+      "category": "I/O completion"
+    }
+  ]
+}

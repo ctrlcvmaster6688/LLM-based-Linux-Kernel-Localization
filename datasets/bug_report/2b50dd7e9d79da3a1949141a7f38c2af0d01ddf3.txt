@@ -1,0 +1,48 @@
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 3606 at net/core/sock.c:2052 sk_destruct+0x13f/0x180 net/core/sock.c:2052
+Modules linked in:
+CPU: 1 PID: 3606 Comm: syz-executor505 Not tainted 5.16.0-syzkaller #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 01/01/2011
+RIP: 0010:sk_destruct+0x13f/0x180 net/core/sock.c:2052
+Code: ff 83 e3 01 89 de e8 10 fe 4f fa 84 db 75 ca e8 27 fa 4f fa 4c 89 e7 e8 df a3 ff ff 5b 5d 41 5c e9 16 fa 4f fa e8 11 fa 4f fa <0f> 0b e9 28 ff ff ff 4c 89 e7 e8 c2 3e 97 fa e9 e5 fe ff ff 4c 89
+RSP: 0018:ffffc90002a1fc48 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000301 RCX: 0000000000000000
+RDX: ffff88801daa1d00 RSI: ffffffff8728595f RDI: ffff888075ff8d20
+RBP: ffff888075ff8cc0 R08: 0000000000000000 R09: ffff888075ff8d27
+R10: ffffed100ebff1a4 R11: 0000000000000000 R12: ffff888075ff8ee8
+R13: ffff888075ff8cf0 R14: 0000000000000003 R15: ffff8880118eaaa0
+FS:  0000000000000000(0000) GS:ffff8880b9d00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020b63fe4 CR3: 000000000b88e000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ __sk_free+0xef/0x3d0 net/core/sock.c:2074
+ sk_free+0x78/0xa0 net/core/sock.c:2085
+ sock_put include/net/sock.h:1912 [inline]
+ tcp_close+0x98/0xc0 net/ipv4/tcp.c:2920
+ inet_release+0x12e/0x280 net/ipv4/af_inet.c:428
+ inet6_release+0x4c/0x70 net/ipv6/af_inet6.c:478
+ __sock_release+0xcd/0x280 net/socket.c:650
+ sock_close+0x18/0x20 net/socket.c:1318
+ __fput+0x286/0x9f0 fs/file_table.c:280
+ task_work_run+0xdd/0x1a0 kernel/task_work.c:164
+ exit_task_work include/linux/task_work.h:32 [inline]
+ do_exit+0xb29/0x2a30 kernel/exit.c:806
+ do_group_exit+0xd2/0x2f0 kernel/exit.c:935
+ __do_sys_exit_group kernel/exit.c:946 [inline]
+ __se_sys_exit_group kernel/exit.c:944 [inline]
+ __x64_sys_exit_group+0x3a/0x50 kernel/exit.c:944
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x35/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f3b64f09df9
+Code: Unable to access opcode bytes at RIP 0x7f3b64f09dcf.
+RSP: 002b:00007ffd95e94cd8 EFLAGS: 00000246 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 00007f3b64f7d270 RCX: 00007f3b64f09df9
+RDX: 000000000000003c RSI: 00000000000000e7 RDI: 0000000000000000
+RBP: 0000000000000000 R08: ffffffffffffffc0 R09: 00007f3b64ecd980
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f3b64f7d270
+R13: 0000000000000001 R14: 0000000000000000 R15: 0000000000000001
+ </TASK>

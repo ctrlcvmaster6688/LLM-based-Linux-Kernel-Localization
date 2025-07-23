@@ -1,0 +1,32 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 33 at fs/hfsplus/inode.c:616 hfsplus_cat_write_inode+0xb13/0xfe0
+Modules linked in:
+CPU: 1 PID: 33 Comm: kworker/u4:2 Not tainted 6.1.0-rc6-syzkaller-00176-g08ad43d554ba #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 10/26/2022
+Workqueue: writeback wb_workfn (flush-7:0)
+RIP: 0010:hfsplus_cat_write_inode+0xb13/0xfe0 fs/hfsplus/inode.c:616
+Code: 00 0f 85 df 04 00 00 44 89 f0 48 8d 65 d8 5b 41 5c 41 5d 41 5e 41 5f 5d c3 e8 f9 99 2f ff 0f 0b e9 d1 f7 ff ff e8 ed 99 2f ff <0f> 0b e9 7f fa ff ff 89 d9 80 e1 07 80 c1 03 38 c1 0f 8c 13 f6 ff
+RSP: 0000:ffffc90000aa7120 EFLAGS: 00010293
+RAX: ffffffff825afe83 RBX: 0000000000000058 RCX: ffff8880182f9d40
+RDX: 0000000000000000 RSI: 0000000000000058 RDI: 00000000000000f8
+RBP: ffffc90000aa74d0 R08: ffffffff825af8f8 R09: ffffed100e907461
+R10: ffffed100e907461 R11: 1ffff1100e907460 R12: dffffc0000000000
+R13: ffffc90000aa71e0 R14: ffffc90000aa7180 R15: ffff88807483a300
+FS:  0000000000000000(0000) GS:ffff8880b9900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffdc37c3b60 CR3: 000000002762c000 CR4: 00000000003506e0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ write_inode fs/fs-writeback.c:1440 [inline]
+ __writeback_single_inode+0x4d6/0x670 fs/fs-writeback.c:1652
+ writeback_sb_inodes+0xb3b/0x18f0 fs/fs-writeback.c:1878
+ wb_writeback+0x41f/0x7b0 fs/fs-writeback.c:2052
+ wb_do_writeback fs/fs-writeback.c:2195 [inline]
+ wb_workfn+0x3cb/0xef0 fs/fs-writeback.c:2235
+ process_one_work+0x877/0xdb0 kernel/workqueue.c:2289
+ worker_thread+0xb14/0x1330 kernel/workqueue.c:2436
+ kthread+0x266/0x300 kernel/kthread.c:376
+ ret_from_fork+0x1f/0x30 arch/x86/entry/entry_64.S:306
+ </TASK>

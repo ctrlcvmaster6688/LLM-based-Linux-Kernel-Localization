@@ -1,0 +1,82 @@
+skbuff: skb_under_panic: text:ffffffff88aeef20 len:48 put:8 head:ffff88801f654c00 data:ffff88801f654bfc tail:0x2c end:0x140 dev:sit1
+------------[ cut here ]------------
+kernel BUG at net/core/skbuff.c:200!
+invalid opcode: 0000 [#1] PREEMPT SMP KASAN
+CPU: 0 PID: 4997 Comm: syz-executor258 Not tainted 6.3.0-syzkaller-12964-g89b7fd5d7f3c #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 04/14/2023
+RIP: 0010:skb_panic+0x152/0x1d0 net/core/skbuff.c:200
+Code: 0f b6 04 01 84 c0 74 04 3c 03 7e 20 8b 4b 70 41 56 45 89 e8 48 c7 c7 40 c9 5d 8b 41 57 56 48 89 ee 52 4c 89 e2 e8 3e 04 61 f9 <0f> 0b 4c 89 4c 24 10 48 89 54 24 08 48 89 34 24 e8 49 ec cf f9 4c
+RSP: 0018:ffffc900039beae8 EFLAGS: 00010282
+RAX: 0000000000000084 RBX: ffff88807624adc0 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffff8168cf6c RDI: 0000000000000005
+RBP: ffffffff8b5dd760 R08: 0000000000000005 R09: 0000000000000000
+R10: 0000000000000200 R11: 0000000000000001 R12: ffffffff88aeef20
+R13: 0000000000000008 R14: ffff888021056000 R15: 0000000000000140
+FS:  0000555556c60300(0000) GS:ffff8880b9800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fbe19f5ba60 CR3: 0000000076258000 CR4: 0000000000350ef0
+Call Trace:
+ <TASK>
+ skb_under_panic net/core/skbuff.c:210 [inline]
+ skb_push+0xc8/0xe0 net/core/skbuff.c:2401
+ fou_build_udp+0x30/0x370 net/ipv4/fou_core.c:1021
+ gue_build_header+0xfb/0x150 net/ipv4/fou_core.c:1064
+ ip_tunnel_encap include/net/ip_tunnels.h:398 [inline]
+ ip_tunnel_encap include/net/ip_tunnels.h:382 [inline]
+ ip_tunnel_xmit+0x67a/0x3170 net/ipv4/ip_tunnel.c:753
+ sit_tunnel_xmit__.isra.0+0xe7/0x150 net/ipv6/sit.c:1057
+ sit_tunnel_xmit+0xf73/0x2860 net/ipv6/sit.c:1073
+ __netdev_start_xmit include/linux/netdevice.h:4915 [inline]
+ netdev_start_xmit include/linux/netdevice.h:4929 [inline]
+ xmit_one net/core/dev.c:3578 [inline]
+ dev_hard_start_xmit+0x187/0x700 net/core/dev.c:3594
+ __dev_queue_xmit+0x2be2/0x3b10 net/core/dev.c:4244
+ dev_queue_xmit include/linux/netdevice.h:3085 [inline]
+ neigh_connected_output+0x3c2/0x550 net/core/neighbour.c:1581
+ neigh_output include/net/neighbour.h:544 [inline]
+ ip_finish_output2+0x778/0x22b0 net/ipv4/ip_output.c:229
+ __ip_finish_output net/ipv4/ip_output.c:307 [inline]
+ __ip_finish_output+0x396/0x650 net/ipv4/ip_output.c:289
+ ip_finish_output+0x31/0x280 net/ipv4/ip_output.c:317
+ NF_HOOK_COND include/linux/netfilter.h:292 [inline]
+ ip_output+0x1a3/0x320 net/ipv4/ip_output.c:431
+ dst_output include/net/dst.h:458 [inline]
+ ip_local_out net/ipv4/ip_output.c:126 [inline]
+ ip_send_skb+0xd8/0x260 net/ipv4/ip_output.c:1597
+ udp_send_skb+0x73a/0x14a0 net/ipv4/udp.c:978
+ udp_sendmsg+0x1b86/0x27e0 net/ipv4/udp.c:1265
+ udpv6_sendmsg+0x180a/0x2d50 net/ipv6/udp.c:1401
+ inet6_sendmsg+0x9d/0xe0 net/ipv6/af_inet6.c:651
+ sock_sendmsg_nosec net/socket.c:724 [inline]
+ sock_sendmsg+0xde/0x190 net/socket.c:747
+ ____sys_sendmsg+0x334/0x900 net/socket.c:2503
+ ___sys_sendmsg+0x110/0x1b0 net/socket.c:2557
+ __sys_sendmmsg+0x18f/0x460 net/socket.c:2643
+ __do_sys_sendmmsg net/socket.c:2672 [inline]
+ __se_sys_sendmmsg net/socket.c:2669 [inline]
+ __x64_sys_sendmmsg+0x9d/0x100 net/socket.c:2669
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x39/0xb0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x63/0xcd
+RIP: 0033:0x7f8ad2d73139
+Code: 28 00 00 00 75 05 48 83 c4 28 c3 e8 b1 14 00 00 90 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 c0 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc3813a128 EFLAGS: 00000246 ORIG_RAX: 0000000000000133
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f8ad2d73139
+RDX: 0000000000000001 RSI: 00000000200017c0 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 00007ffc3813a2c8 R09: 00007ffc3813a2c8
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f8ad2d369c0
+R13: 431bde82d7b634db R14: 0000000000000000 R15: 0000000000000000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:skb_panic+0x152/0x1d0 net/core/skbuff.c:200
+Code: 0f b6 04 01 84 c0 74 04 3c 03 7e 20 8b 4b 70 41 56 45 89 e8 48 c7 c7 40 c9 5d 8b 41 57 56 48 89 ee 52 4c 89 e2 e8 3e 04 61 f9 <0f> 0b 4c 89 4c 24 10 48 89 54 24 08 48 89 34 24 e8 49 ec cf f9 4c
+RSP: 0018:ffffc900039beae8 EFLAGS: 00010282
+RAX: 0000000000000084 RBX: ffff88807624adc0 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffff8168cf6c RDI: 0000000000000005
+RBP: ffffffff8b5dd760 R08: 0000000000000005 R09: 0000000000000000
+R10: 0000000000000200 R11: 0000000000000001 R12: ffffffff88aeef20
+R13: 0000000000000008 R14: ffff888021056000 R15: 0000000000000140
+FS:  0000555556c60300(0000) GS:ffff8880b9800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fbe19f5ba60 CR3: 0000000076258000 CR4: 0000000000350ef0

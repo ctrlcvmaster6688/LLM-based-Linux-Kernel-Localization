@@ -1,0 +1,29 @@
+------------[ cut here ]------------
+BTRFS: Transaction aborted (error -2)
+WARNING: CPU: 0 PID: 5108 at fs/btrfs/extent-tree.c:3017 do_free_extent_accounting fs/btrfs/extent-tree.c:3017 [inline]
+WARNING: CPU: 0 PID: 5108 at fs/btrfs/extent-tree.c:3017 __btrfs_free_extent+0x3212/0x3910 fs/btrfs/extent-tree.c:3391
+Modules linked in:
+CPU: 0 PID: 5108 Comm: btrfs-transacti Not tainted 6.9.0-rc6-syzkaller-00012-g9e4bc4bcae01 #0
+Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS Google 03/27/2024
+RIP: 0010:do_free_extent_accounting fs/btrfs/extent-tree.c:3017 [inline]
+RIP: 0010:__btrfs_free_extent+0x3212/0x3910 fs/btrfs/extent-tree.c:3391
+Code: 0a 8c 44 89 ee e8 de 16 b0 fd 90 0f 0b 90 90 e9 5a f3 ff ff e8 9f 98 ed fd 90 48 c7 c7 80 f1 0a 8c 44 89 ee e8 bf 16 b0 fd 90 <0f> 0b 90 90 e9 68 f3 ff ff e8 80 98 ed fd 90 48 c7 c7 80 f1 0a 8c
+RSP: 0018:ffffc90004757460 EFLAGS: 00010246
+RAX: 6ca745f56409f400 RBX: ffff88801e864001 RCX: ffff88802357da00
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 0000000000000000
+RBP: ffffc90004757640 R08: ffffffff81589072 R09: fffffbfff1c39b58
+R10: dffffc0000000000 R11: fffffbfff1c39b58 R12: dffffc0000000000
+R13: 00000000fffffffe R14: 0000000000000000 R15: ffff888078784128
+FS:  0000000000000000(0000) GS:ffff8880b9400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fbe7631b000 CR3: 0000000078db4000 CR4: 0000000000350ef0
+Call Trace:run_delayed_tree_ref fs/btrfs/extent-tree.c:1770 [inline]
+ run_one_delayed_ref fs/btrfs/extent-tree.c:1797 [inline]
+ btrfs_run_delayed_refs_for_head fs/btrfs/extent-tree.c:2062 [inline]
+ __btrfs_run_delayed_refs+0x1334/0x4740 fs/btrfs/extent-tree.c:2132
+ btrfs_run_delayed_refs+0xe3/0x2c0 fs/btrfs/extent-tree.c:2244
+ btrfs_commit_transaction+0x4be/0x3740 fs/btrfs/transaction.c:2185
+ transaction_kthread+0x28a/0x500 fs/btrfs/disk-io.c:1607
+ kthread+0x2f2/0x390 kernel/kthread.c:388
+ ret_from_fork+0x4d/0x80 arch/x86/kernel/process.c:147
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:244
