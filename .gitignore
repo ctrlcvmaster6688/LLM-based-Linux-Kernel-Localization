@@ -1,0 +1,5 @@
+# 忽略 JetBrains IDE (如 IntelliJ, PyCharm) 的配置目录
+.idea/
+
+# 忽略环境变量文件
+.env
