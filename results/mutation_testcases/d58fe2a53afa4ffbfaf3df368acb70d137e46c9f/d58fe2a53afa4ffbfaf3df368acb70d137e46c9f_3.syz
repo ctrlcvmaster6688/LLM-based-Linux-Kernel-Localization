@@ -1,0 +1,4 @@
+# https://syzkaller.appspot.com/bug?id=d58fe2a53afa4ffbfaf3df368acb70d137e46c9f
+# See https://goo.gl/kgGztJ for information about syzkaller reproducers.
+#{"procs":1,"slowdown":1,"sandbox":"","sandbox_arg":0,"close_fds":false}
+syz_mount_image$f2fs(&(0x7f0000000000), &(0x7f0000000040)='./mnt\x00', 0x10, &(0x7f0000000080)=ANY=[], 0x1, 0x7e8d, &(0x7f0000000200)=$IMAGE_VALID)

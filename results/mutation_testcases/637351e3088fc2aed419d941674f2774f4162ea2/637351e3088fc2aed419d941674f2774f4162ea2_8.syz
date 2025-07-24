@@ -1,0 +1,6 @@
+# https://syzkaller.appspot.com/bug?id=637351e3088fc2aed419d941674f2774f4162ea2
+# See https://goo.gl/kgGztJ for information about syzkaller reproducers.
+#{"procs":1,"slowdown":1,"sandbox":"","sandbox_arg":0,"close_fds":false}
+ioctl$FIOCLEX(0xffffffffffffffff, 0x5451)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x5, 0x0, 0x1b, 0x4001, 0x200, &(0x7f0000000480)="000000000000000000000000000000000000000000000000000000000000020046494c4530000300000000000000000033000000380000004000000000040000000000000000000000000000000000000200000000000000ffffffff00000000"})

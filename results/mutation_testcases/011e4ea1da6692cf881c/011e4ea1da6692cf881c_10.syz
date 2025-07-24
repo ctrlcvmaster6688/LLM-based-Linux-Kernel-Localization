@@ -1,0 +1,7 @@
+# https://syzkaller.appspot.com/bug?id=a1d68f25c702940d846a5a7f22fc756980fdaffd
+# See https://goo.gl/kgGztJ for information about syzkaller reproducers.
+#{"procs":1,"slowdown":1,"sandbox":"","sandbox_arg":0,"close_fds":false}
+pipe2$9p(&(0x7f0000000000)={0xffffffffffffffff, 0xffffffffffffffff}, 0x0)
+write$P9_RVERSION(r1, &(0x7f0000000080)={0x15, 0x65, 0xffff, 0xffff, 0x8, '9P2000.L'}, 0x15)
+pipe2$watch_queue(&(0x7f0000004200)={0xffffffffffffffff, 0xffffffffffffffff}, 0x80)
+splice(r0, 0x0, r2, 0x0, 0x5, 0x4)

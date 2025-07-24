@@ -142,7 +142,7 @@ def train():
             total_rank += r
             total_cls += c
 
-        print(f"\n📘 Epoch {epoch}")
+        print(f"\nEpoch {epoch}")
         print(f"Loss: {total_loss:.4f} | RankLoss: {total_rank:.4f} | ClsLoss: {total_cls:.4f}")
 
         val_stat = evaluate(model, val_loader)
@@ -154,29 +154,9 @@ def train():
         if val_stat[20] < best_val_20:
             best_val_20 = val_stat[20]
             torch.save(model.state_dict(), "filter_model.pt")
-            print("✅ 模型已保存（后20%包含最少缺陷函数）")
+            print("模型已保存（后20%包含最少缺陷函数）")
 
-    # 绘制图像
-    plt.figure(figsize=(12,5))
-
-    plt.subplot(1,2,1)
-    plt.plot(losses, label="Total Loss")
-    plt.xlabel("Epoch")
-    plt.ylabel("Loss")
-    plt.title("Training Loss")
-
-    plt.subplot(1,2,2)
-    plt.plot(val10s, label="Tail10% Hit", marker='o')
-    plt.plot(val20s, label="Tail20% Hit", marker='o')
-    plt.plot(val30s, label="Tail30% Hit", marker='o')
-    plt.xlabel("Epoch")
-    plt.ylabel("Files with Bug in Tail")
-    plt.title("Validation Tail Hit Count")
-    plt.legend()
-
-    plt.tight_layout()
-    plt.savefig("training_summary.png")
-    plt.show()
+   
 
 if __name__ == "__main__":
     train()

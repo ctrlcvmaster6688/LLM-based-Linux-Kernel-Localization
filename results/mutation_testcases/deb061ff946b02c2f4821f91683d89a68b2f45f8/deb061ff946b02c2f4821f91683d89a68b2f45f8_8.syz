@@ -1,0 +1,5 @@
+# https://syzkaller.appspot.com/bug?id=deb061ff946b02c2f4821f91683d89a68b2f45f8
+# See https://goo.gl/kgGztJ for information about syzkaller reproducers.
+#{"procs":1,"slowdown":1,"sandbox":"none","sandbox_arg":0,"close_fds":false}
+syz_mount_image$hfsplus(&(0x7f0000000600), &(0x7f0000000040)='./file0\x00', 0x8004d0, 0x0, 0x1, 0x5f1, 0x0)
+creat(&(0x7f0000000000)='./file0\x00', 0x100)

@@ -1,0 +1,7 @@
+# https://syzkaller.appspot.com/bug?id=1bb51491ca5df96a5f724899d1dbb87afda61419
+# See https://goo.gl/kgGztJ for information about syzkaller reproducers.
+#{"threaded":true,"procs":1,"slowdown":1,"sandbox":"none","sandbox_arg":0,"close_fds":false,"vhci":true}
+r0 = syz_init_net_socket$bt_sco(0x1f, 0x5, 0x2)#
+connect$bt_sco(r0, &(0x7f0000000700)={0x1f, @fixed}, 0x8)#
+#
+bpf$BPF_RAW_TRACEPOINT_OPEN(0x11, &(0x7f0000000000)={&(0x7f00000000c0)='percpu_alloc_percpu\x00', r1}, 0x10)#

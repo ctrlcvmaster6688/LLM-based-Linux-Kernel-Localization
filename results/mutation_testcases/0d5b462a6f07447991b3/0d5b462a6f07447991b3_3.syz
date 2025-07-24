@@ -1,0 +1,5 @@
+# https://syzkaller.appspot.com/bug?id=3f9985f4d71373ed1a4b4b296dec6a0c6700e101
+# See https://goo.gl/kgGztJ for information about syzkaller reproducers.
+#{"procs":1,"slowdown":1,"sandbox":"none","fault_call":-1,"close_fds":false}
+syz_mount_image$nilfs2(&(0x7f0000000000), &(0x7f0000000100)='./file0\x00', 0x200000, 0x39, [], 0x0, &(0x7f0000015800))#
+chown(&(0x7f0000000780)='./file0\x00', 0x0, 0xee01)#
