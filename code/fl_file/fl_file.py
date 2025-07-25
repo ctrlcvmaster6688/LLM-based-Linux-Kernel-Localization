@@ -33,7 +33,7 @@ rate_limit_lock = threading.Lock()
 last_request_time = [0.0]
 
 #client = OpenAI(
-#    api_key="sk-4f7a7d4518eb41ea842ca1f946c6eed5",  # 替换为你的 API Key
+#    api_key="",  # 替换为你的 API Key
 #    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
 #)
 client = OpenAI(
